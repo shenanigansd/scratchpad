@@ -1,0 +1,24 @@
+# IDE
+.idea
+
+# Virtual environment
+venv
+
+# Packaging
+Cargo.lock
+
+# Build
+target
+
+# Cache
+__pycache__
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Jupyter
+.ipynb_checkpoints
