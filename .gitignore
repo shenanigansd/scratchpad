@@ -1,17 +1,19 @@
-# IDE
+# JetBrains
 .idea
 
-# Virtual environment
+# Python
+__pycache__
 venv
 
-# Packaging
-Cargo.lock
-
-# Build
+# Rust
 target
 
-# Cache
-__pycache__
+# dotnet
+bin
+obj
+
+# Jupyter
+.ipynb_checkpoints
 
 # Local .terraform directories
 **/.terraform/*
@@ -19,6 +21,3 @@ __pycache__
 # .tfstate files
 *.tfstate
 *.tfstate.*
-
-# Jupyter
-.ipynb_checkpoints
