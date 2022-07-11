@@ -3,7 +3,7 @@
 from collections.abc import Iterator
 
 
-def fizzbuz(number: int, cases: list[tuple[int, str]]) -> Iterator[str]:
+def fizzbuzz(number: int, cases: list[tuple[int, str]]) -> Iterator[str]:
     """
     For each number between one and `number`,
     loop through the cases and yield a concatenated string of
@@ -21,7 +21,7 @@ def fizzbuz(number: int, cases: list[tuple[int, str]]) -> Iterator[str]:
 
 
 if __name__ == "__main__":
-    lst = list(fizzbuz(100, [(3, "Fizz"), (5, "Buzz")]))
+    lst = list(fizzbuzz(100, [(3, "Fizz"), (5, "Buzz")]))
 
     assert lst[0] == "1"
     assert lst[2] == "Fizz"
