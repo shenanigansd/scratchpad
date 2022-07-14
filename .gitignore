@@ -24,3 +24,7 @@ obj
 # .tfstate files
 *.tfstate
 *.tfstate.*
+
+# Zig
+zig-cache
+zig-out
