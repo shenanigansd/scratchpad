@@ -1,0 +1,3 @@
+# Zig
+
+scratch languages: Zig
