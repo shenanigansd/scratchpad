@@ -137,10 +137,12 @@ def split_prefix_and_number(text: str) -> tuple[str, int]:
     >>> split_prefix_and_number('U1500000')
     ('U', 1500000)
     """
-    if not re.search(r"([a-zA-Z])(\d+)", text):
+    search_results = re.search(r"([a-zA-Z])(\d+)", text)
+
+    if search_results is None:
         raise ValueError("Invalid input")
 
-    prefix, number = re.search(r"([a-zA-Z])(\d+)", text).groups()
+    prefix, number = search_results.groups()
 
     return prefix, int(number)
 
