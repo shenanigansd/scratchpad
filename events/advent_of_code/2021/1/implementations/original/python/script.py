@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 def part_one(values: list[int]) -> int:
     count = sum(values[index] < values[index + 1] for index in range(len(values) - 1))
     return count

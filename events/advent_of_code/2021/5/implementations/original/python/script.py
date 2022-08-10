@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 from collections import defaultdict
 
 def parse_input(values: list[str]) -> list[tuple[tuple[int, int], tuple[int, int]]]:

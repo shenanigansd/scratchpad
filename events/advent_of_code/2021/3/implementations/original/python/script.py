@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 def part_one(values: list[str]) -> int:
     gamma_rate = ""
     epsilon_rate = ""
