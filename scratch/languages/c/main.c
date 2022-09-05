@@ -1,6 +1,8 @@
 #include <stdio.h>
 
-int main() {
-    int ab = 5;
-    printf("%d\n", a/*comment*/b);
+
+int main()
+{
+    printf("Hello, World!");
+    return 0;
 }
