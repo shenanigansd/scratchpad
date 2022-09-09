@@ -1,3 +1,3 @@
 # excel
 
-Exported Excel macros
+Useful tidbits for Excel
