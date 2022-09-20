@@ -1,0 +1,3 @@
+# Haskell
+
+scratch languages: Haskell

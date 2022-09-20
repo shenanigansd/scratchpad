@@ -1,0 +1,3 @@
+# Crystal
+
+scratch languages: Crystal
