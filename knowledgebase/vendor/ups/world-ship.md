@@ -10,4 +10,4 @@ from `C:\ProgramData\UPS\WSTD\wstdShipuser.ini`
 ## Gotchas
 
 > **Warning**
-> UPS will strip the leading zeros off of postal codes in non-quoted CSVs.
+> World Ship will mangle data in non-quoted CSVs. Examples include removing the leading zeros from postal codes and converting the reference `134.609506.647380.000` to `134.6095`.
