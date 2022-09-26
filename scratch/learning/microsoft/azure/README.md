@@ -1,0 +1,3 @@
+# azure
+
+scratch: azure automation
