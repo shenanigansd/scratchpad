@@ -3,7 +3,10 @@
 from collections.abc import Iterator
 
 
-def fizzbuzz(number: int, cases: list[tuple[int, str]]) -> Iterator[str]:
+def fizzbuzz(
+    number: int,
+    cases: list[tuple[int, str]],
+) -> Iterator[str]:
     """
     For each number between one and `number`,
     loop through the cases and yield a concatenated string of
