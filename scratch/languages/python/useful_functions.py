@@ -36,14 +36,20 @@ def dict_compare(
     new_keys: set[Any] = new_dict_keys - old_dict_keys
     removed_keys: set[Any] = old_dict_keys - new_dict_keys
     modified_keys: dict[Any, tuple[Any, Any]] = {
-        key: (old_dict[key], new_dict[key]) for key in intersecting_keys if old_dict[key] != new_dict[key]
+        key: (old_dict[key], new_dict[key])
+        for key in intersecting_keys
+        if old_dict[key] != new_dict[key]
     }
-    unmodified_keys: set[Any] = set(o for o in intersecting_keys if old_dict[o] == new_dict[o])
+    unmodified_keys: set[Any] = set(
+        o for o in intersecting_keys if old_dict[o] == new_dict[o]
+    )
     return list(new_keys), list(removed_keys), modified_keys, list(unmodified_keys)
 
 
 # https://stackoverflow.com/a/24290026/8160821
-def enumerate2(xs: Iterable[Any], start: int = 0, step: int = 1) -> Generator[tuple[int, Any], Any, None]:
+def enumerate2(
+    xs: Iterable[Any], start: int = 0, step: int = 1
+) -> Generator[tuple[int, Any], Any, None]:
     """
     Yield items from a list with a custom index.
 
@@ -68,7 +74,7 @@ def chunks(lst: list[Any], n: int) -> Generator[list, Any, None]:
         An n-sized chunk of the list
     """
     for i in range(0, len(lst), n):
-        yield lst[i: i + n]
+        yield lst[i : i + n]
 
 
 # https://stackoverflow.com/a/952952
@@ -187,9 +193,78 @@ def find_nth(haystack: str, needle: str, n: int) -> int:
     Returns
     -------
     The index of the nth occurrence of the substring, or -1 if not found.
+
+    Examples
+    --------
+    >>> find_nth("yankee doodle", "o", 2)
+    9
     """
     start = haystack.find(needle)
     while start >= 0 and n > 1:
         start = haystack.find(needle, start + len(needle))
         n -= 1
     return start
+
+
+def bulk_substring_remove(text: str, substrings: list[str]):
+    """
+    Remove all substrings from a string.
+
+    Parameters
+    ----------
+    text
+        The string to update
+    substrings
+        The substrings to remove
+
+    Returns
+    -------
+    The original string with all substrings removed
+
+    Examples
+    --------
+    >>> bulk_substring_remove("yankee doodle", ["yan", "dle"])
+    "kee doo"
+    """
+    for substring in substrings:
+        text = text.replace(substring, "")
+    return text
+
+
+def get_nested_dict_value(
+    dct: dict, keypath: str, default=None, separator: str = "."
+) -> Any:
+    """
+    Parse nested values from dictionaries
+
+    Parameters
+    ----------
+    dct
+        The dictionary to search
+    keypath
+        The path of keys to check through
+    default
+        The default value to return if the value is not found
+    separator
+        The character used to split the keypath
+
+    Returns
+    -------
+    The value at the keypath or the default value
+
+    Examples
+    --------
+    >>> get_nested_dict_value({"key": {"path": "value"}}, "key.path")
+    "value"
+    """
+    keys = keypath.split(separator)
+
+    value = dct
+    for key in keys:
+        value = value.get(key)
+
+        if not value:
+            value = default
+            break
+
+    return value
