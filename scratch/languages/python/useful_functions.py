@@ -9,7 +9,8 @@ from typing import Any, Generator, Iterable
 
 # https://stackoverflow.com/a/18860653
 def dict_compare(
-    old_dict: dict[Any, Any], new_dict: dict[Any, Any]
+    old_dict: dict[Any, Any],
+    new_dict: dict[Any, Any],
 ) -> tuple[list[Any], list[Any], dict[Any, Any], list[Any]]:
     """
     Compare two different dictionaries.
@@ -48,7 +49,9 @@ def dict_compare(
 
 # https://stackoverflow.com/a/24290026/8160821
 def enumerate2(
-    xs: Iterable[Any], start: int = 0, step: int = 1
+    xs: Iterable[Any],
+    start: int = 0,
+    step: int = 1,
 ) -> Generator[tuple[int, Any], Any, None]:
     """
     Yield items from a list with a custom index.
@@ -64,7 +67,10 @@ def enumerate2(
 
 
 # https://stackoverflow.com/a/312464/8160821
-def chunks(lst: list[Any], n: int) -> Generator[list, Any, None]:
+def chunks(
+    lst: list[Any],
+    n: int,
+) -> Generator[list, Any, None]:
     """
     Yield successive n-sized chunks from lst.
 
@@ -78,7 +84,9 @@ def chunks(lst: list[Any], n: int) -> Generator[list, Any, None]:
 
 
 # https://stackoverflow.com/a/952952
-def flatten(lst: list[list[Any]]) -> list[Any]:
+def flatten(
+    lst: list[list[Any]],
+) -> list[Any]:
     """
     Flattens a list of lists into a single list.
 
@@ -100,7 +108,10 @@ def flatten(lst: list[list[Any]]) -> list[Any]:
     return [item for sublist in lst for item in sublist]
 
 
-def random_string(length: int = 6, characters: str = string.ascii_uppercase) -> str:
+def random_string(
+    length: int = 6,
+    characters: str = string.ascii_uppercase,
+) -> str:
     """
     Generates a random string of the specified length using the specified character set.
 
@@ -124,7 +135,9 @@ def random_string(length: int = 6, characters: str = string.ascii_uppercase) -> 
     return "".join(random.choices(characters, k=length))
 
 
-def split_prefix_and_number(text: str) -> tuple[str, int]:
+def split_prefix_and_number(
+    text: str,
+) -> tuple[str, int]:
     """
     Split a string into alpha prefix and numeric suffix.
 
@@ -156,7 +169,10 @@ def split_prefix_and_number(text: str) -> tuple[str, int]:
 class CustomEncoder(json.JSONEncoder):
     """A custom JSON encoder that attempts to convert all user defined classes to string."""
 
-    def default(self, obj: Any) -> Any:
+    def default(
+        self,
+        obj: Any,
+    ) -> Any:
         """
         Serialize an object.
         If the object is not a builtin, return the __str__ of the object.
@@ -177,7 +193,11 @@ class CustomEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 
-def find_nth(haystack: str, needle: str, n: int) -> int:
+def find_nth(
+    haystack: str,
+    needle: str,
+    n: int,
+) -> int:
     """
     Find the nth occurrence of a substring in a string.
 
@@ -206,7 +226,10 @@ def find_nth(haystack: str, needle: str, n: int) -> int:
     return start
 
 
-def bulk_substring_remove(text: str, substrings: list[str]):
+def bulk_substring_remove(
+    text: str,
+    substrings: list[str],
+):
     """
     Remove all substrings from a string.
 
@@ -232,7 +255,10 @@ def bulk_substring_remove(text: str, substrings: list[str]):
 
 
 def get_nested_dict_value(
-    dct: dict, keypath: str, default=None, separator: str = "."
+    dct: dict,
+    keypath: str,
+    default=None,
+    separator: str = ".",
 ) -> Any:
     """
     Parse nested values from dictionaries
