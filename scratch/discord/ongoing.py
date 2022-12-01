@@ -29,3 +29,23 @@ def test_keychain():
     new_dict = {"a": ["b", "c", "d"], "v": ["w", "x", "y"], "o": ["p", "q", "r"]}
 
     assert keychain(dicts) == new_dict
+
+
+# https://discord.com/channels/267624335836053506/267624335836053506/1047647967143792661
+def range_parser(text: str) -> list[int]:
+    output = []
+    text = text.replace(" ", "")
+    items = text.split(",")
+    for item in items:
+        if "-" in item:
+            start, stop = item.split("-")
+            output.extend(list(range(int(start), int(stop) + 1)))
+        else:
+            output.append(int(item))
+    return output
+
+
+def test_range_parser():
+    assert range_parser("5 - 8") == [5, 6, 7, 8]
+    assert range_parser("5, 7, 10") == [5, 7, 10]
+    assert range_parser("5, 7-10") == [5, 7, 8, 9, 10]
