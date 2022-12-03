@@ -13,6 +13,8 @@ victories: dict[Action, Action] = {
     Action.Rock: Action.Scissors,
 }
 
+opponent_victories = {value: key for key, value in victories.items()}
+
 input_keys: dict[str, Action] = {
     "A": Action.Rock,
     "B": Action.Paper,
@@ -42,11 +44,14 @@ def part_two(values: list[tuple[Action, str]]) -> int:
     score = 0
     for opponent_action, needed_result in values:
         if needed_result == "X":
-            user_action=victories[opponent_action]
-        elif needed_result == "y":
-            pass
+            user_action = victories[opponent_action]
+        elif needed_result == "Y":
+            user_action = opponent_action
         elif needed_result == "Z":
-            user_action=victories[opponent_action]
+            user_action = opponent_victories[opponent_action]
+        else:
+            raise ValueError(f"{needed_result=}")
+        score += _get_score(user_action, opponent_action)
     return score
 
 
