@@ -28,3 +28,6 @@ obj
 # Zig
 zig-cache
 zig-out
+
+# Advent of Code
+inputs.txt
