@@ -16,7 +16,7 @@ jobs:
           python-version: "3.x"
 
       - name: Install dependencies
-        run: python -m pip install darbiadev-utilities
+        run: python -m pip install pytest darbiadev-utilities
 
       - name: Run AoC tests
         run: |
