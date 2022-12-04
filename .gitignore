@@ -30,4 +30,4 @@ zig-cache
 zig-out
 
 # Advent of Code
-inputs.txt
+input.txt
