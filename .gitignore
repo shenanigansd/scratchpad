@@ -31,3 +31,6 @@ zig-out
 
 # Advent of Code
 input.txt
+
+# C/C++
+cmake-build-debug
