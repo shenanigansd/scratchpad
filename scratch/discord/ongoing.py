@@ -1,5 +1,7 @@
 from collections import defaultdict
 
+import pytest
+
 
 # https://discord.com/channels/267624335836053506/587375768556797982/1044549320948584528
 def keychain(dicts: list[dict]) -> dict:
@@ -45,7 +47,14 @@ def range_parser(text: str) -> list[int]:
     return output
 
 
-def test_range_parser():
-    assert range_parser("5 - 8") == [5, 6, 7, 8]
-    assert range_parser("5, 7, 10") == [5, 7, 10]
-    assert range_parser("5, 7-10") == [5, 7, 8, 9, 10]
+@pytest.mark.parametrize(
+    "value,result",
+    [
+        ("5 - 8", [5, 6, 7, 8]),
+        ("5, 7, 10", [5, 7, 10]),
+        ("5, 7-10", [5, 7, 8, 9, 10]),
+
+    ],
+)
+def test_range_parser(value: str, result: list[int]):
+    assert range_parser(value) == result

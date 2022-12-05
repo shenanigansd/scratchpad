@@ -22,3 +22,8 @@ jobs:
         run: |
           cd events/advent_of_code
           python -m pytest
+
+      - name: Run Discord "ongoing" file tests
+        run: |
+          cd scratch/discord/
+          python -m pytest ongoing.py
