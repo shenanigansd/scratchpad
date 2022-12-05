@@ -1,6 +1,10 @@
 name: Assorted CI - Python
 
-on: [ push ]
+on:
+  push:
+    paths:
+      - events/advent_of_code/**
+      - scratch/discord/ongoing.py
 
 jobs:
   assorted:
