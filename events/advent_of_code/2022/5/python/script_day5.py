@@ -14,21 +14,21 @@ class Movement:
 
 
 @dataclass
-class Warehouse:
+class Ship:
     stacks: dict[int, list[str]]
 
     @classmethod
-    def build_from(cls, text: str) -> "Warehouse":
+    def build_from(cls, text: str) -> "Ship":
         header, *lines = list(reversed(text.splitlines()))
         stack_count = len(header.split())
-        warehouse = Warehouse({index: [] for index in range(1, stack_count + 1)})
+        ship = Ship({index: [] for index in range(1, stack_count + 1)})
         for line in lines:
             stack = 1
             for chunk in chunks(line, 4):
                 if chunk[0] == "[":
-                    warehouse.stacks[stack].append(chunk[1])
+                    ship.stacks[stack].append(chunk[1])
                 stack += 1
-        return warehouse
+        return ship
 
     def move_single(self, movement: Movement) -> None:
         for _ in range(movement.quantity):
@@ -47,20 +47,20 @@ class Warehouse:
         return "".join(stack[-1] for stack in self.stacks.values())
 
 
-def part_one(warehouse: Warehouse, movements: Iterable[Movement]) -> str:
+def part_one(ship: Ship, movements: Iterable[Movement]) -> str:
     for movement in movements:
-        warehouse.move_single(movement)
-    return warehouse.tops()
+        ship.move_single(movement)
+    return ship.tops()
 
 
-def part_two(warehouse: Warehouse, movements: Iterable[Movement]) -> str:
+def part_two(ship: Ship, movements: Iterable[Movement]) -> str:
     for movement in movements:
-        warehouse.move_bulk(movement)
-    return warehouse.tops()
+        ship.move_bulk(movement)
+    return ship.tops()
 
 
 if __name__ == "__main__":
-    warehouse_text, instructions = (
+    ship_text, instructions = (
         Path("../input.txt").read_text().strip().split("\n\n")
     )
     movements_ = [
@@ -70,5 +70,5 @@ if __name__ == "__main__":
         for instruction in instructions.splitlines()
     ]
 
-    print(part_one(Warehouse.build_from(warehouse_text), movements_))
-    print(part_two(Warehouse.build_from(warehouse_text), movements_))
+    print(part_one(Ship.build_from(ship_text), movements_))
+    print(part_two(Ship.build_from(ship_text), movements_))
