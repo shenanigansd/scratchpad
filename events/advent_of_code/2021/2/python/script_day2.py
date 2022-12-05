@@ -34,7 +34,7 @@ def part_two(values: list[str]) -> int:
     return horizontal_position * depth
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     values_: list[str] = [row for row in open("../../../input.txt").readlines()]
     print(part_one(values=values_))
     print(part_two(values=values_))

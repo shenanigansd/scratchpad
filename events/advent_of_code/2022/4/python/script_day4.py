@@ -15,12 +15,14 @@ def _range_parser(text: str) -> list[int]:
 
 
 def _overlaps(first: set, second: set) -> bool:
-    return any([
-        first.issuperset(second),
-        first.issubset(second),
-        second.issuperset(first),
-        second.issubset(first),
-    ])
+    return any(
+        [
+            first.issuperset(second),
+            first.issubset(second),
+            second.issuperset(first),
+            second.issubset(first),
+        ]
+    )
 
 
 def _contains_any(first: set, second: set) -> bool:
@@ -47,7 +49,6 @@ if __name__ == "__main__":
     data = [
         (set(_range_parser(item.split(",")[0])), set(_range_parser(item.split(",")[1])))
         for item in Path("../../../input.txt").read_text().strip().split("\n")
-
     ]
     print(part_one(values=data))
     print(part_two(values=data))

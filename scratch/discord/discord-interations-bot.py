@@ -1,7 +1,8 @@
-from flask import Flask, abort, jsonify, request
-from nacl.signing import VerifyKey
-from nacl.exceptions import BadSignatureError
 import json
+
+from flask import Flask, abort, jsonify, request
+from nacl.exceptions import BadSignatureError
+from nacl.signing import VerifyKey
 
 PUBLIC_KEY = ""
 app = Flask(__name__)
@@ -25,20 +26,20 @@ def handle_request():
     print(str(request.data))
 
     if request.json["type"] == 1:
-        return jsonify({
-            "type": 1
-        })
+        return jsonify({"type": 1})
 
     else:
-        return jsonify({
-            "type": 4,
-            "data": {
-                "tts": False,
-                "content": "Congrats on sending your command!",
-                "embeds": [],
-                "allowed_mentions": {"parse": []}
+        return jsonify(
+            {
+                "type": 4,
+                "data": {
+                    "tts": False,
+                    "content": "Congrats on sending your command!",
+                    "embeds": [],
+                    "allowed_mentions": {"parse": []},
+                },
             }
-        })
+        )
 
 
 if __name__ == "__main__":

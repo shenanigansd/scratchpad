@@ -1,6 +1,6 @@
 def chunks(lst: list, n: int):
     for i in range(0, len(lst), n):
-        yield lst[i: i + n]
+        yield lst[i : i + n]
 
 
 class Cell:
@@ -70,7 +70,14 @@ def part_one(called_numbers: list[int], boards: list[Board]) -> int:
             if board.mark_number(called_number):
                 if board.check_win():
                     print(board)
-                    return sum(cell.number for cell in board.get_all_cells() if cell.called is False) * called_number
+                    return (
+                        sum(
+                            cell.number
+                            for cell in board.get_all_cells()
+                            if cell.called is False
+                        )
+                        * called_number
+                    )
 
 
 def part_two(called_numbers: list[int], boards: list[Board]) -> int:
@@ -82,16 +89,29 @@ def part_two(called_numbers: list[int], boards: list[Board]) -> int:
                 if board.check_win():
                     winning_boards[called_number] = board
 
-    winning_number, winning_board = list(winning_boards.keys())[-1], list(winning_boards.values())[-1]
-    return sum(cell.number for cell in winning_board.get_all_cells() if cell.called is False) * winning_number
+    winning_number, winning_board = (
+        list(winning_boards.keys())[-1],
+        list(winning_boards.values())[-1],
+    )
+    return (
+        sum(
+            cell.number
+            for cell in winning_board.get_all_cells()
+            if cell.called is False
+        )
+        * winning_number
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     values_: list[str] = open("../../../input.txt").readlines()
     called_numbers_ = [int(val) for val in values_[0].split(",")]
 
     board_values = [rows[1:] for rows in chunks(values_[1:], 6)]
-    boards_ = [Board([[int(val) for val in row.split()] for row in rows]) for rows in board_values]
+    boards_ = [
+        Board([[int(val) for val in row.split()] for row in rows])
+        for rows in board_values
+    ]
 
     print(part_one(called_numbers=called_numbers_, boards=boards_))
     print(part_two(called_numbers=called_numbers_, boards=boards_))

@@ -4,11 +4,11 @@ import readline
 def main():
     try:
         while True:
-            s = input('>> ')
+            s = input(">> ")
             print(s)
     except (EOFError, KeyboardInterrupt):
-        print('\nShutting down...')
+        print("\nShutting down...")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

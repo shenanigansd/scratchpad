@@ -1,5 +1,4 @@
 import pytest
-
 from script_day4 import _contains_any, _overlaps, _range_parser
 
 

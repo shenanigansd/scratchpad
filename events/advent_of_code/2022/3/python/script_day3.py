@@ -10,7 +10,7 @@ priorities = dict(zip(ascii_lowercase + ascii_uppercase, range(1, 52 + 1)))
 def part_one(values: list[str]) -> int:
     total = 0
     for value in values:
-        left, right = value[:len(value) // 2], value[len(value) // 2:]
+        left, right = value[: len(value) // 2], value[len(value) // 2 :]
         left, right = set(left), set(right)
         for character in left:
             if character in right:
@@ -29,7 +29,7 @@ def part_two(values: list[str]) -> int:
     return total
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     data = Path("../../../input.txt").read_text().split("\n")
     print(priorities)
     print(part_one(values=data))

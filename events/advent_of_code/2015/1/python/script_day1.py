@@ -15,7 +15,7 @@ def part_two(text: str) -> int:
             return index
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     data: str = open("../../../input.txt").readlines()[0].strip()
 
     print(part_one(text=data))

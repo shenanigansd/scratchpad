@@ -4,10 +4,7 @@ import pandas
 from smartsheet import smartsheet
 
 
-def get_sheet(
-        token: str,
-        sheet_id: int
-) -> pandas.DataFrame:
+def get_sheet(token: str, sheet_id: int) -> pandas.DataFrame:
     """
     Download SmartSheet and create pandas.DataFrame
 
@@ -24,21 +21,19 @@ def get_sheet(
         The requested SmartSheet as a DataFrame
     """
     sheet = smartsheet.Smartsheet(access_token=token).Sheets.get_sheet(
-        sheet_id=sheet_id,
-        include=['discussions', 'rowPermalink', 'writerInfo']
+        sheet_id=sheet_id, include=["discussions", "rowPermalink", "writerInfo"]
     )
     return pandas.DataFrame(
-        data=[[sheet.id, row.id, row.permalink] + [cell.value for cell in row.cells] for row in sheet.rows],
-        columns=['sheet_id', 'row_id', 'permalink'] + [col.title for col in sheet.columns],
+        data=[
+            [sheet.id, row.id, row.permalink] + [cell.value for cell in row.cells]
+            for row in sheet.rows
+        ],
+        columns=["sheet_id", "row_id", "permalink"]
+        + [col.title for col in sheet.columns],
     )
 
 
-def create_comment(
-        token: str,
-        sheet_id: int,
-        row_id: int,
-        comment_text: str
-) -> None:
+def create_comment(token: str, sheet_id: int, row_id: int, comment_text: str) -> None:
     """
     Create a comment on a specified row of a SmartSheet.
 
@@ -57,11 +52,9 @@ def create_comment(
     smartsheet_client.Discussions.create_discussion_on_row(
         sheet_id,
         row_id,
-        smartsheet.models.Discussion({
-            'comment': smartsheet.models.Comment({
-                'text': comment_text
-            })
-        })
+        smartsheet.models.Discussion(
+            {"comment": smartsheet.models.Comment({"text": comment_text})}
+        ),
     )
 
 
@@ -72,7 +65,10 @@ def build_update_rows(rows: Dict[int, Dict[int, str]]) -> List[smartsheet.models
         new_row = smartsheet.models.Row()
         new_row.id = row_id
 
-        for column_id, value, in cells.items():
+        for (
+            column_id,
+            value,
+        ) in cells.items():
             new_cell = smartsheet.models.Cell()
             new_cell.column_id = column_id
             new_cell.value = value
@@ -84,9 +80,9 @@ def build_update_rows(rows: Dict[int, Dict[int, str]]) -> List[smartsheet.models
 
 
 def update_rows(
-        token: str,
-        sheet_id: int,
-        rows: List[smartsheet.models.Row],
+    token: str,
+    sheet_id: int,
+    rows: List[smartsheet.models.Row],
 ) -> None:
     """
     Update rows in a smartsheet

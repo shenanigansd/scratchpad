@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+
 def parse_input(values: list[str]) -> list[tuple[tuple[int, int], tuple[int, int]]]:
     output = []
     for value in values:
@@ -12,7 +13,11 @@ def parse_input(values: list[str]) -> list[tuple[tuple[int, int], tuple[int, int
 
 
 def part_one(values: list[tuple[tuple[int, int], tuple[int, int]]]) -> int:
-    values = [value for value in values if value[0][0] == value[1][0] or value[0][1] == value[1][1]]
+    values = [
+        value
+        for value in values
+        if value[0][0] == value[1][0] or value[0][1] == value[1][1]
+    ]
     lst = []
     for value in values:
         x1, y1 = value[0]
@@ -83,7 +88,9 @@ def part_two(values: list[tuple[tuple[int, int], tuple[int, int]]]) -> int:
     return sum(1 for value in dct.values() if value >= 2)
 
 
-if __name__ == '__main__':
-    values_: list[tuple[tuple[int, int], tuple[int, int]]] = parse_input(open("../../../input.txt").readlines())
+if __name__ == "__main__":
+    values_: list[tuple[tuple[int, int], tuple[int, int]]] = parse_input(
+        open("../../../input.txt").readlines()
+    )
     print(part_one(values=values_))
     print(part_two(values=values_))

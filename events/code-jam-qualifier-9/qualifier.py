@@ -81,7 +81,7 @@ class RestaurantManager:
         """
         type_ = request.scope["type"]
 
-        if 'staff.' in type_:
+        if "staff." in type_:
             id_ = request.scope["id"]
             match type_:
                 case "staff.onduty":

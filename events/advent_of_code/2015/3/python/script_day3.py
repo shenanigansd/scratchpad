@@ -46,7 +46,7 @@ def part_two(movements: list[str]) -> int:
     return len(delivered_presets.keys())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     lines: list[str] = open("../../../input.txt").readlines()
     data: list[str] = list(lines[0])
 

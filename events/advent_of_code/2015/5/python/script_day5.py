@@ -1,5 +1,5 @@
-from pathlib import Path
 import re
+from pathlib import Path
 
 pat = r"(?=.*?(?:(.).\1))(?=.*?(.{2}).*?\2).*"
 
@@ -20,7 +20,7 @@ def _contains_sequential_duplicate(text: str) -> bool:
 
 
 def _contains_duplicate_with_buffer(text: str, buffer: int = 1) -> bool:
-    for current, nxt in zip(text, text[buffer + 1:]):
+    for current, nxt in zip(text, text[buffer + 1 :]):
         if current == nxt:
             return True
     return False
@@ -28,7 +28,10 @@ def _contains_duplicate_with_buffer(text: str, buffer: int = 1) -> bool:
 
 def _contains_non_overlapping_duplicate_sequence(text: str, length: int = 2) -> bool:
     for index in range(len(text)):
-        if text.count(text[index:length + 1]) > 1 and len(text[index:length + 1].strip())>1:
+        if (
+            text.count(text[index : length + 1]) > 1
+            and len(text[index : length + 1].strip()) > 1
+        ):
             print(f"{text[index:length + 1]}\t{text.count(text[index:length + 1])}")
             return True
     return False
@@ -40,7 +43,7 @@ def part_one(values: list[str]) -> int:
         conditions = (
             _contains_at_least_x_of(value, 3, list("aeiou")),
             _contains_sequential_duplicate(value),
-            not _contains_any(value, ["ab", "cd", "pq", "xy"])
+            not _contains_any(value, ["ab", "cd", "pq", "xy"]),
         )
         if all(conditions):
             nice_strings += 1
@@ -61,13 +64,13 @@ def part_two(values: list[str]) -> int:
         if all(conditions) != bool(re.match(pat, value)):
             status = "GOOD"
         else:
-            status="\t\tBAD"
+            status = "\t\tBAD"
         print(f"{value=}\t{status}")
 
     return nice_strings
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     data: list[str] = Path("../../../input.txt").read_text().strip().split("\n")
 
     print(part_one(values=data))
