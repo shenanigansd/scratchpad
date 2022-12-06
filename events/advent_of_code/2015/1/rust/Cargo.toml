@@ -1,5 +1,6 @@
 [package]
 name = "aoc-2015-1"
+description = "aoc-2015-1"
 version = "0.1.0"
 edition = "2021"
 authors = ["Bradley Reynolds <bradley.reynolds@darbia.dev>"]
