@@ -1,0 +1,8 @@
+[workspace]
+
+members = [
+    "scratch/projects/scratch-rs",
+
+    "events/advent_of_code/2015/1/rust",
+    "events/advent_of_code/2022/6/rust",
+]
