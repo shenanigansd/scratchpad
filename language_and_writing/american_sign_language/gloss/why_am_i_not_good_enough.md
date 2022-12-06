@@ -38,7 +38,7 @@ ___SS-L SS-R
 BEAUTY PAIN SAME
 Beauty is pain.
 
-(R6) BUS GET-OFF 
+(R6) BUS GET-OFF
 6. Get off the bus.
 
 7. Find a group of people you can walk with to class, because heaven knows you can’t just walk alone.
@@ -83,7 +83,7 @@ Why am I not good enough?
 
 Just get over it.
 
- 
+
 
 9. It’s the end of the day, get ready for bed.
 

@@ -1,3 +1,3 @@
 # dotnet
 
-scratch project(s): .NET 
+scratch project(s): .NET

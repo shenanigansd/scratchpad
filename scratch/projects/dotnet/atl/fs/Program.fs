@@ -1,10 +1,10 @@
-﻿module BasicFunctions = 
+﻿module BasicFunctions =
 
-    /// You use 'let' to define a function. This one accepts an integer argument and returns an integer. 
+    /// You use 'let' to define a function. This one accepts an integer argument and returns an integer.
     /// Parentheses are optional for function arguments, except for when you use an explicit type annotation.
     let sampleFunction1 x = x*x + 3
 
-    /// Apply the function, naming the function return result using 'let'. 
+    /// Apply the function, naming the function return result using 'let'.
     /// The variable type is inferred from the function return type.
     let result1 = sampleFunction1 4573
 
@@ -21,10 +21,10 @@
     /// Conditionals use if/then/elif/else.
     ///
     /// Note that F# uses white space indentation-aware syntax, similar to languages like Python.
-    let sampleFunction3 x = 
-        if x < 100.0 then 
+    let sampleFunction3 x =
+        if x < 100.0 then
             2.0*x*x - x/5.0 + 3.0
-        else 
+        else
             2.0*x*x + x/5.0 - 37.0
 
     let result3 = sampleFunction3 (6.5 + 4.5)

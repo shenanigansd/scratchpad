@@ -1,3 +1,3 @@
 # clicky
 
-scratch project: Python Click 
+scratch project: Python Click

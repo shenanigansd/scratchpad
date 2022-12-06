@@ -3,10 +3,10 @@ from script_day5 import Movement, Ship
 
 def test_parse_ship():
     text = """
-    [D]    
-[N] [C]    
+    [D]
+[N] [C]
 [Z] [M] [P]
- 1   2   3 
+ 1   2   3
 """
     test_ship = Ship(
         stacks={

@@ -8,4 +8,3 @@ Instead, as a high school student I am required to take 4 years of a class where
 High school English is occupied with fluff and filler that has practicality only within its field.
 
 https://www.quora.com/What-is-the-purpose-of-the-English-class-in-high-school-in-America-and-why-is-it-so-important
-

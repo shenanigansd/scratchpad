@@ -1,3 +1,3 @@
 # scratch-rs
 
-scratch project: Rust 
+scratch project: Rust

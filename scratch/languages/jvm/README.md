@@ -1,3 +1,3 @@
 # jvm
 
-scratch languages: JVM languages 
+scratch languages: JVM languages
