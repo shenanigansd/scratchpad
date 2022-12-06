@@ -1,0 +1,40 @@
+name:  Assorted CI - Rust
+
+on:
+  push:
+    paths:
+      - .github/workflows/assorted-rust.yaml
+      - '**.rs'
+      - Cargo.toml
+      - Cargo.lock
+
+jobs:
+  lint:
+    uses: darbiadev/.github/.github/workflows/rust-lint.yaml@main
+
+  clippy:
+    needs: lint
+    uses: darbiadev/.github/.github/workflows/rust-clippy.yaml@main
+
+  test:
+    needs: clippy
+    strategy:
+      matrix:
+        triple:
+          - {
+            os: "ubuntu-latest",
+            target: "x86_64-unknown-linux-gnu",
+          }
+          - {
+            os: "macOS-latest",
+            target: "x86_64-apple-darwin",
+          }
+          - {
+            os: "windows-latest",
+            target: "x86_64-pc-windows-msvc",
+          }
+
+    uses: darbiadev/.github/.github/workflows/rust-test.yaml@main
+    with:
+      os: ${{ matrix.triple.os }}
+      target: ${{ matrix.triple.target }}
