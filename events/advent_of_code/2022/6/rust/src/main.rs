@@ -3,9 +3,9 @@ use itertools::Itertools;
 fn find_unique_window(text: &str, length: usize) -> usize {
     let windows = text.as_bytes().windows(length);
 
-    for (x, window) in windows.enumerate() {
+    for (index, window) in windows.enumerate() {
         if window.iter().unique().count() == length {
-            return length + x;
+            return length + index;
         }
     }
     panic!("did not find")
