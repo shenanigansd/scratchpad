@@ -1,0 +1,7 @@
+name: pre-commit
+
+on: [push]
+
+jobs:
+  pre-commit:
+    uses: darbiadev/.github/.github/workflows/generic-precommit.yaml@main
