@@ -1,8 +1,7 @@
 use itertools::Itertools;
 
 fn find_unique_window(text: &str, length: usize) -> usize {
-    let chars = String::from(text).chars().collect::<Vec<char>>();
-    let windows = chars.windows(length);
+    let windows = text.as_bytes().windows(length);
 
     for (x, window) in windows.enumerate() {
         if window.iter().unique().count() == length {
