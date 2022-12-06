@@ -33,6 +33,6 @@ fn main() {
     let contents: &str =
         &std::fs::read_to_string("../../input.txt").expect("Something went wrong reading the file");
 
-    println!("{}", part_one(&contents));
-    println!("{}", part_two(&contents));
+    println!("{}", part_one(contents));
+    println!("{}", part_two(contents));
 }
