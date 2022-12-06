@@ -1,0 +1,58 @@
+[project]
+name = "scratchpad"
+version = "0.0.0"
+description = "A scratchpad for keeping assorted notes and snippets"
+authors = [
+    { name = "Bradley Reynolds", email = "bradley.reynolds@darbia.dev" },
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "darbiadev-utilities",
+]
+
+[project.urls]
+repository = "https://github.com/shenanigansd/scratchpad"
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "isort",
+    "pylint",
+]
+tests = [
+    "pytest",
+]
+docs = [
+    "sphinx",
+    "sphinxcontrib-autoprogram",
+    "sphinx-rtd-theme",
+    "toml",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = []
+
+[tool.sphinx]
+copyright = "Bradley Reynolds"
+author = "Bradley Reynolds"
+api_dir = "scratchpad"
+
+[tool.black]
+target-version = ["py310"]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+addopts = "-r a -v"
+
+[tool.pylint.format]
+max-line-length = 120
+good-names = ["it"]
