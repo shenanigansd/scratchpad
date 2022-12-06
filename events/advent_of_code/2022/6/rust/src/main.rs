@@ -16,8 +16,8 @@ fn part_one(text: &str) -> usize {
     find_unique_window(text, 4)
 }
 
-fn part_two(text: &str) -> i32 {
-    find_unique_window(text, 14) as i32
+fn part_two(text: &str) -> usize {
+    find_unique_window(text, 14)
 }
 
 fn main() {
