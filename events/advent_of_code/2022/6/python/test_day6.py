@@ -1,5 +1,4 @@
 import pytest
-
 from script_day6 import _find_unique_sequence
 
 
