@@ -1,12 +1,12 @@
-name:  Assorted CI - Rust
+name: Assorted CI - Rust
 
 on:
   push:
     paths:
       - .github/workflows/assorted-rust.yaml
       - '**.rs'
-      - Cargo.toml
-      - Cargo.lock
+      - '**/Cargo.toml'
+      - '**/Cargo.lock'
 
 jobs:
   lint:
