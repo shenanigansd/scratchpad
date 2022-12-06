@@ -1,6 +1,6 @@
 import pytest
 
-from script_day6 import _find_four_unique, _find_fourteen_unique
+from script_day6 import _find_unique_sequence
 
 
 @pytest.mark.parametrize(
@@ -13,7 +13,7 @@ from script_day6 import _find_four_unique, _find_fourteen_unique
     ],
 )
 def test_find_four_unique(text: str, index: int) -> None:
-    assert _find_four_unique(text) == index
+    assert _find_unique_sequence(text, 4) == index
 
 
 @pytest.mark.parametrize(
@@ -27,4 +27,4 @@ def test_find_four_unique(text: str, index: int) -> None:
     ],
 )
 def test_find_fourteen_unique(text: str, index: int) -> None:
-    assert _find_fourteen_unique(text) == index
+    assert _find_unique_sequence(text, 14) == index
