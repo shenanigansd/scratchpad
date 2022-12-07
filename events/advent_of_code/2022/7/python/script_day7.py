@@ -74,18 +74,36 @@ def sum_folder_size(folder: Folder) -> int:
     return total_size
 
 
-def size_all_folders(file_system: FileSystem) -> dict[str, int]:
-    folder_sizes = {}
+def size_all_folders(file_system: FileSystem) -> list[int]:
+    folder_sizes = []
     for folders, files in file_system.walk():
         for folder in folders:
-            folder_sizes[folder.name] = sum_folder_size(folder)
-    return folder_sizes
+            folder_sizes.append(sum_folder_size(folder))
+    return sorted(folder_sizes)
 
 
 def sum_folders_under_size(file_system: FileSystem, size: int) -> int:
-    folder_sizes = list(size_all_folders(file_system).values())
+    folder_sizes = size_all_folders(file_system)
     folder_sizes.append(sum(folder_sizes))
     return sum(folder_size for folder_size in folder_sizes if folder_size <= size)
+
+
+def size_entire_file_system(file_system: FileSystem) -> int:
+    size = 0
+    for _, files in file_system.walk():
+        for file in files:
+            size += file.size
+    return size
+
+
+def find_smallest_possible_folder_to_delete(file_system: FileSystem) -> int:
+    total_space = 70000000
+    required_space = 30000000
+    used_space = size_entire_file_system(file_system)
+    folder_sizes = size_all_folders(file_system)
+    for folder_size in folder_sizes:
+        if (total_space - (used_space - folder_size)) >= required_space:
+            return folder_size
 
 
 def part_one(text: str) -> int:
@@ -94,7 +112,8 @@ def part_one(text: str) -> int:
 
 
 def part_two(text: str) -> int:
-    return 0
+    file_system = build_file_system(text)
+    return find_smallest_possible_folder_to_delete(file_system)
 
 
 if __name__ == "__main__":

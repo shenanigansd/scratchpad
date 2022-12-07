@@ -3,8 +3,8 @@ from script_day7 import (
     FileSystem,
     Folder,
     build_file_system,
-    size_all_folders,
-    sum_folders_under_size,
+    find_smallest_possible_folder_to_delete, size_all_folders,
+    size_entire_file_system, sum_folders_under_size,
 )
 
 EXAMPLE_INPUT = """
@@ -65,9 +65,19 @@ def test_build_file_system() -> None:
 
 def test_size_all_folders() -> None:
     file_system = build_file_system(EXAMPLE_INPUT)
-    assert size_all_folders(file_system) == {"a": 94853, "d": 24933642, "e": 584}
+    assert size_all_folders(file_system) == [584, 94853, 24933642]
 
 
 def test_sum_folders_under_size() -> None:
     file_system = build_file_system(EXAMPLE_INPUT)
     assert sum_folders_under_size(file_system, 100000) == 95437
+
+
+def test_size_entire_file_system() -> None:
+    file_system = build_file_system(EXAMPLE_INPUT)
+    assert size_entire_file_system(file_system) == 48381165
+
+
+def test_find_smallest_possible_folder_to_delete() -> None:
+    file_system = build_file_system(EXAMPLE_INPUT)
+    assert find_smallest_possible_folder_to_delete(file_system) == 24933642
