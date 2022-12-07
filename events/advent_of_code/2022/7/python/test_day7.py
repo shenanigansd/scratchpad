@@ -3,8 +3,10 @@ from script_day7 import (
     FileSystem,
     Folder,
     build_file_system,
-    find_smallest_possible_folder_to_delete, size_all_folders,
-    size_entire_file_system, sum_folders_under_size,
+    find_smallest_possible_folder_to_delete,
+    size_all_folders,
+    size_entire_file_system,
+    sum_folders_under_size,
 )
 
 EXAMPLE_INPUT = """
