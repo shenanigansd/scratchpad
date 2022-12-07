@@ -32,15 +32,11 @@ class Ship:
 
     def move_single(self, movement: Movement) -> None:
         for _ in range(movement.quantity):
-            self.stacks[movement.to_stack].append(
-                self.stacks[movement.from_stack].pop()
-            )
+            self.stacks[movement.to_stack].append(self.stacks[movement.from_stack].pop())
 
     def move_bulk(self, movement: Movement) -> None:
         crates_to_move = self.stacks[movement.from_stack][-movement.quantity :]
-        self.stacks[movement.from_stack] = self.stacks[movement.from_stack][
-            : -movement.quantity
-        ]
+        self.stacks[movement.from_stack] = self.stacks[movement.from_stack][: -movement.quantity]
         self.stacks[movement.to_stack].extend(crates_to_move)
 
     def tops(self) -> str:
@@ -62,9 +58,7 @@ def part_two(ship: Ship, movements: Iterable[Movement]) -> str:
 if __name__ == "__main__":
     ship_text, instructions = Path("../input.txt").read_text().strip().split("\n\n")
     movements_ = [
-        Movement(
-            *map(int, re.match(r"move (\d+) from (\d+) to (\d+)", instruction).groups())
-        )
+        Movement(*map(int, re.match(r"move (\d+) from (\d+) to (\d+)", instruction).groups()))
         for instruction in instructions.splitlines()
     ]
 

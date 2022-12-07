@@ -13,7 +13,7 @@ class File:
 @dataclass
 class Folder:
     name: str
-    contents: dict[str, 'Folder' | File]
+    contents: dict[str, "Folder" | File]
 
 
 @dataclass
@@ -21,7 +21,7 @@ class FileSystem:
     contents: dict[str, Folder | File]
 
     def create_item_at_path(self, keypath: list[str], item: File | Folder) -> None:
-        folder = self
+        folder: Folder = self
         for path in keypath:
             next_folder = folder.contents.get(path)
             if next_folder is None:
@@ -45,7 +45,7 @@ class FileSystem:
 def build_file_system(text: str) -> FileSystem:
     file_system = FileSystem({})
 
-    current_folder = []
+    current_folder: list[str] = []
     for line in text.splitlines():
         match line.split():
             case ["$", "ls"]:

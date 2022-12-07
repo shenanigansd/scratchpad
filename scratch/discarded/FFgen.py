@@ -359,10 +359,7 @@ class Generateff(object):
         file.write("sts_EnableTax02: %s\n" % (prob_stsEnableTax2))
         file.write("sts_EnableTax03: %s\n" % (prob_stsEnableTax3))
         file.write("sts_EnableTax04:  %s\n" % (prob_stsEnableTax4))
-        file.write(
-            "sts_Prod_SecondaryUnits_Override: %s\n"
-            % (prob_stsProdSecondaryUnitsOverride)
-        )
+        file.write("sts_Prod_SecondaryUnits_Override: %s\n" % (prob_stsProdSecondaryUnitsOverride))
         file.write("sts_UseSecondaryUnits: %s\n" % (prob_stsUseSecondaryUnits))
         file.write("Units_Qty: %s\n" % (prob_unitsQty))
         file.write("Units_Type:  %s\n" % (prob_unitsType))
@@ -370,19 +367,12 @@ class Generateff(object):
         file.write("Units_Area2: %s\n" % (prob_UnitsArea2))
         file.write("sts_UnitsPricing: %s\n" % (prob_unitsPricing))
         file.write("sts_UnitsPurchasing: %s\n" % (prob_stsUnitsPurchasing))
-        file.write(
-            "sts_UnitsPurchasingExtraPercent: %s\n"
-            % (prob_stsUnitsPurchasingExtraPercent)
-        )
-        file.write(
-            "sts_UnitsPurchasingExtraRound: %s\n" % (prob_stsUnitsPurchasingExtraRound)
-        )
+        file.write("sts_UnitsPurchasingExtraPercent: %s\n" % (prob_stsUnitsPurchasingExtraPercent))
+        file.write("sts_UnitsPurchasingExtraRound: %s\n" % (prob_stsUnitsPurchasingExtraRound))
         file.write("sts_Prod_Behavior_Override: %s\n" % (prob_stsProdBehaviorOverride))
         file.write("sts_ProductSource_Supplied: %s\n" % (prob_stsProductSourceSupplied))
         file.write("sts_ProductSource_Purchase: %s\n" % (prob_stsProductSourcePurchase))
-        file.write(
-            "sts_ProductSource_Inventory: %s\n" % (prob_stsProductSourceInventory)
-        )
+        file.write("sts_ProductSource_Inventory: %s\n" % (prob_stsProductSourceInventory))
         file.write("sts_Production_Designs: %s\n" % (prob_stsProductionDesigns))
         file.write("sts_Production_Subcontract: %s\n" % (prob_stsProductionSubcontract))
         file.write("sts_Production_Components: %s\n" % (prob_stsProductionComponents))
