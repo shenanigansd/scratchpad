@@ -44,7 +44,6 @@ class FileSystem:
 
 def build_file_system(text: str) -> FileSystem:
     file_system = FileSystem({})
-
     current_folder: list[str] = []
     for line in text.splitlines():
         match line.split():
