@@ -43,9 +43,9 @@ def get_scenic_scores(grid: list[list[int]]) -> int:
 
             direction_scores = []
             for tree_list in [
-                list(reversed(trees_left)),
+                reversed(trees_left),
                 trees_right,
-                list(reversed(trees_above)),
+                reversed(trees_above),
                 trees_below,
             ]:
                 direction_score = 0
