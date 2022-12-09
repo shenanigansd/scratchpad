@@ -35,16 +35,20 @@ class Knot:
     y: int
 
 
-def _move_one(direction: Direction) -> tuple[int, int]:
+def move_knot_straight(knot: Knot, direction: Direction) -> Knot:
     match direction:
         case Direction.UP:
-            return 0, 1
+            x_diff, y_diff = 0, 1
         case Direction.DOWN:
-            return 0, -1
+            x_diff, y_diff = 0, -1
         case Direction.LEFT:
-            return -1, 0
+            x_diff, y_diff = -1, 0
         case Direction.RIGHT:
-            return 1, 0
+            x_diff, y_diff = 1, 0
+        case _:
+            raise ValueError
+    knot = Knot(knot.x + x_diff, knot.y + y_diff)
+    return knot
 
 
 def knot_is_two_steps_away(previous: Knot, knot: Knot) -> Direction | None:
@@ -59,12 +63,6 @@ def knot_is_two_steps_away(previous: Knot, knot: Knot) -> Direction | None:
     if y_diff == -2:
         return Direction.DOWN
     return None
-
-
-def move_knot_straight(knot: Knot, direction: Direction) -> Knot:
-    x_diff, y_diff = _move_one(direction)
-    knot = Knot(knot.x + x_diff, knot.y + y_diff)
-    return knot
 
 
 def move_knot_diagonal(previous: Knot, knot: Knot) -> Knot:
