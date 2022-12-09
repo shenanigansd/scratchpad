@@ -1,5 +1,4 @@
 import pytest
-
 from script_day9 import Movement, run
 
 EXAMPLE_INPUT_PART_ONE = """

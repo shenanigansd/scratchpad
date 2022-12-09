@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from enum import Enum, auto
-from itertools import pairwise
 from pathlib import Path
 
 
@@ -30,7 +29,7 @@ class Movement:
         return cls(DIRECTION_MAP[direction_], int(steps_))
 
 
-@dataclass  # (frozen=True, slots=True)
+@dataclass
 class Knot:
     x: int
     y: int
@@ -81,10 +80,12 @@ def move_knot_diagonal(previous: Knot, knot: Knot) -> Knot:
 
 
 def move_knot(previous: Knot, knot: Knot) -> Knot:
-    if all([
-        previous.x != knot.x,
-        previous.y != knot.y,
-    ]):
+    if all(
+        [
+            previous.x != knot.x,
+            previous.y != knot.y,
+        ]
+    ):
         return move_knot_diagonal(previous, knot)
 
     step_direction = knot_is_two_steps_away(previous, knot)
