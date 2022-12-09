@@ -131,6 +131,7 @@ def part_two(movements: list[Movement]) -> int:
         for rope in ropes[1:]:
             rope.head = tail_position
             rope._move_tail()
+            tail_position = rope.tail
     return len(set(ropes[-1].tail_visited))
 
 
