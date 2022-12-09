@@ -30,7 +30,7 @@ class Movement:
         return cls(DIRECTION_MAP[direction_], int(steps_))
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass  # (frozen=True, slots=True)
 class Knot:
     x: int
     y: int
@@ -95,16 +95,18 @@ def move_knot(previous: Knot, knot: Knot) -> Knot:
 
 
 def run(knot_quantity: int, movements: list[Movement]) -> int:
-    visited: set[Knot] = set()
+    visited: set[tuple[int, int]] = set()
     knots: list[Knot] = [Knot(0, 0) for _ in range(knot_quantity)]
     for movement in movements:
         for _ in range(movement.steps):
             knots[0] = move_knot_straight(knots[0], movement.direction)
 
             for index, (previous, knot) in enumerate(pairwise(knots), 1):
-                knots[index] = move_knot(previous, knot)
+                new_knot = move_knot(previous, knot)
+                knots[index].x = new_knot.x
+                knots[index].y = new_knot.y
 
-            visited.add(knots[-1])
+            visited.add((knots[-1].x, knots[-1].y))
     return len(visited)
 
 
