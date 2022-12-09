@@ -1,4 +1,6 @@
-from script_day9 import Movement, Rope, part_two
+import pytest
+
+from script_day9 import Movement, run
 
 EXAMPLE_INPUT_PART_ONE = """
 R 4
@@ -23,14 +25,13 @@ U 20
 """.strip()
 
 
-def test_rope() -> None:
-    movements = [Movement.build_from(line) for line in EXAMPLE_INPUT_PART_ONE.splitlines()]
-    rope = Rope(head=(0, 0), tail=(0, 0))
-    for movement in movements:
-        list(rope.move(movement))
-    assert len(set(rope.tail_visited)) == 13
-
-
-def test_part_two() -> None:
-    movements = [Movement.build_from(line) for line in EXAMPLE_INPUT_PART_TWO.splitlines()]
-    assert part_two(movements) == 36
+@pytest.mark.parametrize(
+    "knots_quantity,data,result",
+    [
+        (1, EXAMPLE_INPUT_PART_ONE, 13),
+        (10, EXAMPLE_INPUT_PART_TWO, 36),
+    ],
+)
+def test_knots(knots_quantity: int, data: str, result: int) -> None:
+    movements = [Movement.build_from(line) for line in data.splitlines()]
+    assert run(knots_quantity, movements) == result

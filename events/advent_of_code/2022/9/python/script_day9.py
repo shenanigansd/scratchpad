@@ -1,6 +1,6 @@
-from collections.abc import Generator
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import Enum, auto
+from itertools import pairwise
 from pathlib import Path
 
 
@@ -30,6 +30,12 @@ class Movement:
         return cls(DIRECTION_MAP[direction_], int(steps_))
 
 
+@dataclass(frozen=True, slots=True)
+class Knot:
+    x: int
+    y: int
+
+
 def _move_one(direction: Direction) -> tuple[int, int]:
     match direction:
         case Direction.UP:
@@ -42,97 +48,73 @@ def _move_one(direction: Direction) -> tuple[int, int]:
             return 1, 0
 
 
-@dataclass
-class Rope:
-    head: tuple[int, int]
-    tail: tuple[int, int]
-    tail_visited: list[tuple[int, int]] = field(default_factory=lambda: [(0, 0)])
+def knot_is_two_steps_away(previous: Knot, knot: Knot) -> Direction | None:
+    x_diff = previous.x - knot.x
+    y_diff = previous.y - knot.y
+    if x_diff == +2:
+        return Direction.RIGHT
+    if x_diff == -2:
+        return Direction.LEFT
+    if y_diff == +2:
+        return Direction.UP
+    if y_diff == -2:
+        return Direction.DOWN
+    return None
 
-    def move(self, movement: Movement) -> Generator[tuple[int, int], None, None]:
-        print(f"{movement=}")
+
+def move_knot_straight(knot: Knot, direction: Direction) -> Knot:
+    x_diff, y_diff = _move_one(direction)
+    knot = Knot(knot.x + x_diff, knot.y + y_diff)
+    return knot
+
+
+def move_knot_diagonal(previous: Knot, knot: Knot) -> Knot:
+    x_diff = previous.x - knot.x
+    y_diff = previous.y - knot.y
+
+    if abs(x_diff) == abs(y_diff) == 1:
+        return knot  # exactly one off
+
+    x_move = 1 if x_diff > 0 else -1
+    y_move = 1 if y_diff > 0 else -1
+    return Knot(knot.x + x_move, knot.y + y_move)
+
+
+def move_knot(previous: Knot, knot: Knot) -> Knot:
+    if all([
+        previous.x != knot.x,
+        previous.y != knot.y,
+    ]):
+        return move_knot_diagonal(previous, knot)
+
+    step_direction = knot_is_two_steps_away(previous, knot)
+    if step_direction is not None:
+        return move_knot_straight(knot, step_direction)
+
+    return knot
+
+
+def run(knot_quantity: int, movements: list[Movement]) -> int:
+    visited: set[Knot] = set()
+    knots: list[Knot] = [Knot(0, 0) for _ in range(knot_quantity)]
+    for movement in movements:
         for _ in range(movement.steps):
-            print(f"before    \t{self.head=}\t{self.tail=}")
-            self._move_head(movement.direction)
-            print(f"moved head\t{self.head=}\t{self.tail=}")
-            yield self._move_tail()
-            print(f"moved tail\t{self.head=}\t{self.tail=}")
-            print("-" * 20)
+            x_diff, y_diff = _move_one(movement.direction)
+            knots[0] = Knot(knots[0].x + x_diff, knots[0].y + y_diff)
 
-    def _move_head(self, direction: Direction) -> None:
-        x_diff, y_diff = _move_one(direction)
-        self.head = (self.head[0] + x_diff, self.head[1] + y_diff)
+            for index, (previous, knot) in enumerate(pairwise(knots)):
+                knots[index] = move_knot(previous, knot)
 
-    def _tail_is_two_steps_away(self) -> Direction | None:
-        x_diff = self.head[0] - self.tail[0]
-        y_diff = self.head[1] - self.tail[1]
-        if x_diff == +2:
-            return Direction.RIGHT
-        if x_diff == -2:
-            return Direction.LEFT
-        if y_diff == +2:
-            return Direction.UP
-        if y_diff == -2:
-            return Direction.DOWN
-        return None
-
-    def _move_tail_straight(self, direction: Direction) -> tuple[int, int]:
-        x_diff, y_diff = _move_one(direction)
-        print(f"moved stai\t{x_diff=},{y_diff=}")
-        self.tail = (self.tail[0] + x_diff, self.tail[1] + y_diff)
-        self.tail_visited.append(self.tail)
-        return self.tail
-
-    def _tail_needs_diagonal_move(self) -> bool:
-        return all([
-            self.head[0] != self.tail[0],
-            self.head[1] != self.tail[1],
-        ])
-
-    def _move_tail_diagonal(self) -> tuple[int, int]:
-        x_diff = self.head[0] - self.tail[0]
-        y_diff = self.head[1] - self.tail[1]
-
-        if abs(x_diff) == abs(y_diff) == 1:
-            return 0, 0  # exactly one off
-
-        x_move = 1 if x_diff > 0 else -1
-        y_move = 1 if y_diff > 0 else -1
-
-        print(f"moved daig\t{x_move=},{y_move=}")
-        self.tail = (self.tail[0] + x_move, self.tail[1] + y_move)
-        self.tail_visited.append(self.tail)
-        return self.tail
-
-    def _move_tail(self) -> tuple[int, int]:
-        output = 0, 0
-        if self._tail_needs_diagonal_move():
-            output = self._move_tail_diagonal()
-
-        step_direction = self._tail_is_two_steps_away()
-        if step_direction is not None:
-            output = self._move_tail_straight(step_direction)
-
-        return output
+            visited.add(knots[-1])
+    return len(visited)
 
 
 def part_one(movements: list[Movement]) -> int:
-    rope = Rope(head=(0, 0), tail=(0, 0))
-    for movement in movements:
-        list(rope.move(movement))
-    return len(set(rope.tail_visited))
+    return run(1, movements)
 
 
 def part_two(movements: list[Movement]) -> int:
-    ropes = []
-    for _ in range(10):
-        ropes.append(Rope(head=(0, 0), tail=(0, 0)))
-    for movement in movements:
-        for tail_position in ropes[0].move(movement):
-            for rope in ropes[1:]:
-                rope.head = tail_position
-                rope._move_tail()
-                tail_position = rope.tail
-    return len(set(ropes[-1].tail_visited))
+    return run(10, movements)
 
 
 if __name__ == "__main__":
