@@ -27,7 +27,7 @@ def test_rope() -> None:
     movements = [Movement.build_from(line) for line in EXAMPLE_INPUT_PART_ONE.splitlines()]
     rope = Rope(head=(0, 0), tail=(0, 0))
     for movement in movements:
-        rope.move(movement)
+        list(rope.move(movement))
     assert len(set(rope.tail_visited)) == 13
 
 

@@ -1,3 +1,4 @@
+from collections.abc import Generator
 from dataclasses import dataclass, field
 from enum import Enum, auto
 from pathlib import Path
@@ -47,16 +48,15 @@ class Rope:
     tail: tuple[int, int]
     tail_visited: list[tuple[int, int]] = field(default_factory=lambda: [(0, 0)])
 
-    def move(self, movement: Movement) -> tuple[int, int]:
+    def move(self, movement: Movement) -> Generator[tuple[int, int], None, None]:
         print(f"{movement=}")
         for _ in range(movement.steps):
             print(f"before    \t{self.head=}\t{self.tail=}")
             self._move_head(movement.direction)
             print(f"moved head\t{self.head=}\t{self.tail=}")
-            output = self._move_tail()
+            yield self._move_tail()
             print(f"moved tail\t{self.head=}\t{self.tail=}")
             print("-" * 20)
-        return output
 
     def _move_head(self, direction: Direction) -> None:
         x_diff, y_diff = _move_one(direction)
@@ -118,7 +118,7 @@ class Rope:
 def part_one(movements: list[Movement]) -> int:
     rope = Rope(head=(0, 0), tail=(0, 0))
     for movement in movements:
-        rope.move(movement)
+        list(rope.move(movement))
     return len(set(rope.tail_visited))
 
 
@@ -127,11 +127,11 @@ def part_two(movements: list[Movement]) -> int:
     for _ in range(10):
         ropes.append(Rope(head=(0, 0), tail=(0, 0)))
     for movement in movements:
-        tail_position = ropes[0].move(movement)
-        for rope in ropes[1:]:
-            rope.head = tail_position
-            rope._move_tail()
-            tail_position = rope.tail
+        for tail_position in ropes[0].move(movement):
+            for rope in ropes[1:]:
+                rope.head = tail_position
+                rope._move_tail()
+                tail_position = rope.tail
     return len(set(ropes[-1].tail_visited))
 
 
