@@ -28,7 +28,7 @@ U 20
 @pytest.mark.parametrize(
     "knots_quantity,data,result",
     [
-        (1, EXAMPLE_INPUT_PART_ONE, 13),
+        (2, EXAMPLE_INPUT_PART_ONE, 13),
         (10, EXAMPLE_INPUT_PART_TWO, 36),
     ],
 )

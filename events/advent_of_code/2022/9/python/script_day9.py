@@ -102,7 +102,7 @@ def run(knot_quantity: int, movements: list[Movement]) -> int:
             x_diff, y_diff = _move_one(movement.direction)
             knots[0] = Knot(knots[0].x + x_diff, knots[0].y + y_diff)
 
-            for index, (previous, knot) in enumerate(pairwise(knots)):
+            for index, (previous, knot) in enumerate(pairwise(knots), 1):
                 knots[index] = move_knot(previous, knot)
 
             visited.add(knots[-1])
@@ -110,7 +110,7 @@ def run(knot_quantity: int, movements: list[Movement]) -> int:
 
 
 def part_one(movements: list[Movement]) -> int:
-    return run(1, movements)
+    return run(2, movements)
 
 
 def part_two(movements: list[Movement]) -> int:
