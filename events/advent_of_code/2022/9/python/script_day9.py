@@ -101,10 +101,8 @@ def run(knot_quantity: int, movements: list[Movement]) -> int:
         for _ in range(movement.steps):
             knots[0] = move_knot_straight(knots[0], movement.direction)
 
-            for index, (previous, knot) in enumerate(pairwise(knots), 1):
-                new_knot = move_knot(previous, knot)
-                knots[index].x = new_knot.x
-                knots[index].y = new_knot.y
+            for index in range(1, len(knots)):
+                knots[index] = move_knot(knots[index - 1], knots[index])
 
             visited.add((knots[-1].x, knots[-1].y))
     return len(visited)
