@@ -79,20 +79,15 @@ def process_round(monkeys: list[Monkey], worried: bool = True) -> list[Monkey]:
         for _ in range(len(monkey.items)):
             monkey.inspection_count += 1
             item = monkey.items.pop(0)
-            # print(f"got first {item}")
             item = monkey.operation_function(item, monkey.operation_number or item)
-            # print(f"ran action, now {item}")
             if worried:
                 item = floor(item / 3)
-            # print(f"worried, now {item}")
             if item % monkey.test_divisor == 0:
                 new_monkey = monkey.true_monkey
             else:
                 new_monkey = monkey.false_monkey
             assert monkeys[new_monkey].monkey_id == new_monkey
             monkeys[new_monkey].items.append(item)
-            # print(f"threw to {new_monkey}")
-            # print("-" * 5)
     return monkeys
 
 
