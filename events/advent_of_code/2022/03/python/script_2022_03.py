@@ -30,7 +30,7 @@ def part_two(values: list[str]) -> int:
 
 
 if __name__ == "__main__":
-    data = Path("../../../input.txt").read_text().split("\n")
+    data = Path("../input.txt").read_text().split("\n")
     print(priorities)
     print(part_one(values=data))
     print(part_two(values=data))

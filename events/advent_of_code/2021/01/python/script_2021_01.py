@@ -10,6 +10,6 @@ def part_two(values: list[int]) -> int:
 
 
 if __name__ == "__main__":
-    values_: list[int] = [int(row) for row in open("../../../input.txt").readlines()]
+    values_: list[int] = [int(row) for row in open("../input.txt").readlines()]
     print(part_one(values=values_))
     print(part_two(values=values_))

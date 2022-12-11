@@ -25,7 +25,7 @@ def part_two(text: str) -> int:
 
 
 if __name__ == "__main__":
-    data: str = Path("../../../input.txt").read_text().strip()
+    data: str = Path("../input.txt").read_text().strip()
     print(f"{data=}")
 
     print(part_one(text=data))

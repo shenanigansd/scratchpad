@@ -1,4 +1,4 @@
-from script_day10 import run_cycles, sum_cycles
+from script_2022_10 import run_cycles, sum_cycles
 
 EXAMPLE_INPUT = """
 addx 15

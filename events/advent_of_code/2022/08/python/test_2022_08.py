@@ -1,4 +1,4 @@
-from script_day08 import get_scenic_scores, get_visible_trees
+from script_2022_08 import get_scenic_scores, get_visible_trees
 
 EXAMPLE_INPUT = """
     30373

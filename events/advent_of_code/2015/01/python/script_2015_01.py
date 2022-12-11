@@ -16,7 +16,7 @@ def part_two(text: str) -> int:
 
 
 if __name__ == "__main__":
-    data: str = open("../../../input.txt").readlines()[0].strip()
+    data: str = open("../input.txt").readlines()[0].strip()
 
     print(part_one(text=data))
     print(part_two(text=data))

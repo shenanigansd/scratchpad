@@ -48,7 +48,7 @@ def part_two(values: list[tuple[set[int], set[int]]]) -> int:
 if __name__ == "__main__":
     data = [
         (set(_range_parser(item.split(",")[0])), set(_range_parser(item.split(",")[1])))
-        for item in Path("../../../input.txt").read_text().strip().split("\n")
+        for item in Path("../input.txt").read_text().strip().split("\n")
     ]
     print(part_one(values=data))
     print(part_two(values=data))

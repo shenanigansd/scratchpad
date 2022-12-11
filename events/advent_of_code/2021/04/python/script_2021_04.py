@@ -90,7 +90,7 @@ def part_two(called_numbers: list[int], boards: list[Board]) -> int:
 
 
 if __name__ == "__main__":
-    values_: list[str] = open("../../../input.txt").readlines()
+    values_: list[str] = open("../input.txt").readlines()
     called_numbers_ = [int(val) for val in values_[0].split(",")]
 
     board_values = [rows[1:] for rows in chunks(values_[1:], 6)]

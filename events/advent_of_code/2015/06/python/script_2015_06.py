@@ -62,7 +62,7 @@ def part_two(events: list[Event]) -> int:
 
 
 if __name__ == "__main__":
-    data: list[str] = Path("../../../input.txt").read_text().strip().split("\n")
+    data: list[str] = Path("../input.txt").read_text().strip().split("\n")
     events_: list[Event] = [Event.from_str(item) for item in data]
     print(events_[0])
 

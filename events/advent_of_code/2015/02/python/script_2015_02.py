@@ -32,7 +32,7 @@ def part_two(boxes: list[Box]) -> int:
 
 
 if __name__ == "__main__":
-    lines: list[str] = open("../../../input.txt").readlines()
+    lines: list[str] = open("../input.txt").readlines()
     boxes_: list[Box] = [Box(*map(int, line.split("x"))) for line in lines]
 
     print(part_one(boxes=boxes_))

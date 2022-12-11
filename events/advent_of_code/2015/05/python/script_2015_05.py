@@ -68,7 +68,7 @@ def part_two(values: list[str]) -> int:
 
 
 if __name__ == "__main__":
-    data: list[str] = Path("../../../input.txt").read_text().strip().split("\n")
+    data: list[str] = Path("../input.txt").read_text().strip().split("\n")
 
     print(part_one(values=data))
     print(part_two(values=data))

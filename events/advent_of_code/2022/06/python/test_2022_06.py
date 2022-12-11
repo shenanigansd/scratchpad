@@ -1,5 +1,5 @@
 import pytest
-from script_day06 import _find_unique_sequence
+from script_2022_06 import _find_unique_sequence
 
 
 @pytest.mark.parametrize(

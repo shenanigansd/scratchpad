@@ -56,7 +56,7 @@ def part_two(values: list[tuple[Action, str]]) -> int:
 
 
 if __name__ == "__main__":
-    with open("../../../input.txt") as file:
+    with open("../input.txt") as file:
         part_one_values: list[tuple[Action, Action]] = []
         part_two_values: list[tuple[Action, str]] = []
         for line in file.readlines():

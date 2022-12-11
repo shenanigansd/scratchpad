@@ -28,7 +28,7 @@ def part_two(values: list[int]) -> int:
 
 
 if __name__ == "__main__":
-    values_: Counter = Counter([int(value) for value in open("../../../input.txt").readlines()[0].split(",")])
+    values_: Counter = Counter([int(value) for value in open("../input.txt").readlines()[0].split(",")])
     values_: list[int] = [values_.get(i, 0) for i in range(9)]
     print(part_one(values=values_.copy()))
     print(part_two(values=values_.copy()))
