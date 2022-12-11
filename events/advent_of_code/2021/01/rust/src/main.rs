@@ -1,4 +1,8 @@
-use std::{fs::File, io::{self, BufRead, BufReader}, path::Path};
+use std::{
+    fs::File,
+    io::{self, BufRead, BufReader},
+    path::Path,
+};
 
 fn lines_from_file(filename: impl AsRef<Path>) -> io::Result<Vec<String>> {
     BufReader::new(File::open(filename)?).lines().collect()
@@ -8,7 +12,9 @@ fn part_one(numbers: Vec<u16>) -> i32 {
     let mut count = 0;
     for (position, current_number) in numbers.iter().skip(1).enumerate() {
         let last_number = &numbers[position];
-        if current_number > last_number { count += 1; }
+        if current_number > last_number {
+            count += 1;
+        }
     }
     count
 }
@@ -22,7 +28,9 @@ fn part_two(numbers: Vec<u16>) -> i32 {
     let mut count = 0;
     for (position, current_number) in sums.iter().skip(1).enumerate() {
         let last_number = &sums[position];
-        if current_number > last_number { count += 1; }
+        if current_number > last_number {
+            count += 1;
+        }
     }
     count
 }
