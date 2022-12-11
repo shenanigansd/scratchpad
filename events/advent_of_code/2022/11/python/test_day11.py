@@ -10,7 +10,7 @@ Monkey 0:
     If true: throw to monkey 2
     If false: throw to monkey 3
 
-Monkey 1:
+Monkey 01:
   Starting items: 54, 65, 75, 74
   Operation: new = old + 6
   Test: divisible by 19
@@ -21,7 +21,7 @@ Monkey 2:
   Starting items: 79, 60, 97
   Operation: new = old * old
   Test: divisible by 13
-    If true: throw to monkey 1
+    If true: throw to monkey 01
     If false: throw to monkey 3
 
 Monkey 3:
@@ -29,7 +29,7 @@ Monkey 3:
   Operation: new = old + 3
   Test: divisible by 17
     If true: throw to monkey 0
-    If false: throw to monkey 1
+    If false: throw to monkey 01
 """.strip()
 
 
@@ -37,7 +37,7 @@ def test_with_worry() -> None:
     monkeys = parse_monkeys(EXAMPLE_INPUT)
     constant = prod(monkey.test_divisor for monkey in monkeys)
 
-    # Round 1
+    # Round 01
     monkeys = process_round(monkeys, constant)
     assert monkeys[0].items == [20, 23, 27, 26]
     assert monkeys[1].items == [2080, 25, 167, 207, 401, 1046]
