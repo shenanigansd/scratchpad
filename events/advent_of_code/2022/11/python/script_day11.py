@@ -1,18 +1,22 @@
 import operator
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from math import floor, prod
 from pathlib import Path
+from typing import Final
 
 from parse import parse
 
-operator_functions = {
+OPERATOR_FUNCTIONS: Final[dict[str, Callable]] = {
     "+": operator.add,
     "-": operator.sub,
     "/": operator.truediv,
     "*": operator.mul,
 }
 
-MONKEY_TEMPLATE = """\
+MONKEY_TEMPLATE: Final[
+    str
+] = """\
 Monkey {monkey_id:d}:
   Starting items: {starting_items}
   Operation: new = old {operation_sign} {operation_number}
@@ -26,7 +30,7 @@ Monkey {monkey_id:d}:
 class Monkey:
     monkey_id: int
     items: list[int]
-    operation_function: operator
+    operation_function: Callable
     operation_number: int | None
     test_divisor: int
     true_monkey: int
@@ -50,7 +54,7 @@ class Monkey:
             operation_number = int(operation_number)
         except ValueError:
             operation_number = None
-        operation_function = operator_functions[operation_sign]
+        operation_function = OPERATOR_FUNCTIONS[operation_sign]
         return cls(
             monkey_id,
             items,
@@ -62,24 +66,25 @@ class Monkey:
         )
 
 
+def parse_monkey(text: str) -> Monkey:
+    monkey_kwargs = {}
+    for template_line, text_line in zip(MONKEY_TEMPLATE.split("\n"), text.split("\n")):
+        result = parse(template_line, text_line)
+        monkey_kwargs.update(result.named)
+    return Monkey.build_from(**monkey_kwargs)
+
+
 def parse_monkeys(text: str) -> list[Monkey]:
-    monkeys = []
-    for monkey_text in text.split("\n\n"):
-        monkey_kwargs = {}
-        for template_line, text_line in zip(MONKEY_TEMPLATE.split("\n"), monkey_text.split("\n")):
-            result = parse(template_line, text_line)
-            monkey_kwargs.update(result.named)
-        monkeys.append(Monkey.build_from(**monkey_kwargs))
-    return monkeys
+    return [parse_monkey(monkey_text) for monkey_text in text.split("\n\n")]
 
 
-def process_round(monkeys: list[Monkey], constant: int, worried: bool = True) -> list[Monkey]:
+def process_round(monkeys: list[Monkey], constant: int, calming: bool = True) -> list[Monkey]:
     for monkey in monkeys:
         for _ in range(len(monkey.items)):
             monkey.inspection_count += 1
             item = monkey.items.pop(0)
             item = monkey.operation_function(item, monkey.operation_number or item) % constant
-            if worried:
+            if calming:
                 item = floor(item / 3)
             if item % monkey.test_divisor == 0:
                 new_monkey = monkey.true_monkey
@@ -90,20 +95,21 @@ def process_round(monkeys: list[Monkey], constant: int, worried: bool = True) ->
     return monkeys
 
 
+def process_rounds(monkeys: list[Monkey], rounds: int, calming: bool = True) -> int:
+    constant = prod(monkey.test_divisor for monkey in monkeys)
+    for _ in range(rounds):
+        monkeys = process_round(monkeys, constant, calming)
+    return prod(list(sorted(monkey.inspection_count for monkey in monkeys))[-2:])
+
+
 def part_one(text: str) -> int:
     monkeys = parse_monkeys(text)
-    constant = prod(monkey.test_divisor for monkey in monkeys)
-    for _ in range(20):
-        monkeys = process_round(monkeys, constant)
-    return prod(list(sorted(monkey.inspection_count for monkey in monkeys))[-2:])
+    return process_rounds(monkeys, 20)
 
 
 def part_two(text: str) -> int:
     monkeys = parse_monkeys(text)
-    constant = prod(monkey.test_divisor for monkey in monkeys)
-    for _ in range(10000):
-        monkeys = process_round(monkeys, constant, worried=False)
-    return prod(list(sorted(monkey.inspection_count for monkey in monkeys))[-2:])
+    return process_rounds(monkeys, 10000, calming=False)
 
 
 if __name__ == "__main__":

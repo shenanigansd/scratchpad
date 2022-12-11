@@ -139,14 +139,14 @@ def test_without_worry() -> None:
     monkeys = parse_monkeys(EXAMPLE_INPUT)
     constant = prod(monkey.test_divisor for monkey in monkeys)
 
-    monkeys = process_round(monkeys, constant, worried=False)
+    monkeys = process_round(monkeys, constant, calming=False)
     assert monkeys[0].inspection_count == 2
     assert monkeys[1].inspection_count == 4
     assert monkeys[2].inspection_count == 3
     assert monkeys[3].inspection_count == 6
 
     for _ in range(19):
-        monkeys = process_round(monkeys, constant, worried=False)
+        monkeys = process_round(monkeys, constant, calming=False)
     # Round 20
     assert monkeys[0].inspection_count == 99
     assert monkeys[1].inspection_count == 97
@@ -154,7 +154,7 @@ def test_without_worry() -> None:
     assert monkeys[3].inspection_count == 103
 
     for _ in range(980):
-        monkeys = process_round(monkeys, constant, worried=False)
+        monkeys = process_round(monkeys, constant, calming=False)
     # Round 1000
     assert monkeys[0].inspection_count == 5204
     assert monkeys[1].inspection_count == 4792
@@ -162,7 +162,7 @@ def test_without_worry() -> None:
     assert monkeys[3].inspection_count == 5192
 
     for _ in range(1000):
-        monkeys = process_round(monkeys, constant, worried=False)
+        monkeys = process_round(monkeys, constant, calming=False)
     # Round 2000
     assert monkeys[0].inspection_count == 10419
     assert monkeys[1].inspection_count == 9577
@@ -170,7 +170,7 @@ def test_without_worry() -> None:
     assert monkeys[3].inspection_count == 10391
 
     for _ in range(1000):
-        monkeys = process_round(monkeys, constant, worried=False)
+        monkeys = process_round(monkeys, constant, calming=False)
     # Round 3000
     assert monkeys[0].inspection_count == 15638
     assert monkeys[1].inspection_count == 14358
@@ -178,7 +178,7 @@ def test_without_worry() -> None:
     assert monkeys[3].inspection_count == 15593
 
     for _ in range(1000):
-        monkeys = process_round(monkeys, constant, worried=False)
+        monkeys = process_round(monkeys, constant, calming=False)
     # Round 4000
     assert monkeys[0].inspection_count == 20858
     assert monkeys[1].inspection_count == 19138
@@ -186,7 +186,7 @@ def test_without_worry() -> None:
     assert monkeys[3].inspection_count == 20797
 
     for _ in range(1000):
-        monkeys = process_round(monkeys, constant, worried=False)
+        monkeys = process_round(monkeys, constant, calming=False)
     # Round 5000
     assert monkeys[0].inspection_count == 26075
     assert monkeys[1].inspection_count == 23921
@@ -194,7 +194,7 @@ def test_without_worry() -> None:
     assert monkeys[3].inspection_count == 26000
 
     for _ in range(1000):
-        monkeys = process_round(monkeys, constant, worried=False)
+        monkeys = process_round(monkeys, constant, calming=False)
     # Round 6000
     assert monkeys[0].inspection_count == 31294
     assert monkeys[1].inspection_count == 28702
@@ -202,7 +202,7 @@ def test_without_worry() -> None:
     assert monkeys[3].inspection_count == 31204
 
     for _ in range(1000):
-        monkeys = process_round(monkeys, constant, worried=False)
+        monkeys = process_round(monkeys, constant, calming=False)
     # Round 7000
     assert monkeys[0].inspection_count == 36508
     assert monkeys[1].inspection_count == 33488
@@ -210,7 +210,7 @@ def test_without_worry() -> None:
     assert monkeys[3].inspection_count == 36400
 
     for _ in range(1000):
-        monkeys = process_round(monkeys, constant, worried=False)
+        monkeys = process_round(monkeys, constant, calming=False)
     # Round 8000
     assert monkeys[0].inspection_count == 41728
     assert monkeys[1].inspection_count == 38268
@@ -218,7 +218,7 @@ def test_without_worry() -> None:
     assert monkeys[3].inspection_count == 41606
 
     for _ in range(1000):
-        monkeys = process_round(monkeys, constant, worried=False)
+        monkeys = process_round(monkeys, constant, calming=False)
     # Round 9000
     assert monkeys[0].inspection_count == 46945
     assert monkeys[1].inspection_count == 43051
@@ -226,7 +226,7 @@ def test_without_worry() -> None:
     assert monkeys[3].inspection_count == 46807
 
     for _ in range(1000):
-        monkeys = process_round(monkeys, constant, worried=False)
+        monkeys = process_round(monkeys, constant, calming=False)
     # Round 10000
     assert monkeys[0].inspection_count == 52166
     assert monkeys[1].inspection_count == 47830
