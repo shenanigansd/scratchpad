@@ -36,7 +36,8 @@ fn part_two(numbers: &[u16]) -> i32 {
 }
 
 fn main() {
-    let lines = lines_from_file("events/advent_of_code/2021/01/input.txt").expect("Could not load lines");
+    let lines =
+        lines_from_file("events/advent_of_code/2021/01/input.txt").expect("Could not load lines");
     let numbers: Vec<u16> = lines.iter().map(|num| num.parse().unwrap()).collect();
 
     println!("{}", part_one(&numbers));

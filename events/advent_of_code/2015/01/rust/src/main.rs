@@ -30,8 +30,8 @@ fn part_two(text: &str) -> i32 {
 }
 
 fn main() {
-    let contents: &str =
-        &std::fs::read_to_string("../../input.txt").expect("Something went wrong reading the file");
+    let contents: &str = &std::fs::read_to_string("events/advent_of_code/2015/01/input.txt")
+        .expect("Something went wrong reading the file");
 
     println!("{}", part_one(contents));
     println!("{}", part_two(contents));
