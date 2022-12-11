@@ -1,6 +1,5 @@
 import operator
 from dataclasses import dataclass, field
-from datetime import datetime
 from math import floor, prod
 from pathlib import Path
 
@@ -74,12 +73,12 @@ def parse_monkeys(text: str) -> list[Monkey]:
     return monkeys
 
 
-def process_round(monkeys: list[Monkey], worried: bool = True) -> list[Monkey]:
+def process_round(monkeys: list[Monkey], constant: int, worried: bool = True) -> list[Monkey]:
     for monkey in monkeys:
         for _ in range(len(monkey.items)):
             monkey.inspection_count += 1
             item = monkey.items.pop(0)
-            item = monkey.operation_function(item, monkey.operation_number or item)
+            item = monkey.operation_function(item, monkey.operation_number or item) % constant
             if worried:
                 item = floor(item / 3)
             if item % monkey.test_divisor == 0:
@@ -93,16 +92,17 @@ def process_round(monkeys: list[Monkey], worried: bool = True) -> list[Monkey]:
 
 def part_one(text: str) -> int:
     monkeys = parse_monkeys(text)
+    constant = prod(monkey.test_divisor for monkey in monkeys)
     for _ in range(20):
-        monkeys = process_round(monkeys)
+        monkeys = process_round(monkeys, constant)
     return prod(list(sorted(monkey.inspection_count for monkey in monkeys))[-2:])
 
 
 def part_two(text: str) -> int:
     monkeys = parse_monkeys(text)
-    for index in range(10000):
-        print(datetime.now().time(), index)
-        monkeys = process_round(monkeys, worried=False)
+    constant = prod(monkey.test_divisor for monkey in monkeys)
+    for _ in range(10000):
+        monkeys = process_round(monkeys, constant, worried=False)
     return prod(list(sorted(monkey.inspection_count for monkey in monkeys))[-2:])
 
 
