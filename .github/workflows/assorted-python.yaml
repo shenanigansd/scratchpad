@@ -3,6 +3,7 @@ name: Assorted CI - Python
 on:
   push:
     paths:
+      - pyproject.toml
       - events/advent_of_code/**
       - scratch/discord/ongoing.py
 
