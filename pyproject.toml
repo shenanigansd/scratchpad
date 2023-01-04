@@ -1,6 +1,6 @@
 [project]
 name = "scratchpad"
-version = "0.0.0"
+version = "0.0.0" # explicity non-versioned
 description = "A scratchpad for keeping assorted notes and snippets"
 authors = [
     { name = "Bradley Reynolds", email = "bradley.reynolds@darbia.dev" },
