@@ -96,8 +96,8 @@ def size_entire_file_system(file_system: FileSystem) -> int:
 
 
 def find_smallest_possible_folder_to_delete(file_system: FileSystem) -> int:
-    total_space = 70000000
-    required_space = 30000000
+    total_space = 70_000_000
+    required_space = 30_000_000
     used_space = size_entire_file_system(file_system)
     folder_sizes = size_all_folders(file_system)
     for folder_size in folder_sizes:
@@ -107,7 +107,7 @@ def find_smallest_possible_folder_to_delete(file_system: FileSystem) -> int:
 
 def part_one(text: str) -> int:
     file_system = build_file_system(text)
-    return sum_folders_under_size(file_system, 100000)
+    return sum_folders_under_size(file_system, 100_000)
 
 
 def part_two(text: str) -> int:
