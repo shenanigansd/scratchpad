@@ -24,16 +24,10 @@ build-dist:
 	python -m build
 
 clean:
-	find . -name '*.pyc' -exec rm -f {} +
-	find . -name '*.pyo' -exec rm -f {} +
-	find . -name '__pycache__' -exec rm -rf {} +
-	find . -name '.mypy_cache' -exec rm -rf {} +
-	rm -rf .tox
-	rm -f coverage.xml
-	rm -f coverage.json
-	rm -rf htmlcov
-	rm -rf .coverage
-	rm -rf .coverage.*
-	find . -name '.pytest_cache' -exec rm -rf {} +
-	rm -rf dist
-	rm -rf build
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    args=(
+        dist
+        build
+    )
+    rm -rf "${args[@]}"
