@@ -19,96 +19,98 @@ COMMANDS
 #>
 param(
     [Parameter(Position = 0)]
-    [ValidateSet("up", "down", "build", "test", "ip", "help")]
-# The command to run
+    [ValidateSet("init", "install", "install-dev", "lint", "pylint", "test", "build-dist", "clean", "help")]
     [string]$Command
 )
 
-function Command-Help
+function Invoke-Help
 {
     Get-Help $PSCommandPath
 }
-function Command-Init
+
+function Invoke-Init
 {
     python -m pip install --upgrade pip wheel setuptools build
 }
-function Command-Install
+
+function Invoke-Install
 {
     python -m pip install --upgrade .
 }
-function Command-Install-Dev
+
+function Invoke-Install-Dev
 {
     python -m pip install --upgrade --editable ".[dev, tests, docs]"
 }
-function Command-Lint
+
+function Invoke-Lint
 {
     python -m isort src/
     python -m black src/
 }
-function Command-Pylint
+
+function Invoke-Pylint
 {
     python -m pylint src/
 }
-function Command-Test
+
+function Invoke-Test
 {
     python -m pytest
 }
-function Command-Build-Dist
+
+function Invoke-Build-Dist
 {
     python -m pip install --upgrade build
     python -m build
 }
-function Command-Clean
-{
-    find . -name '*.pyc' -exec rm -f { } +
-    find . -name '*.pyo' -exec rm -f { } +
-    find . -name '__pycache__' -exec rm -rf { } +
-    find . -name '.mypy_cache' -exec rm -rf { } +
-    Remove-Item -rf .tox
-    Remove-Item -f coverage.xml
-    Remove-Item -f coverage.json
-    Remove-Item -rf htmlcov
-    Remove-Item -rf .coverage
-    Remove-Item -rf .coverage.*
-    find . -name '.pytest_cache' -exec rm -rf { } +
-    Remove-Item -rf dist
-    Remove-Item -rf build
-}
 
-if (!$Command)
+function Invoke-Clean
 {
-    Command-Init
-    Command-Install-Dev
-    exit
+    $folders = @("build", "dist")
+    foreach ($folder in $folders)
+    {
+        if (Test-Path $folder)
+        {
+
+            Write-Verbose "Deleting $folder"
+            Remove-Item $folder -Recurse -Force
+        }
+    }
 }
 
 switch ($Command)
 {
     "init"    {
-        Command-Init
+        Invoke-Init
     }
     "install"  {
-        Command-Install
+        Invoke-Install
     }
     "install-dev" {
-        Command-Install-Dev
+        Invoke-Install-Dev
     }
     "lint"  {
-        Command-Lint
+        Invoke-Lint
     }
     "pylint"    {
-        Command-Pylint
+        Invoke-Pylint
     }
     "test"    {
-        Command-Test
+        Invoke-Test
     }
     "build-dist"    {
-        Command-Build-Dist
+        Invoke-Build-Dist
     }
     "clean"    {
-        Command-Clean
+        Invoke-Clean
     }
     "help"  {
-        Command-Help
+        Invoke-Help
+    }
+    default
+    {
+        Invoke-Init
+        Invoke-Install-Dev
     }
 }
