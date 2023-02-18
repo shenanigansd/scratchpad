@@ -1,7 +1,7 @@
-name: pre-commit
+name: "pre-commit"
 
 on: [push]
 
 jobs:
   pre-commit:
-    uses: darbiadev/.github/.github/workflows/generic-precommit.yaml@main
+    uses: "darbiadev/.github/.github/workflows/generic-precommit.yaml@1fafbd742c15d5b4daa8352b4b8a90b188ba37ea"
