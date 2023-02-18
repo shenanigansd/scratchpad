@@ -1,25 +1,73 @@
 <#
 .SYNOPSIS
-Run CMake
+Make script for C++
 
 .DESCRIPTION
 USAGE
-    .\make.ps1
+    .\make.ps1 <command>
+
+COMMANDS
+    build      run cmake
+    clean      delete generated content
+    help, -?   show this help message
 #>
 
     [cmdletbinding()]
-Param()
+param(
+    [Parameter(Position = 0)]
+    [ValidateSet("build", "clean", "help")]
+    [string]$Command
+)
 
-$path = "build"
-if (!(Test-Path -PathType Container -Path $path))
+function Invoke-Build
 {
-    New-Item -ItemType Directory -Path $path | Out-Null
-    Write-Verbose "created directory at $path"
+    $path = "build"
+    if (!(Test-Path -PathType Container -Path $path))
+    {
+        New-Item -ItemType Directory -Path $path | Out-Null
+        Write-Verbose "created directory at $path"
+    }
+    else
+    {
+        Write-Verbose "using existing directory at $path"
+    }
+    Set-Location -Path build
+    cmake ..
+    cmake --build .
 }
-else
+
+function Invoke-Clean
 {
-    Write-Verbose "using existing directory at $path"
+    $folders = @("build")
+    foreach ($folder in $folders)
+    {
+        if (Test-Path $folder)
+        {
+
+            Write-Verbose "Deleting $folder"
+            Remove-Item $folder -Recurse -Force
+        }
+    }
 }
-Set-Location -Path build
-cmake ..
-cmake --build .
+
+function Invoke-Help
+{
+    Get-Help $PSCommandPath
+}
+
+switch ($Command)
+{
+    "build"    {
+        Invoke-Build
+    }
+    "clean"    {
+        Invoke-Clean
+    }
+    "help"  {
+        Invoke-Help
+    }
+    default
+    {
+        Invoke-Build
+    }
+}

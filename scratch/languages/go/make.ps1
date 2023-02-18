@@ -1,13 +1,13 @@
 <#
 .SYNOPSIS
-Make script for C++
+Make script for Go
 
 .DESCRIPTION
 USAGE
     .\make.ps1 <command>
 
 COMMANDS
-    build      run cmake
+    build      run `go build`
     clean      delete generated content
     help, -?   show this help message
 #>
@@ -21,24 +21,12 @@ param(
 
 function Invoke-Build
 {
-    $path = "build"
-    if (!(Test-Path -PathType Container -Path $path))
-    {
-        New-Item -ItemType Directory -Path $path | Out-Null
-        Write-Verbose "created directory at $path"
-    }
-    else
-    {
-        Write-Verbose "using existing directory at $path"
-    }
-    Set-Location -Path build
-    cmake ..
-    cmake --build .
+    go build
 }
 
 function Invoke-Clean
 {
-    $folders = @("build")
+    $folders = @("goscratch")
     foreach ($folder in $folders)
     {
         if (Test-Path $folder)
