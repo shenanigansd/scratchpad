@@ -21,4 +21,3 @@ def fizzbuzz(
         if output == "":
             output = str(index)
         yield output
-
