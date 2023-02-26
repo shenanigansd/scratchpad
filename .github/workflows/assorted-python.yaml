@@ -4,8 +4,7 @@ on:
   push:
     paths:
       - "pyproject.toml"
-      - "events/advent_of_code/**"
-      - "scratch/discord/ongoing.py"
+      - "**/*.py"
 
 jobs:
   assorted:
@@ -25,12 +24,6 @@ jobs:
       - name: "Install dependencies"
         run: python -m pip install --editable .[dev,tests]
 
-      - name: "Run AoC tests"
+      - name: "Run tests"
         run: |
-          cd events/advent_of_code
           python -m pytest
-
-      - name: "Run Discord `ongoing` file tests"
-        run: |
-          cd scratch/discord/
-          python -m pytest ongoing.py

@@ -22,14 +22,3 @@ def fizzbuzz(
             output = str(index)
         yield output
 
-
-if __name__ == "__main__":
-    lst = list(fizzbuzz(100, [(3, "Fizz"), (5, "Buzz")]))
-
-    assert lst[0] == "1"
-    assert lst[2] == "Fizz"
-    assert lst[4] == "Buzz"
-    assert lst[14] == "FizzBuzz"
-
-    for item in lst:
-        print(item)
