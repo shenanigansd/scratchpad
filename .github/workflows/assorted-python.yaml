@@ -22,8 +22,9 @@ jobs:
           cache-dependency-path: 'pyproject.toml'
 
       - name: "Install dependencies"
-        run: python -m pip install --editable .[dev,tests]
+        run: |
+          python -m pip install --editable .[dev,tests]
+          python -m pip install --editable scratch/projects/one_two_three
 
       - name: "Run tests"
-        run: |
-          python -m pytest
+        run:  python -m pytest
