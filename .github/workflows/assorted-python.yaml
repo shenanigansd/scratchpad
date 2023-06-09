@@ -3,6 +3,7 @@ name: "Assorted CI - Python"
 on:
   push:
     paths:
+      - ".github/workflows/assorted-python.yaml"
       - "pyproject.toml"
       - "**/*.py"
 
