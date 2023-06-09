@@ -21,9 +21,11 @@ repository = "https://github.com/shenanigansd/scratchpad"
 
 [project.optional-dependencies]
 dev = [
+    "pre-commit",
     "black",
     "isort",
     "pylint",
+    "ruff",
 ]
 tests = [
     "pytest",
