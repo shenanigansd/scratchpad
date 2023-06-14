@@ -9,6 +9,9 @@ __pycache__
 venv
 *.egg-info
 
+# Hypothesis
+.hypothesis
+
 # Rust
 target
 
@@ -36,3 +39,6 @@ input.txt
 # C/C++
 cmake-build-debug
 build
+
+# Vendored tooling
+_opt
