@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Make script for C++
+Make script for C
 
 .DESCRIPTION
 USAGE
