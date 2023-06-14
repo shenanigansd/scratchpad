@@ -5,11 +5,9 @@ file_version: 1.1.2
 app_version: 1.10.3
 ---
 
-Looke at me!
+Look at me!
 
-`_contains_non_overlapping_duplicate_sequence`<swm-token data-swm-token=":events/advent_of_code/2015/05/python/script_2015_05.py:29:2:2:`def _contains_non_overlapping_duplicate_sequence(text: str, length: int = 2) -&gt; bool:`"/>is a really long function name!!
-
-<br/>
+Wow, `_contains_non_overlapping_duplicate_sequence`<swm-token data-swm-token=":events/advent_of_code/2015/05/python/script_2015_05.py:29:2:2:`def _contains_non_overlapping_duplicate_sequence(text: str, length: int = 2) -&gt; bool:`"/>is a really long function name!!
 
 <br/>
 
