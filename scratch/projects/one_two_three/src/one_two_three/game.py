@@ -1,5 +1,3 @@
-from random import choice
-
 GAME_OPTIONS = dict[str, set[str]]
 
 
