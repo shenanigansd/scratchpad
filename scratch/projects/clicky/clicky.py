@@ -1,7 +1,7 @@
 import readline  # noqa: F401
 
 
-def main():
+def main() -> None:
     try:
         while True:
             s = input(">> ")

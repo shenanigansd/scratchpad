@@ -51,7 +51,17 @@ line-length = 120
 target-version = "py311"
 line-length = 120
 select = ["ALL"]
-exclude = ["events","scratch/discarded"]
+exclude = ["events", "scratch/discarded"]
+ignore = [
+  "ERA001", # (Found commented-out code) - This is a scratchpad, so...
+  "S101", # (Use of `assert` detected) - Testing code as I go
+  "T201", # (`print` found) - Want to be able to see the output
+  "INP001", # (File `*` is part of an implicit namespace package. Add an `__init__.py`.) - Not strongly structured
+  "D100", # (Missing docstring in public module) - Not really doc-ing here
+  "D103", # (Missing docstring in public function) - Not really doc-ing here
+  "D104", # (Missing docstring in public package) - Not really doc-ing here
+  "S311", # (Standard pseudo-random generators are not suitable for security/cryptographic purposes) - Not doing crypto here
+]
 
 [tool.ruff.pydocstyle]
 convention = "numpy"

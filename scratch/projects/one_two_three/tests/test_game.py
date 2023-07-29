@@ -7,6 +7,6 @@ SAMPLE_DATA = {
 }
 
 
-def test_it():
+def test_it() -> None:
     assert check_win("rock", "scissors", SAMPLE_DATA) is True
     assert check_win("scissors", "rock", SAMPLE_DATA) is False

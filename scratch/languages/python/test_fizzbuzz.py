@@ -3,7 +3,7 @@
 from fizzbuzz import fizzbuzz
 
 
-def test_fizzbuzz():
+def test_fizzbuzz() -> None:
     """Testing the fizzbuzz function."""
     lst = list(fizzbuzz(100, [(3, "Fizz"), (5, "Buzz")]))
 

@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 @app.post("/")
-def handle_request():
+def handle_request() -> dict:
     verify_key = VerifyKey(bytes.fromhex(PUBLIC_KEY))
 
     signature = request.headers["X-Signature-Ed25519"]
@@ -28,19 +28,18 @@ def handle_request():
     if request.json["type"] == 1:
         return jsonify({"type": 1})
 
-    else:
-        return jsonify(
-            {
-                "type": 4,
-                "data": {
-                    "tts": False,
-                    "content": "Congrats on sending your command!",
-                    "embeds": [],
-                    "allowed_mentions": {"parse": []},
-                },
+    return jsonify(
+        {
+            "type": 4,
+            "data": {
+                "tts": False,
+                "content": "Congrats on sending your command!",
+                "embeds": [],
+                "allowed_mentions": {"parse": []},
             },
-        )
+        },
+    )
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0")  # noqa: S104 -- Eh...

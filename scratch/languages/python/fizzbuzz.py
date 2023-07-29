@@ -8,6 +8,8 @@ def fizzbuzz(
     cases: list[tuple[int, str]],
 ) -> Iterator[str]:
     """
+    Play FizzBuzz.
+
     For each number between one and `number`,
     loop through the cases and yield a concatenated string of
     the text where the case is divisible by zero,
@@ -18,6 +20,6 @@ def fizzbuzz(
         for divisor, text in cases:
             if index % divisor == 0:
                 output += text
-        if output == "":
+        if output == "":  # noqa: PLC1901 -- It is clearer to use `==` here.
             output = str(index)
         yield output
