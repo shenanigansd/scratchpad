@@ -8,10 +8,8 @@ USAGE
 
 COMMANDS
     init              install Python build tools
-    install           install local package in production mode
     install-dev       install local package in editable mode
-    lint              run `isort` and `black`
-    pylint            run `pylint`
+    lint              run `pre-commit`, `black`, and `ruff`
     test              run `pytest`
     build-dist        run `python -m build`
     clean             delete generated content
@@ -19,7 +17,7 @@ COMMANDS
 #>
 param(
     [Parameter(Position = 0)]
-    [ValidateSet("init", "install", "install-dev", "lint", "pylint", "test", "build-dist", "clean", "help")]
+    [ValidateSet("init", "install-dev", "lint", "test", "build-dist", "clean", "help")]
     [string]$Command
 )
 
@@ -33,11 +31,6 @@ function Invoke-Init
     python -m pip install --upgrade pip wheel setuptools build
 }
 
-function Invoke-Install
-{
-    python -m pip install --upgrade .
-}
-
 function Invoke-Install-Dev
 {
     python -m pip install --upgrade --editable ".[dev, tests, docs]"
@@ -48,11 +41,6 @@ function Invoke-Lint
     pre-commit run --all-files
     python -m black .
     python -m ruff --fix .
-}
-
-function Invoke-Pylint
-{
-    python -m pylint src/
 }
 
 function Invoke-Test
@@ -85,17 +73,11 @@ switch ($Command)
     "init"    {
         Invoke-Init
     }
-    "install"  {
-        Invoke-Install
-    }
     "install-dev" {
         Invoke-Install-Dev
     }
     "lint"  {
         Invoke-Lint
-    }
-    "pylint"    {
-        Invoke-Pylint
     }
     "test"    {
         Invoke-Test
