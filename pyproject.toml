@@ -27,6 +27,7 @@ dev = [
 ]
 tests = [
     "pytest",
+    "pytest-randomly",
     "hypothesis",
 ]
 docs = [
