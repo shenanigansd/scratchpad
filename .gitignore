@@ -39,3 +39,9 @@ build
 
 # Vendored tooling
 _opt
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.pdf
