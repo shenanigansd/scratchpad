@@ -38,7 +38,7 @@ def handle_request():
                     "embeds": [],
                     "allowed_mentions": {"parse": []},
                 },
-            }
+            },
         )
 
 

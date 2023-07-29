@@ -1,12 +1,10 @@
-from typing import Dict, List
-
 import pandas
 from smartsheet import smartsheet
 
 
 def get_sheet(token: str, sheet_id: int) -> pandas.DataFrame:
     """
-    Download SmartSheet and create pandas.DataFrame
+    Download SmartSheet and create pandas.DataFrame.
 
     Parameters
     ----------
@@ -21,7 +19,8 @@ def get_sheet(token: str, sheet_id: int) -> pandas.DataFrame:
         The requested SmartSheet as a DataFrame
     """
     sheet = smartsheet.Smartsheet(access_token=token).Sheets.get_sheet(
-        sheet_id=sheet_id, include=["discussions", "rowPermalink", "writerInfo"]
+        sheet_id=sheet_id,
+        include=["discussions", "rowPermalink", "writerInfo"],
     )
     return pandas.DataFrame(
         data=[[sheet.id, row.id, row.permalink] + [cell.value for cell in row.cells] for row in sheet.rows],
@@ -52,8 +51,8 @@ def create_comment(token: str, sheet_id: int, row_id: int, comment_text: str) ->
     )
 
 
-def build_update_rows(rows: Dict[int, Dict[int, str]]) -> List[smartsheet.models.Row]:
-    update: List[smartsheet.models.Row] = []
+def build_update_rows(rows: dict[int, dict[int, str]]) -> list[smartsheet.models.Row]:
+    update: list[smartsheet.models.Row] = []
 
     for row_id, cells in rows.items():
         new_row = smartsheet.models.Row()
@@ -76,10 +75,10 @@ def build_update_rows(rows: Dict[int, Dict[int, str]]) -> List[smartsheet.models
 def update_rows(
     token: str,
     sheet_id: int,
-    rows: List[smartsheet.models.Row],
+    rows: list[smartsheet.models.Row],
 ) -> None:
     """
-    Update rows in a smartsheet
+    Update rows in a smartsheet.
 
     Parameters
     ----------

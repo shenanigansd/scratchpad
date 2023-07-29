@@ -22,9 +22,7 @@ repository = "https://github.com/shenanigansd/scratchpad"
 [project.optional-dependencies]
 dev = [
     "pre-commit",
-    "black",
-    "isort",
-    "pylint",
+    "black[jupyter]",
     "ruff",
 ]
 tests = [
@@ -45,21 +43,18 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools]
 packages = []
 
-[tool.sphinx]
-copyright = "Bradley Reynolds"
-author = "Bradley Reynolds"
-api_dir = "scratchpad"
-
 [tool.black]
-target-version = ["py310"]
+target-version = ["py311"]
 line-length = 120
 
-[tool.isort]
-profile = "black"
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+select = ["ALL"]
+exclude = ["events","scratch/discarded"]
+
+[tool.ruff.pydocstyle]
+convention = "numpy"
 
 [tool.pytest.ini_options]
 addopts = "-r a -v"
-
-[tool.pylint.format]
-max-line-length = 120
-good-names = ["it"]

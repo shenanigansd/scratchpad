@@ -2,7 +2,6 @@ from random import choice
 
 from .game import check_win
 
-
 ROCK_PAPER_SCISSORS = {
     "rock": {"scissors"},
     "paper": {"rock"},

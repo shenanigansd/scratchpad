@@ -1,1 +1,1 @@
-"""Testing the `ongoing` file"""
+"""Testing the `ongoing` file."""

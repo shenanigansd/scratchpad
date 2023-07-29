@@ -8,11 +8,9 @@ def part_one(movements: list[tuple[str, int]]) -> int:
 
     for directon, distance in movements:
         if directon == "R":
-            current_direction = directions[(
-                directions.index(current_direction) + 1) % 4]
+            current_direction = directions[(directions.index(current_direction) + 1) % 4]
         elif directon == "L":
-            current_direction = directions[(
-                directions.index(current_direction) - 1) % 4]
+            current_direction = directions[(directions.index(current_direction) - 1) % 4]
 
         match current_direction:
             case "N":
@@ -31,15 +29,13 @@ def part_two(movements: list[tuple[str, int]]) -> int | None:
     directions = ["N", "E", "S", "W"]
     current_direction = "N"
     current_position = [0, 0]
-    visited_positions = [(0,0)]
+    visited_positions = [(0, 0)]
 
     for directon, distance in movements:
         if directon == "R":
-            current_direction = directions[(
-                directions.index(current_direction) + 1) % 4]
+            current_direction = directions[(directions.index(current_direction) + 1) % 4]
         elif directon == "L":
-            current_direction = directions[(
-                directions.index(current_direction) - 1) % 4]
+            current_direction = directions[(directions.index(current_direction) - 1) % 4]
 
         match current_direction:
             case "N":
@@ -53,7 +49,7 @@ def part_two(movements: list[tuple[str, int]]) -> int | None:
 
         if tuple(current_position) in visited_positions:
             return abs(current_position[0]) + abs(current_position[1])
-        
+
         visited_positions.append(tuple(current_position))
         print(visited_positions)
 

@@ -1,4 +1,4 @@
-"""Example FizzBuzz snippet"""
+"""Example FizzBuzz snippet."""
 
 from collections.abc import Iterator
 

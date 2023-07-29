@@ -1,4 +1,4 @@
-import readline
+import readline  # noqa: F401
 
 
 def main():

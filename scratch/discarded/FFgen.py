@@ -77,7 +77,6 @@ class Generateff(object):
         ob_notesAccounting="",
         ob_notesPurchasingSub="",
     ):
-
         """
         if ob_orderType == "EMBROIDERY":
             ob_orderType = "26.1"
@@ -200,7 +199,6 @@ class Generateff(object):
         cus_custom9="",
         cus_custom10="",
     ):
-
         if customer == "ap":
             cus_idCus = "3228"
             cus_company = "ap"
@@ -266,7 +264,6 @@ class Generateff(object):
         con_stsContactAdd="",
         con_stsEnableBulkEmail="",
     ):
-
         if contact == "ap":
             pass
         if contact == "webstore":

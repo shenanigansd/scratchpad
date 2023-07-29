@@ -45,8 +45,9 @@ function Invoke-Install-Dev
 
 function Invoke-Lint
 {
-    python -m isort src/
-    python -m black src/
+    pre-commit run --all-files
+    python -m black .
+    python -m ruff --fix .
 }
 
 function Invoke-Pylint
