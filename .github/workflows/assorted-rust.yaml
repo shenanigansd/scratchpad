@@ -10,11 +10,11 @@ on:
 
 jobs:
   lint:
-    uses: darbiadev/.github/.github/workflows/rust-lint.yaml@4aa7c64159244d12bf9a39d42da89e80004d4af6 # v1.0.1
+    uses: darbiadev/.github/.github/workflows/rust-lint.yaml@5f704c2b5aa4a48d52e37e40ba540b15620e45b5 # v1.1.2
 
   clippy:
     needs: lint
-    uses: darbiadev/.github/.github/workflows/rust-clippy.yaml@4aa7c64159244d12bf9a39d42da89e80004d4af6 # v1.0.1
+    uses: darbiadev/.github/.github/workflows/rust-clippy.yaml@5f704c2b5aa4a48d52e37e40ba540b15620e45b5 # v1.1.2
 
   test:
     needs: "clippy"
@@ -34,7 +34,7 @@ jobs:
             target: "x86_64-pc-windows-msvc",
           }
 
-    uses: darbiadev/.github/.github/workflows/rust-test.yaml@4aa7c64159244d12bf9a39d42da89e80004d4af6 # v1.0.1
+    uses: darbiadev/.github/.github/workflows/rust-test.yaml@5f704c2b5aa4a48d52e37e40ba540b15620e45b5 # v1.1.2
     with:
       os: ${{ matrix.triple.os }}
       target: ${{ matrix.triple.target }}
