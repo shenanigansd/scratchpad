@@ -1,4 +1,4 @@
-# curriculum-vitae
+# Resume
 
 ## IDI
 
@@ -38,3 +38,18 @@ shipping.
 
 Planned and implemented methods and processes to automate label processing and data reporting for batches of tens of
 thousands of shipments.
+
+## Volunteering
+
+### Vipyr Security - admin, infrastructure lead
+
+Vipyr automatically scans new package releases on the Python Package Index (PyPI) for malicious indicators. We have successfully reported over 500 malicious packages and have been told that we're one of the fastest and most consistent reporters according to the Python Software Foundation’s (PSF) Director of Infrastructure. We're also working directly with the PSF to improve PyPI’s malware reporting infrastructure.
+I am in charge of all infrastructure, including APIs, distributed clients, and Discord bots, all running on Kubernetes.
+
+### Python Discord - volunteer teacher, events staff, devops staff
+
+Python Discord is a Discord server full of Python programmers of all skill levels that help walk each other through their issues.
+I am a part of multiple staff teams including the "events" team, where I help organize and run events and competitions, and the devops team, where I help maintain the infrastructure, including the website, several bots, and logging and moderation tools, all runninng on Kubernetes.
+
+
+
