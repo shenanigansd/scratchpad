@@ -1,14 +1,9 @@
 # Resume
 
-## IDI
+## Impress Designs - SysAdmin, SWE, DevOps
 
-### Migrated from on-premise solutions to cloud solutions
+- Migrated company from onpremise AD to M365 implementing automated configuration and updates, and 
 
-Planned and implemented migration from AD to AAD
-
-Planned and implemented migration from device management in local AD to Intune
-
-Planned and implemented migration from local AD fileshares to SharePoint.
 
 ### ProductionTracking
 
@@ -43,13 +38,10 @@ thousands of shipments.
 
 ### Vipyr Security - admin, infrastructure lead
 
-Vipyr automatically scans new package releases on the Python Package Index (PyPI) for malicious indicators. We have successfully reported over 500 malicious packages and have been told that we're one of the fastest and most consistent reporters according to the Python Software Foundation’s (PSF) Director of Infrastructure. We're also working directly with the PSF to improve PyPI’s malware reporting infrastructure.
+Vipyr automatically scans new package releases on the Python Package Index (PyPI) for malicious indicators. We have successfully reported over 500 malicious packages and have been told that we're one of the fastest and most consistent reporters according to the Python Software Foundation’s (PSF) Director of Infrastructure. We're also working directly with the PSF to improve PyPI’s malware reporting infrastructure.<br>
 I am in charge of all infrastructure, including APIs, distributed clients, and Discord bots, all running on Kubernetes.
 
 ### Python Discord - volunteer teacher, events staff, devops staff
 
-Python Discord is a Discord server full of Python programmers of all skill levels that help walk each other through their issues.
+Python Discord is a Discord server full of Python programmers of all skill levels that help walk each other through their issues.<br>
 I am a part of multiple staff teams including the "events" team, where I help organize and run events and competitions, and the devops team, where I help maintain the infrastructure, including the website, several bots, and logging and moderation tools, all runninng on Kubernetes.
-
-
-
