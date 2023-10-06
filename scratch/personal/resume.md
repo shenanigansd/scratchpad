@@ -2,7 +2,7 @@
 
 ## Impress Designs - SysAdmin, SWE, DevOps
 
-- Migrated company from onpremise AD to M365 implementing automated configuration and updates, and 
+- Migrated company from onpremise AD to M365 implementing automated configuration and updates, and
 
 
 ### ProductionTracking
