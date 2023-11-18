@@ -1,9 +1,9 @@
-name: "Assorted CI - Rust"
+name: "Rust CI"
 
 on:
   push:
     paths:
-      - ".github/workflows/assorted-rust.yaml"
+      - ".github/workflows/rust.yaml"
       - '**.rs'
       - '**/Cargo.toml'
       - '**/Cargo.lock'
