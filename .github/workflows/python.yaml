@@ -9,7 +9,28 @@ on:
 
 jobs:
   lint:
-    uses: darbiadev/.github/.github/workflows/python-lint.yaml@9160d4ddd590c15fe8a1f6d1704bf8806969d2b6 # v4.0.1
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: "Checkout repository"
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: "Setup Python"
+        uses: actions/setup-python@65d7f2d534ac1bc67fcd62888c5f4f3d2cb2b236 # v4.7.1
+        with:
+          python-version: "3.x"
+          allow-prereleases: true
+          cache: "pip"
+          cache-dependency-path: "pyproject.toml"
+
+      - name: "Install dependencies"
+        run: python -m pip install .[dev,tests]
+
+      - name: "Check formatting"
+        run: python -m ruff format --check .
+
+      - name: "Run ruff"
+        run: python -m ruff check --output-format=github .
 
   test:
     runs-on: ubuntu-latest
