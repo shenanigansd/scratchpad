@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Testing using PowerShell to replace my Makefile
+Makefile
 
 .DESCRIPTION
 USAGE
@@ -9,7 +9,7 @@ USAGE
 COMMANDS
     init              install Python build tools
     install-dev       install local package in editable mode
-    lint              run `pre-commit`, `black`, and `ruff`
+    lint              run `pre-commit` and `ruff`
     test              run `pytest`
     build-dist        run `python -m build`
     clean             delete generated content
@@ -39,8 +39,8 @@ function Invoke-Install-Dev
 function Invoke-Lint
 {
     pre-commit run --all-files
-    python -m black .
     python -m ruff --fix .
+    python -m ruff format .
 }
 
 function Invoke-Test

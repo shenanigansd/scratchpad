@@ -7,8 +7,9 @@ authors = [
 ]
 license = { text = "MIT" }
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
+    "pytz",
     "darbiadev-utilities",
     "toml",
     "pandas",
@@ -22,7 +23,6 @@ repository = "https://github.com/shenanigansd/scratchpad"
 [project.optional-dependencies]
 dev = [
     "pre-commit",
-    "black[jupyter]",
     "ruff",
 ]
 tests = [
@@ -49,11 +49,14 @@ target-version = ["py311"]
 line-length = 120
 
 [tool.ruff]
+preview = true
+unsafe-fixes = true
 target-version = "py311"
 line-length = 120
 select = ["ALL"]
 exclude = ["events", "scratch/discarded"]
 ignore = [
+  "CPY001", # (Missing copyright notice at top of file) - No license
   "ERA001", # (Found commented-out code) - This is a scratchpad, so...
   "S101", # (Use of `assert` detected) - Testing code as I go
   "T201", # (`print` found) - Want to be able to see the output

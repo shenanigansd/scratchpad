@@ -1,4 +1,4 @@
-try {        
+try {
     if ( (Get-ItemPropertyValue -LiteralPath 'HKCU:\Control Panel\Desktop' -Name 'PaintDesktopVersion' -ErrorAction Stop ) -eq 0 ) {
         Write-Host "PaintDesktopVersion registry key already exists"
         exit 0
