@@ -1,5 +1,5 @@
 import pytest
-from script_2022_04 import _contains_any, _overlaps, _range_parser
+from aoc_2022_04 import _contains_any, _overlaps, _range_parser
 
 
 @pytest.mark.parametrize(

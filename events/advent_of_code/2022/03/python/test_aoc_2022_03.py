@@ -1,4 +1,4 @@
-from script_2022_03 import part_one, part_two
+from aoc_2022_03 import part_one, part_two
 
 
 def test_part_one():

@@ -1,4 +1,4 @@
-from script_2022_05 import Movement, Ship
+from aoc_2022_05 import Movement, Ship
 
 
 def test_parse_ship():

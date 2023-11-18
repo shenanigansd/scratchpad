@@ -1,6 +1,6 @@
 from math import prod
 
-from script_2022_11 import parse_monkeys, process_round
+from aoc_2022_11 import parse_monkeys, process_round
 
 EXAMPLE_INPUT = """\
 Monkey 0:

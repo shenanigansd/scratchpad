@@ -1,5 +1,5 @@
 import pytest
-from script_2022_09 import Movement, run
+from aoc_2022_09 import Movement, run
 
 EXAMPLE_INPUT_PART_ONE = """
 R 4

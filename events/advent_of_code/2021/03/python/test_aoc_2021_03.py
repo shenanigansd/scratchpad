@@ -1,4 +1,4 @@
-from script_2021_03 import get_rates
+from aoc_2021_03 import get_rates
 
 EXAMPLE_INPUT = """\
 00100

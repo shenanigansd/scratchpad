@@ -1,4 +1,4 @@
-from script_2022_02 import Action, _get_score
+from aoc_2022_02 import Action, _get_score
 
 
 def test_get_score():

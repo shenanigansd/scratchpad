@@ -1,5 +1,5 @@
 import pytest
-from script_2016_01 import part_one, part_two
+from aoc_2016_01 import part_one, part_two
 
 
 @pytest.mark.parametrize(

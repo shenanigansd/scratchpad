@@ -1,4 +1,4 @@
-from script_2022_07 import (
+from aoc_2022_07 import (
     File,
     FileSystem,
     Folder,
