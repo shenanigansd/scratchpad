@@ -2,8 +2,7 @@
 
 ## Impress Designs - SysAdmin, SWE, DevOps
 
-- Migrated company from onpremise AD to M365 implementing automated configuration and updates, and
-
+- Managed the IT helpdesk and infrastructure for a company with a $20M annual turnover
 
 ### ProductionTracking
 
@@ -15,7 +14,7 @@ Tech stack: Originally Java Swing with SQLite, now Ruby on Rails with PostgreSQL
 
 ### BradWorks
 
-Developed a custom ERP to integrate, handle, and track orders across client’s systems and our company’s 2 ERPs.
+Developed in-house services, automations to manage the company's operations
 
 Developed APIs to automate real time order processing and real time status updating.
 
