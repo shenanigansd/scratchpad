@@ -52,7 +52,7 @@ def part2() {
             7: findLesserFirstIndex(item, "7", "seven"),
             8: findLesserFirstIndex(item, "8", "eight"),
             9: findLesserFirstIndex(item, "9", "nine"),
-        ]        
+        ]
         def mapLastIndex = [
             1: findGreaterLastIndex(item, "1", "one"),
             2: findGreaterLastIndex(item, "2", "two"),
