@@ -1,5 +1,5 @@
 def part1() {
-    def array = new File("input.txt") as String[]
+    def array = new File("../input.txt") as String[]
     def values = []
     array.each { item ->
         def numbers_in_row = item.findAll( /\d/ )*.toInteger()
@@ -39,7 +39,7 @@ def findGreaterLastIndex(String item, String value1, String value2) {
 }
 
 def part2() {
-    def array = new File("input.txt") as String[]
+    def array = new File("../input.txt") as String[]
     def values = []
     array.each { item ->
         def mapFirstIndex = [
