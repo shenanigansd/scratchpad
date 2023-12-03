@@ -6,14 +6,12 @@ def is_symbol(char: str) -> bool:
     return not char.isdecimal() and char != "."
 
 
-def find_adjacent_symbols(
+def find_adjacent_symbol(
     grid: list[list[str]],
     row_index: int,
     column_start_index: int,
     column_stop_index: int,
-) -> dict[str, list[tuple[int, int]]]:
-    adjacent_symbols = defaultdict(list)
-
+) -> tuple[str, int, int]|None:
     is_first_row = row_index == 0
     is_last_row = row_index == len(grid) - 1
     is_first_column = column_start_index == 0
@@ -26,19 +24,19 @@ def find_adjacent_symbols(
 
     for column_index in range(column_start_index, column_stop_index + 1):
         if not is_first_row and is_symbol(grid[row_index - 1][column_index]):
-            adjacent_symbols[grid[row_index - 1][column_index]].append((row_index - 1, column_index))
+            return(grid[row_index - 1][column_index], row_index - 1, column_index)
         if not is_last_row and is_symbol(grid[row_index + 1][column_index]):
-            adjacent_symbols[grid[row_index + 1][column_index]].append((row_index + 1, column_index))
+            return(grid[row_index + 1][column_index], row_index + 1, column_index)
 
     if is_symbol(grid[row_index][column_start_index]):
-        adjacent_symbols[grid[row_index][column_start_index]].append((row_index, column_start_index))
+        return (grid[row_index][column_start_index], row_index, column_start_index)
     if is_symbol(grid[row_index][column_stop_index]):
-        adjacent_symbols[grid[row_index][column_stop_index]].append((row_index, column_stop_index))
+        return (grid[row_index][column_stop_index], row_index, column_stop_index)
 
-    return adjacent_symbols
+    return None
 
 
-def find_part_numbers_in_grid(grid: list[list[str]]) -> dict[int, dict[str, list[tuple[int, int]]]]:
+def find_part_numbers_in_grid(grid: list[list[str]]) -> dict[tuple[int, int, int], tuple[str, int, int]|None]:
     part_numbers = {}
     for row_index in range(len(grid)):
         number_started_on = None
@@ -53,13 +51,7 @@ def find_part_numbers_in_grid(grid: list[list[str]]) -> dict[int, dict[str, list
                     number_ended_on = column_index
                 if number_started_on is not None and number_ended_on is not None:
                     number = int("".join(grid[row_index][number_started_on : number_ended_on + 1]))
-                    symbols_adjacent_to_number = find_adjacent_symbols(
-                        grid,
-                        row_index,
-                        number_started_on,
-                        number_ended_on,
-                    )
-                    part_numbers[number] = dict(symbols_adjacent_to_number)
+                    part_numbers[(number,row_index,number_started_on)] = find_adjacent_symbol(grid,row_index,number_started_on,number_ended_on)
                     number_started_on = None
                     number_ended_on = None
     return part_numbers
@@ -67,19 +59,20 @@ def find_part_numbers_in_grid(grid: list[list[str]]) -> dict[int, dict[str, list
 
 def sum_part_numbers_in_grid(grid: list[list[str]]) -> int:
     part_numbers = find_part_numbers_in_grid(grid)
-    return sum(part_number for part_number in part_numbers if len(part_numbers[part_number]) > 0)
+    return sum(part_number[0] for part_number in part_numbers if part_numbers[part_number] is not None)
 
 
 def sum_gears_in_grid(grid: list[list[str]]) -> int:
     part_numbers = find_part_numbers_in_grid(grid)
     total = 0
     seen = {}
-    for part_number in part_numbers:
-        if "*" in part_numbers[part_number]:
-            for index in part_numbers[part_number]["*"]:
-                if index in seen:
-                    total += seen[index] * part_number
-                seen[index] = part_number
+    for key_tuple, value_tuple in part_numbers.items():
+        if value_tuple is None:
+            continue
+        indices = value_tuple[1:]
+        if indices in seen:
+            total += seen[indices] * key_tuple[0]
+        seen[indices] = key_tuple[0]
     return total
 
 
