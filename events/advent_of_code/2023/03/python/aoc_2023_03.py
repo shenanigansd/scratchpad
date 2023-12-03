@@ -29,9 +29,9 @@ def count_adjacent_symbols(
         if not is_last_row and is_symbol(grid[row_index + 1][column_index]):
             total += 1
 
-    if is_symbol(grid[row_index][column_start_index + 1]):
+    if is_symbol(grid[row_index][column_start_index]):
         total += 1
-    if is_symbol(grid[row_index][column_stop_index - 1]):
+    if is_symbol(grid[row_index][column_stop_index]):
         total += 1
 
     return total
@@ -39,18 +39,23 @@ def count_adjacent_symbols(
 
 def sum_part_numbers_in_grid(grid: list[list[str]]) -> int:
     total = 0
-    number_started_on = None
     for row_index in range(len(grid)):
+        number_started_on = None
+        number_ended_on = None
         for column_index in range(len(grid[row_index])):
-            if grid[row_index][column_index].isdigit():
-                if number_started_on is None:
-                    number_started_on = column_index
-            else:
-                if number_started_on is not None:
-                    symbol_count = count_adjacent_symbols(grid, row_index, number_started_on, column_index)
+            if grid[row_index][column_index].isdigit() and number_started_on is None:
+                number_started_on = column_index
+            if number_started_on is not None:
+                if not grid[row_index][column_index].isdigit():
+                    number_ended_on = column_index - 1
+                elif (column_index + 1) == len(grid[row_index]):
+                    number_ended_on = column_index
+                if number_started_on is not None and number_ended_on is not None:
+                    symbol_count = count_adjacent_symbols(grid, row_index, number_started_on, number_ended_on)
                     if symbol_count > 0:
-                        total += int("".join(grid[row_index][number_started_on:column_index]))
+                        total += int("".join(grid[row_index][number_started_on : number_ended_on + 1]))
                     number_started_on = None
+                    number_ended_on = None
     return total
 
 
