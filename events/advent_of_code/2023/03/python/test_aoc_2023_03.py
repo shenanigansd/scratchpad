@@ -1,4 +1,4 @@
-from aoc_2023_03 import sum_part_numbers_in_grid
+from aoc_2023_03 import sum_gears_in_grid, sum_part_numbers_in_grid
 
 RAW_TEXT = """
 467..114..
@@ -14,6 +14,11 @@ RAW_TEXT = """
 """
 
 
-def test_parsing_data() -> None:
+def test_sum_part_numbers_in_grid() -> None:
     grid = [list(row) for row in RAW_TEXT.strip().split("\n")]
     assert sum_part_numbers_in_grid(grid) == 4361
+
+
+def test_find_part_numbers_in_grid() -> None:
+    grid = [list(row) for row in RAW_TEXT.strip().split("\n")]
+    assert sum_gears_in_grid(grid) == 467835
