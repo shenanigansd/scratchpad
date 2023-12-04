@@ -40,7 +40,7 @@ class Deck:
 
     def count_new_cards(self) -> int:
         cards_per_card = {
-            card.id_number: list(range(card.id_number + 1, card.id_number + card.winning_number_count()))
+            card.id_number: list(range(card.id_number + 1, card.id_number + card.winning_number_count() + 1))
             for card in self.cards
         }
         for key, value in cards_per_card.items():
@@ -48,10 +48,9 @@ class Deck:
             while True:
                 new_cards.append([number for val in new_cards[-1] for number in cards_per_card[val]])
                 if new_cards[-1] == []:
-                    new_cards.pop()
-                    cards_per_card[key] = sum(item for lst in new_cards for item in lst)
+                    cards_per_card[key] = sum(1 for lst in new_cards for item in lst)
                     break
-        return sum(cards_per_card.values())
+        return sum(cards_per_card.values()) + len(self.cards)
 
 
 def part1(cards: list[Card]) -> int:
