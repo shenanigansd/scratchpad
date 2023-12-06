@@ -58,7 +58,7 @@ class Almanac:
     def smallest_seed_range_location(self) -> int:
         min_location = float("inf")
         for (start_seed, range_) in chunks(self.seeds, 2):
-            for seed in range(start_seed, start_seed + range_ + 1):
+            for seed in range(start_seed, start_seed + range_):
                 location = seed
                 maps = [
                     self.seed_to_soil_map,
