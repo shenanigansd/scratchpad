@@ -73,7 +73,7 @@ class Almanac:
                     location = find_map_position(location, map_)
                 if location < min_location:
                     min_location = location
-            return min_location
+        return min_location
 
 def find_map_position(value: int, map_: list[tuple[int, int, int]]) -> int:
     for destination_start, source_start, range_ in map_:
