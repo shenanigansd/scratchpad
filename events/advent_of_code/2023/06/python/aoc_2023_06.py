@@ -31,7 +31,7 @@ class Paper:
             time_allowed=int("".join(str(race.time_allowed) for race in self.races)),
             record_distance=int("".join(str(race.record_distance) for race in self.races)),
         ).count_possible_wins()
-        
+
 
 
 def part1(paper: Paper) -> int:

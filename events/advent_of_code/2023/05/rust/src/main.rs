@@ -1,10 +1,10 @@
 use std::fs;
 
 fn parse_map(text: &str) -> Vec<(i64, i64, i64)> {
-    text.split("\n")
+    text.split('\n')
         .skip(1)
         .map(|line| {
-            let parts = line.split(" ").collect::<Vec<&str>>();
+            let parts = line.split(' ').collect::<Vec<&str>>();
             (
                 parts[0].parse().unwrap(),
                 parts[1].parse().unwrap(),
@@ -38,9 +38,9 @@ struct Almanac {
 
 fn almanac_from_text(text: &str) -> Almanac {
     let parts = text.trim().split("\n\n").collect::<Vec<&str>>();
-    let seeds_text: &str = parts[0].split(":").collect::<Vec<&str>>()[1].trim();
+    let seeds_text: &str = parts[0].split(':').collect::<Vec<&str>>()[1].trim();
     let seeds: Vec<i64> = seeds_text
-        .split(" ")
+        .split(' ')
         .map(|seed| seed.parse().unwrap())
         .collect();
 
