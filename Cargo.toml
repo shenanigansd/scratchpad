@@ -1,8 +1,10 @@
 [workspace]
+resolver = "2"
 
 members = [
     "events/advent_of_code/2015/01/rust",
     "events/advent_of_code/2021/01/rust",
     "events/advent_of_code/2022/06/rust",
+    "events/advent_of_code/2023/05/rust",
     "scratch/projects/scratch-rs",
 ]
