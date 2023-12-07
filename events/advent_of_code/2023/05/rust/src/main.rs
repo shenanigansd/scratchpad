@@ -90,26 +90,28 @@ impl Almanac {
     }
     fn smallest_seed_range_location(&self) -> i64 {
         let mut smallest_seed_location = i64::MAX;
-        for pair in self.seeds.chunks(2){
-        for seed in  pair[0]..pair[0]+pair[1] {
-            let seed_location = seed;
-            let seed_location = find_map_position(seed_location, self.seed_to_soil_map.clone());
-            let seed_location =
-                find_map_position(seed_location, self.soil_to_fertilizer_map.clone());
-            let seed_location =
-                find_map_position(seed_location, self.fertilizer_to_water_map.clone());
-            let seed_location = find_map_position(seed_location, self.water_to_light_map.clone());
-            let seed_location =
-                find_map_position(seed_location, self.light_to_temperature_map.clone());
-            let seed_location =
-                find_map_position(seed_location, self.temperature_to_humidity_map.clone());
-            let seed_location =
-                find_map_position(seed_location, self.humidity_to_location_map.clone());
+        for pair in self.seeds.chunks(2) {
+            for seed in pair[0]..pair[0] + pair[1] {
+                let seed_location = seed;
+                let seed_location = find_map_position(seed_location, self.seed_to_soil_map.clone());
+                let seed_location =
+                    find_map_position(seed_location, self.soil_to_fertilizer_map.clone());
+                let seed_location =
+                    find_map_position(seed_location, self.fertilizer_to_water_map.clone());
+                let seed_location =
+                    find_map_position(seed_location, self.water_to_light_map.clone());
+                let seed_location =
+                    find_map_position(seed_location, self.light_to_temperature_map.clone());
+                let seed_location =
+                    find_map_position(seed_location, self.temperature_to_humidity_map.clone());
+                let seed_location =
+                    find_map_position(seed_location, self.humidity_to_location_map.clone());
 
-            if seed_location < smallest_seed_location {
-                smallest_seed_location = seed_location;
+                if seed_location < smallest_seed_location {
+                    smallest_seed_location = seed_location;
+                }
             }
-        }}
+        }
         smallest_seed_location
     }
 }
