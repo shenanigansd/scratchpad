@@ -1,3 +1,4 @@
+use rayon::prelude::*;
 use std::fs;
 use std::str::FromStr;
 
@@ -16,8 +17,8 @@ fn parse_map(text: &str) -> Vec<(i64, i64, i64)> {
 }
 
 fn find_map_position(value: i64, map: &[(i64, i64, i64)]) -> i64 {
-    for (destination_start, source_start, range) in map {
-        if source_start <= &value && value < source_start + range {
+    for &(destination_start, source_start, range) in map {
+        if source_start <= value && value < source_start + range {
             return destination_start + value - source_start;
         }
     }
@@ -52,34 +53,31 @@ impl FromStr for Almanac {
 }
 
 impl Almanac {
-    fn smallest_seed_location(&self) -> i64 {
-        let mut smallest_seed_location = i64::MAX;
-        for seed in &self.seeds {
-            let mut seed_location = *seed;
-            for map in &self.maps {
-                seed_location = find_map_position(seed_location, map);
-            }
-            if seed_location < smallest_seed_location {
-                smallest_seed_location = seed_location;
-            }
-        }
-        smallest_seed_location
+    fn seed_location(&self, seed: i64) -> i64 {
+        self.maps
+            .iter()
+            .fold(seed, |acc, map| find_map_position(acc, map))
     }
-    fn smallest_seed_range_location(&self) -> i64 {
-        let mut smallest_seed_location = i64::MAX;
-        for pair in self.seeds.chunks(2) {
-            for seed in pair[0]..pair[0] + pair[1] {
-                let mut seed_location = seed;
-                for map in &self.maps {
-                    seed_location = find_map_position(seed_location, map);
-                }
 
-                if seed_location < smallest_seed_location {
-                    smallest_seed_location = seed_location;
-                }
-            }
-        }
-        smallest_seed_location
+    fn smallest_seed_location(&self) -> i64 {
+        self.seeds
+            .iter()
+            .map(|&seed| self.seed_location(seed))
+            .min()
+            .unwrap()
+    }
+
+    fn smallest_seed_range_location(&self) -> i64 {
+        self.seeds
+            .chunks(2)
+            .filter_map(|pair| {
+                (pair[0]..pair[0] + pair[1])
+                    .into_par_iter()
+                    .map(|seed| self.seed_location(seed))
+                    .min()
+            })
+            .min()
+            .unwrap()
     }
 }
 
