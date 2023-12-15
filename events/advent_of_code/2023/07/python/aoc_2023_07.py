@@ -7,6 +7,7 @@ from typing import Self
 STRENGTH_ORDER = ("2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A")
 JOKER_STRENGTH_ORDER = ("J", "2", "3", "4", "5", "6", "7", "8", "9", "T", "Q", "K", "A")
 
+
 class HandType(IntEnum):
     HIGH_CARD = 1
     ONE_PAIR = 2
@@ -25,14 +26,15 @@ class Hand:
     strength_order: tuple[str] = STRENGTH_ORDER
 
     @classmethod
-    def from_text(cls: type[Self], text: str, using_jokers:bool=False) -> Self:
+    def from_text(cls: type[Self], text: str, using_jokers: bool = False) -> Self:
         cards, bid = text.split()
         bid = int(bid)
         counter = dict(Counter(cards))
         if using_jokers:
             most_populus_card = max(counter, key=counter.get)
-            counter[most_populus_card] += counter.pop("J",0)
-        card_counts = sorted(Counter(cards).values(), reverse=True)
+            if most_populus_card != "J":
+                counter[most_populus_card] += counter.pop("J", 0)
+        card_counts = sorted(counter.values(), reverse=True)
         hand_type = None
         match card_counts:
             case [5]:
@@ -53,14 +55,14 @@ class Hand:
                 msg = f"Invalid hand: {text}"
                 raise ValueError(msg)
         strength_order = JOKER_STRENGTH_ORDER if using_jokers else STRENGTH_ORDER
-        return cls(cards=cards, bid=bid, type_=hand_type,strength_order=strength_order)
+        return cls(cards=cards, bid=bid, type_=hand_type, strength_order=strength_order)
 
     def __lt__(self: Self, other: Self) -> bool:
         if self.type_ < other.type_:
             return True
         if self.type_ > other.type_:
             return False
-        for self_card, other_card in zip(self.cards, other.cards):
+        for self_card, other_card in zip(self.cards, other.cards, strict=True):
             if self.strength_order.index(self_card) < self.strength_order.index(other_card):
                 return True
             if self.strength_order.index(self_card) > self.strength_order.index(other_card):
@@ -93,6 +95,6 @@ def part2(hands: list[Hand]) -> int:
 if __name__ == "__main__":
     raw_text = Path("../input.txt").read_text()
     hands = [Hand.from_text(line) for line in raw_text.split("\n") if line]
-    hands_but_with_jokers = [Hand.from_text(line,using_jokers=True) for line in raw_text.split("\n") if line]
+    hands_but_with_jokers = [Hand.from_text(line, using_jokers=True) for line in raw_text.split("\n") if line]
     print(part1(hands))
     print(part2(hands_but_with_jokers))
