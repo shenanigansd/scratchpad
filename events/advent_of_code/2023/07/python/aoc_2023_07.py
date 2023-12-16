@@ -31,9 +31,12 @@ class Hand:
         bid = int(bid)
         counter = dict(Counter(cards))
         if using_jokers:
-            most_populus_card = max(counter, key=counter.get)
-            if most_populus_card != "J":
-                counter[most_populus_card] += counter.pop("J", 0)
+            j_s = counter.pop("J", 0)
+            if j_s == 5 :
+                counter = {"J": 5}
+            else:
+                most_populus_card = max(counter, key=counter.get)
+                counter[most_populus_card] += j_s
         card_counts = sorted(counter.values(), reverse=True)
         hand_type = None
         match card_counts:
