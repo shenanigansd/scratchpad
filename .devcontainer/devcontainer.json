@@ -6,6 +6,7 @@
 			"installTools": false
 		},
 		"ghcr.io/devcontainers/features/powershell:1": {},
-		"ghcr.io/devcontainers/features/rust:1": {}
+		"ghcr.io/devcontainers/features/rust:1": {},
+		"ghcr.io/devcontainers/features/go:1": {}
 	}
 }
