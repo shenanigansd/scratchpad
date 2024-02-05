@@ -1,16 +1,33 @@
 version: 2
 updates:
+  - package-ecosystem: "devcontainers"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
+    groups:
+      ci-dependencies:
+        patterns:
+          - "*"
 
   - package-ecosystem: "cargo"
     directory: "/"
     schedule:
       interval: "monthly"
+    groups:
+      rust-dependencies:
+        patterns:
+          - "*"
 
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
       interval: "monthly"
+    groups:
+      python-dependencies:
+        patterns:
+          - "*"
