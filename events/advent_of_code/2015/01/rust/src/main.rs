@@ -1,4 +1,6 @@
-fn part_one(text: &str) -> i32 {
+//! # Advent of Code 2015 - Day 1
+
+fn find_final_floor(text: &str) -> i32 {
     let mut floor = 0;
     for char in text.chars() {
         if char == '(' {
@@ -11,11 +13,9 @@ fn part_one(text: &str) -> i32 {
     floor
 }
 
-fn part_two(text: &str) -> i32 {
-    let mut index = 0;
+fn find_when_santa_enters_basement(text: &str) -> i32 {
     let mut floor = 0;
-    for char in text.chars() {
-        index += 1;
+    for (index, char) in text.chars().enumerate() {        
         if char == '(' {
             floor += 1;
         }
@@ -23,16 +23,49 @@ fn part_two(text: &str) -> i32 {
             floor -= 1;
         }
         if floor == -1 {
-            return index;
+            return (index + 1) as i32;
         }
     }
-    index
+    panic!("Santa never enters the basement");
 }
 
 fn main() {
     let contents: &str = &std::fs::read_to_string("events/advent_of_code/2015/01/input.txt")
         .expect("Something went wrong reading the file");
 
-    println!("{}", part_one(contents));
-    println!("{}", part_two(contents));
+    println!("{}", find_final_floor(contents));
+    println!("{}", find_when_santa_enters_basement(contents));
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_works() {
+        let result = find_final_floor("(())");
+        assert_eq!(result, 0);
+        let result = find_final_floor("()()");
+        assert_eq!(result, 0);
+        let result = find_final_floor("(((");
+        assert_eq!(result, 3);
+        let result = find_final_floor("(()(()(");
+        assert_eq!(result, 3);
+        let result = find_final_floor("))(((((");
+        assert_eq!(result, 3);
+        let result = find_final_floor("())");
+        assert_eq!(result, -1);
+        let result = find_final_floor("))(");
+        assert_eq!(result, -1);
+        let result = find_final_floor(")))");
+        assert_eq!(result, -3);
+        let result = find_final_floor(")())())");
+        assert_eq!(result, -3);
+
+
+        let result = find_when_santa_enters_basement(")");
+        assert_eq!(result, 1);
+        let result = find_when_santa_enters_basement("()())");
+        assert_eq!(result, 5);
+    }
 }

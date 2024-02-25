@@ -1,5 +1,5 @@
 import pytest
-from aoc_2015_01 import find_final_floor, find_when_santa_enters_basement
+from aoc_2015_02 import part_one, part_two
 
 
 @pytest.mark.parametrize(
@@ -16,8 +16,8 @@ from aoc_2015_01 import find_final_floor, find_when_santa_enters_basement
         (")())())", -3),
     ],
 )
-def test_find_final_floor(text: str, result: int) -> None:
-    assert find_final_floor(text) == result
+def test_part_one(text: str, result: int) -> None:
+    assert part_one(text) == result
 
 
 @pytest.mark.parametrize(
@@ -27,5 +27,5 @@ def test_find_final_floor(text: str, result: int) -> None:
         ("()())", 5),
     ],
 )
-def test_find_when_santa_enters_basement(text: str, result: int) -> None:
-    assert find_when_santa_enters_basement(text) == result
+def test_part_two(text: str, result: int) -> None:
+    assert part_two(text) == result
