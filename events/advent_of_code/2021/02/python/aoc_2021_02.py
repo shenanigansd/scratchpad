@@ -1,3 +1,6 @@
+from pathlib import Path
+
+
 def part_one(values: list[str]) -> int:
     horizontal_position = 0
     depth = 0
@@ -35,6 +38,6 @@ def part_two(values: list[str]) -> int:
 
 
 if __name__ == "__main__":
-    values_: list[str] = list(open("../input.txt", encoding="locale").readlines())
+    values_: list[str] = list(Path("../input.txt").read_text().split("\n"))
     print(part_one(values=values_))
     print(part_two(values=values_))

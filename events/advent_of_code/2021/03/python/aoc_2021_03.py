@@ -1,3 +1,6 @@
+from pathlib import Path
+
+
 def get_rates(values: list[str]) -> tuple[str, str]:
     gamma_rate = ""
     epsilon_rate = ""
@@ -66,7 +69,7 @@ def part_two(values: list[str]) -> int:
 
 if __name__ == "__main__":
     values_: list[str] = [
-        row.strip() for row in open("../input.txt", encoding="locale")
+        row.strip() for row in Path("../input.txt").read_text().split("\n")
     ]
     print(part_one(values=values_))
     print(part_two(values=values_))

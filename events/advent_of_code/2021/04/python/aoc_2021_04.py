@@ -1,6 +1,5 @@
-def chunks(lst: list, n: int):
-    for i in range(0, len(lst), n):
-        yield lst[i : i + n]
+from itertools import batched
+from pathlib import Path
 
 
 class Cell:
@@ -102,10 +101,10 @@ def part_two(called_numbers: list[int], boards: list[Board]) -> int:
 
 
 if __name__ == "__main__":
-    values_: list[str] = open("../input.txt", encoding="locale").readlines()
+    values_: list[str] = Path("../input.txt").read_text().split("\n")
     called_numbers_ = [int(val) for val in values_[0].split(",")]
 
-    board_values = [rows[1:] for rows in chunks(values_[1:], 6)]
+    board_values = [rows[1:] for rows in batched(values_[1:], 6)]
     boards_ = [
         Board([[int(val) for val in row.split()] for row in rows])
         for rows in board_values

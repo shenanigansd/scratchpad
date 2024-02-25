@@ -36,7 +36,7 @@ def find_numbers_in_text(text: str) -> list[int]:
 
 def find_first_and_last_number_in_text(
     text: str,
-    text_contains_spelled_words: bool = False,
+    text_contains_spelled_words: bool = False,  # noqa: FBT001,FBT002
 ) -> tuple[int, int]:
     numbers = (
         find_numbers_and_number_words_in_text(text)

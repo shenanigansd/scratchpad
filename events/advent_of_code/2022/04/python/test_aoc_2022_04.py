@@ -13,7 +13,7 @@ from aoc_2022_04 import _contains_any, _overlaps, _range_parser
         ("2-6,4-8", False),
     ],
 )
-def test_part_one(value: str, result: bool) -> None:
+def test_part_one(value: str, result: bool) -> None:  # noqa: FBT001
     first, second = value.split(",")
     first, second = set(_range_parser(first)), set(_range_parser(second))
     assert _overlaps(first, second) == result
@@ -30,7 +30,7 @@ def test_part_one(value: str, result: bool) -> None:
         ("2-6,4-8", True),
     ],
 )
-def test_part_two(value: str, result: bool) -> None:
+def test_part_two(value: str, result: bool) -> None:  # noqa: FBT001
     first, second = value.split(",")
     first, second = set(_range_parser(first)), set(_range_parser(second))
     assert _contains_any(first, second) == result

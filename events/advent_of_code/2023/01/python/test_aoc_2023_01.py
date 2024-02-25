@@ -24,7 +24,7 @@ def test_find_numbers_in_text(
     text: str,
     first: int,
     last: int,
-    text_contains_spelled_words: bool,
+    text_contains_spelled_words: bool,  # noqa: FBT001
 ) -> None:
     assert find_first_and_last_number_in_text(text, text_contains_spelled_words) == (
         first,

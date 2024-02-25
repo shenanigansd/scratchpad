@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from pathlib import Path
 
 
 @dataclass
@@ -34,7 +35,7 @@ def part_two(boxes: list[Box]) -> int:
 
 
 if __name__ == "__main__":
-    lines: list[str] = open("../input.txt", encoding="locale").readlines()
+    lines: list[str] = Path("../input.txt").read_text().split("\n")
     boxes_: list[Box] = [Box(*map(int, line.split("x"))) for line in lines]
 
     print(part_one(boxes=boxes_))

@@ -12,10 +12,8 @@ def parse_map(text: str) -> dict[str, tuple[str, str]]:
 
 
 def part1(directions: str, map_: dict[str, tuple[str, str]]) -> int:
-    steps_taken = 0
     current_node = "AAA"
-    for direction in cycle(directions):
-        steps_taken += 1
+    for steps_taken, direction in enumerate(cycle(directions)):
         if direction == "L":
             current_node = map_[current_node][0]
         elif direction == "R":
@@ -29,10 +27,8 @@ def part1(directions: str, map_: dict[str, tuple[str, str]]) -> int:
 
 
 def part2(directions: str, map_: dict[str, tuple[str, str]]) -> int:
-    steps_taken = 0
     nodes = [key for key in map_ if key.endswith("A")]
-    for direction in cycle(directions):
-        steps_taken += 1
+    for steps_taken, direction in enumerate(cycle(directions)):
         for index in range(len(nodes)):
             if direction == "L":
                 nodes[index] = map_[nodes[index]][0]

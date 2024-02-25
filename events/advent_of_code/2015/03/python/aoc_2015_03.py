@@ -1,4 +1,5 @@
 from collections import defaultdict
+from pathlib import Path
 
 
 def part_one(movements: list[str]) -> int:
@@ -47,7 +48,7 @@ def part_two(movements: list[str]) -> int:
 
 
 if __name__ == "__main__":
-    lines: list[str] = open("../input.txt", encoding="locale").readlines()
+    lines: list[str] = Path("../input.txt").read_text().strip().split("\n")
     data: list[str] = list(lines[0])
 
     print(part_one(movements=data))

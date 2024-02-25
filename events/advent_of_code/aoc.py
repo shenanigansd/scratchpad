@@ -2,7 +2,7 @@ from collections import defaultdict
 from dataclasses import asdict, dataclass
 from os import chdir
 from pathlib import Path
-from subprocess import CompletedProcess, run
+from subprocess import CompletedProcess, run  # noqa: S404
 from time import perf_counter_ns
 
 import pandas as pd
@@ -11,6 +11,8 @@ import toml
 
 @dataclass(frozen=True, slots=True)
 class Result:
+    """Result class."""
+
     language: str
     run_time: float
     part1: int | str
@@ -24,7 +26,7 @@ def run_subprocess(
     time_started = perf_counter_ns()
     if path is not None:
         chdir(path)
-    result = run(command_list, capture_output=True, check=False)
+    result = run(command_list, capture_output=True, check=False)  # noqa: S603
     time_completed = perf_counter_ns()
     time_delta = time_completed - time_started
     if path is not None:

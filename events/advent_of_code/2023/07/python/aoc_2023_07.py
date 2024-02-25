@@ -26,7 +26,7 @@ class Hand:
     strength_order: tuple[str] = STRENGTH_ORDER
 
     @classmethod
-    def from_text(cls: type[Self], text: str, using_jokers: bool = False) -> Self:
+    def from_text(cls: type[Self], text: str, using_jokers: bool = False) -> Self:  # noqa: FBT001,FBT002
         cards, bid = text.split()
         bid = int(bid)
         counter = dict(Counter(cards))

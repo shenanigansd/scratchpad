@@ -26,6 +26,6 @@ def test_reversing_twice_gives_same_list(xs: list[int]) -> None:
 def test_look_tuples_work_too(t: tuple[bool, str]) -> None:
     # A tuple is generated as the one you provided, with the corresponding
     # types in those positions.
-    assert len(t) == 2  # noqa: PLR2004 -- Value is not reused.
+    assert len(t) == 2  # -- Value is not reused.
     assert isinstance(t[0], bool)
     assert isinstance(t[1], str)

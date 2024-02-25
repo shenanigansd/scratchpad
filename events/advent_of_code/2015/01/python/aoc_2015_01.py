@@ -1,12 +1,13 @@
+from pathlib import Path
+
+
 def part_one(text: str) -> int:
     return sum(1 if char == "(" else -1 for char in text)
 
 
 def part_two(text: str) -> int:
-    index = 0
     floor = 0
-    for char in text:
-        index += 1
+    for index, char in enumerate(text):
         if char == "(":
             floor += 1
         elif char == ")":
@@ -17,7 +18,7 @@ def part_two(text: str) -> int:
 
 
 if __name__ == "__main__":
-    data: str = open("../input.txt", encoding="locale").readlines()[0].strip()
+    data: str = Path("../input.txt").read_text()[0].strip()
 
     print(part_one(text=data))
     print(part_two(text=data))

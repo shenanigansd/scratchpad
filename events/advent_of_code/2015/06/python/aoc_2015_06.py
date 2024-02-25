@@ -1,6 +1,7 @@
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Self
 
 
 @dataclass
@@ -12,7 +13,7 @@ class Event:
     end_y: int
 
     @classmethod
-    def from_str(cls, text):
+    def from_str(cls, text: str) -> Self:
         text = text.replace("turn ", "")
         texts = text.split(" ")
 

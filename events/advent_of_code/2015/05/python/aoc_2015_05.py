@@ -1,5 +1,7 @@
 import re
 from pathlib import Path
+from itertools import pairwise
+
 
 pat = r"(?=.*?(?:(.).\1))(?=.*?(.{2}).*?\2).*"
 
@@ -13,7 +15,7 @@ def _contains_at_least_x_of(text: str, occurrences: int, values: list[str]) -> b
 
 
 def _contains_sequential_duplicate(text: str) -> bool:
-    return any(current == nxt for current, nxt in zip(text, text[1:], strict=False))
+    return any(current == nxt for current, nxt in pairwise(text))
 
 
 def _contains_duplicate_with_buffer(text: str, buffer: int = 1) -> bool:

@@ -1,4 +1,5 @@
 from collections import defaultdict
+from pathlib import Path
 
 
 def parse_input(values: list[str]) -> list[tuple[tuple[int, int], tuple[int, int]]]:
@@ -14,7 +15,7 @@ def parse_input(values: list[str]) -> list[tuple[tuple[int, int], tuple[int, int
 
 def solve(
     values: list[tuple[tuple[int, int], tuple[int, int]]],
-    include_diagonals: bool,
+    include_diagonals: bool,  # noqa: FBT001
 ) -> int:
     lst = []
     for value in values:
@@ -33,10 +34,10 @@ def solve(
 
         if smaller_x == greater_x:
             for y in range(smaller_y, greater_y + 1):
-                lst.append((smaller_x, y))
+                lst.append((smaller_x, y))  # noqa: PERF401
         elif smaller_y == greater_y:
             for x in range(smaller_x, greater_x + 1):
-                lst.append((x, smaller_y))
+                lst.append((x, smaller_y))  # noqa: PERF401
         elif include_diagonals:
             loop_x, loop_y = value[0]
             target_x, target_y = value[1]
@@ -62,7 +63,7 @@ def part_two(values: list[tuple[tuple[int, int], tuple[int, int]]]) -> int:
 
 if __name__ == "__main__":
     values_: list[tuple[tuple[int, int], tuple[int, int]]] = parse_input(
-        open("../input.txt", encoding="locale").readlines(),
+        Path("../input.txt").read_text(),
     )
     print(part_one(values=values_))
     print(part_two(values=values_))

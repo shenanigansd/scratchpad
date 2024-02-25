@@ -1,3 +1,5 @@
+"""Code Jam 9 Qualifier."""
+
 import typing
 from collections import defaultdict
 from dataclasses import dataclass
@@ -5,6 +7,8 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class Request:
+    """Request class."""
+
     scope: typing.Mapping[str, str]
 
     receive: typing.Callable[[], typing.Awaitable[object]]
@@ -12,25 +16,33 @@ class Request:
 
 
 class Staff:
+    """Staff class."""
+
     def __init__(self) -> None:
+        """Instantiate the staff."""
         self.staff = {}
 
-    def register_worker(self, request) -> None:
+    def register_worker(self, request: "Request") -> None:
+        """Register a worker."""
         self.staff[request.scope["id"]] = Worker(request)
 
-    def deregister_worker(self, id_) -> None:
+    def deregister_worker(self, id_: int) -> None:
+        """Deregister a worker."""
         self.staff.pop(id_)
 
-    def export(self):
+    def export(self) -> dict[str, dict[str, str]]:
+        """Export the staff dictionary."""
         return {key: value.request for key, value in self.staff.items()}
 
-    def workers_by_speciality(self):
+    def workers_by_speciality(self) -> dict[str, list[str]]:
+        """Return a dictionary of workers by speciality."""
         dct = defaultdict(list)
         for worker in self.staff.values():
             dct[worker.speciality].append(worker.id_)
         return dct
 
     async def process_request(self, request: Request) -> None:
+        """Process a request."""
         workers_by_speciality_ = self.workers_by_speciality()
         speciality = request.scope["speciality"]
         worker_id = workers_by_speciality_[speciality][0]
@@ -39,7 +51,10 @@ class Staff:
 
 
 class Worker:
+    """Worker class."""
+
     def __init__(self, request: Request) -> None:
+        """Instantiate the worker."""
         self.id_ = request.scope["id"]
         self.speciality = request.scope["speciality"]
         self.receive = request.receive
@@ -47,6 +62,7 @@ class Worker:
         self.request = request
 
     async def process_request(self, request: Request) -> None:
+        """Process a request."""
         full_order = await request.receive()
         await self.send(full_order)
 
@@ -55,6 +71,8 @@ class Worker:
 
 
 class RestaurantManager:
+    """Restaurant manager class."""
+
     def __init__(self) -> None:
         """Instantiate the restaurant manager.
 
@@ -66,10 +84,11 @@ class RestaurantManager:
         self.staff_ = Staff()
 
     @property
-    def staff(self):
+    def staff(self) -> dict[str, dict[str, str]]:
+        """Return the staff dictionary."""
         return self.staff_.export()
 
-    async def __call__(self, request: Request):
+    async def __call__(self, request: Request) -> None:
         """Handle a request received.
 
         This is called for each request received by your application.

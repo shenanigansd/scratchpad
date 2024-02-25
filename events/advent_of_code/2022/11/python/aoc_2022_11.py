@@ -3,7 +3,7 @@ from collections.abc import Callable
 from dataclasses import dataclass, field
 from math import floor, prod
 from pathlib import Path
-from typing import Final
+from typing import Final, Self
 
 from parse import parse
 
@@ -36,7 +36,7 @@ class Monkey:
     inspection_count: int = field(default=0)
 
     @classmethod
-    def build_from(
+    def build_from(  # noqa: PLR0913
         cls,
         *,
         monkey_id: int,
@@ -46,7 +46,7 @@ class Monkey:
         operation_number: int | None,
         test_divisor: int,
         false_monkey: int,
-    ):
+    ) -> Self:
         items = [int(item) for item in starting_items.split(", ")]
         try:
             operation_number = int(operation_number)
@@ -83,7 +83,7 @@ def parse_monkeys(text: str) -> list[Monkey]:
 def process_round(
     monkeys: list[Monkey],
     constant: int,
-    calming: bool = True,
+    calming: bool = True,  # noqa: FBT001,FBT002
 ) -> list[Monkey]:
     for monkey in monkeys:
         for _ in range(len(monkey.items)):
@@ -104,7 +104,7 @@ def process_round(
     return monkeys
 
 
-def process_rounds(monkeys: list[Monkey], rounds: int, calming: bool = True) -> int:
+def process_rounds(monkeys: list[Monkey], rounds: int, calming: bool = True) -> int:  # noqa: FBT001,FBT002
     constant = prod(monkey.test_divisor for monkey in monkeys)
     for _ in range(rounds):
         monkeys = process_round(monkeys, constant, calming)

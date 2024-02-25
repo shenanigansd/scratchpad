@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Self
 
 
 @dataclass(frozen=True)
@@ -9,7 +10,7 @@ class Card:
     winning_numbers: list[int]
 
     @classmethod
-    def from_text(cls, text: str):
+    def from_text(cls, text: str) -> Self:
         header, body = text.split(":")
         id_number = int(header.split(" ")[-1])
         winning_numbers_text, numbers_text = body.split("|")
@@ -37,7 +38,7 @@ class Deck:
     cards: list[Card]
 
     @classmethod
-    def from_cards(cls, cards: list[Card]):
+    def from_cards(cls, cards: list[Card]) -> Self:
         return cls(cards)
 
     def count_new_cards(self) -> int:

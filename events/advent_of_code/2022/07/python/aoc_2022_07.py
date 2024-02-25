@@ -2,6 +2,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+from typing import TYPE_CHECKING, Self
+
+if TYPE_CHECKING:
+    from collections.abc import Generator
 
 
 @dataclass
@@ -32,7 +36,10 @@ class FileSystem:
         folder.contents[item.name] = item
 
     # https://github.com/python/cpython/blob/3.11/Lib/os.py#L345
-    def walk(self, top=None):
+    def walk(
+        self,
+        top: type[Self] | None = None,
+    ) -> Generator[tuple[list[Folder], list[File]], None, None]:
         if top is None:
             top = self
         folders = [item for item in top.contents.values() if isinstance(item, Folder)]
@@ -75,16 +82,17 @@ def sum_folder_size(folder: Folder) -> int:
     nested_folders = [
         item for item in folder.contents.values() if isinstance(item, Folder)
     ]
-    for folder in nested_folders:
-        total_size += sum_folder_size(folder)
+    for folder_ in nested_folders:
+        total_size += sum_folder_size(folder_)
     return total_size
 
 
 def size_all_folders(file_system: FileSystem) -> list[int]:
-    folder_sizes = []
-    for folders, _files in file_system.walk():
-        for folder in folders:
-            folder_sizes.append(sum_folder_size(folder))
+    folder_sizes = [
+        sum_folder_size(folder)
+        for folders, _files in file_system.walk()
+        for folder in folders
+    ]
     return sorted(folder_sizes)
 
 

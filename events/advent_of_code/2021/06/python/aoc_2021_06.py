@@ -1,4 +1,5 @@
 from collections import Counter
+from pathlib import Path
 
 
 def simulate_day(state: list[int]) -> list[int]:
@@ -27,8 +28,7 @@ def part_two(values: list[int]) -> int:
 
 if __name__ == "__main__":
     values_: Counter = Counter([
-        int(value)
-        for value in open("../input.txt", encoding="locale").readlines()[0].split(",")
+        int(value) for value in Path("../input.txt").read_text()[0].split(",")
     ])
     values_: list[int] = [values_.get(i, 0) for i in range(9)]
     print(part_one(values=values_.copy()))

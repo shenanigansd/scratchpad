@@ -1,3 +1,6 @@
+from pathlib import Path
+
+
 def part_one(values: list[int | None]) -> int:
     sums = []
     total = 0
@@ -23,7 +26,7 @@ def part_two(values: list[int]) -> int:
 
 
 if __name__ == "__main__":
-    with open("../input.txt", encoding="locale") as file:
+    with Path("../input.txt").open(encoding="locale") as file:
         values_: list[str] = file.readlines()
     values_: list[int | None] = [
         int(value) if value != "\n" else None for value in values_

@@ -124,5 +124,5 @@ def test_parsing_data(text: str, game: Game) -> None:
         ),
     ],
 )
-def test_parsing_data(game: Game, minimums: tuple[int]) -> None:
+def test_parsing_data_2(game: Game, minimums: tuple[int]) -> None:
     assert game.minimum_per_color() == minimums
