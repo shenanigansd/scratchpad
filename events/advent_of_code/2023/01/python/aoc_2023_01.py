@@ -38,21 +38,14 @@ def find_first_and_last_number_in_text(
     text: str,
     text_contains_spelled_words: bool = False,  # noqa: FBT001,FBT002
 ) -> tuple[int, int]:
-    numbers = (
-        find_numbers_and_number_words_in_text(text)
-        if text_contains_spelled_words
-        else find_numbers_in_text(text)
-    )
+    numbers = find_numbers_and_number_words_in_text(text) if text_contains_spelled_words else find_numbers_in_text(text)
     if len(numbers) == 1:
         return numbers[0], numbers[0]
     return numbers[0], numbers[-1]
 
 
 def part1(rows: list[str]) -> int:
-    return sum(
-        int(str("".join(str(item) for item in find_first_and_last_number_in_text(row))))
-        for row in rows
-    )
+    return sum(int(str("".join(str(item) for item in find_first_and_last_number_in_text(row)))) for row in rows)
 
 
 def part2(rows: list[str]) -> int:

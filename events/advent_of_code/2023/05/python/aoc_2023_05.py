@@ -17,9 +17,7 @@ class Almanac:
         for lines_group in lines[1:]:
             titleless_lines = lines_group.split("\n")
             titleless_lines.pop(0)
-            maps.append([
-                tuple(int(s) for s in line.split()) for line in titleless_lines if line
-            ])
+            maps.append([tuple(int(s) for s in line.split()) for line in titleless_lines if line])
 
         return cls(seeds, maps)
 

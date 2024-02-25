@@ -11,9 +11,7 @@ class Race:
 
     def count_possible_wins(self) -> int:
         return sum(
-            1
-            for time in range(1, self.time_allowed)
-            if (self.time_allowed - time) * time > self.record_distance
+            1 for time in range(1, self.time_allowed) if (self.time_allowed - time) * time > self.record_distance
         )
 
 

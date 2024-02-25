@@ -1,7 +1,6 @@
 import re
-from pathlib import Path
 from itertools import pairwise
-
+from pathlib import Path
 
 pat = r"(?=.*?(?:(.).\1))(?=.*?(.{2}).*?\2).*"
 
@@ -19,17 +18,12 @@ def _contains_sequential_duplicate(text: str) -> bool:
 
 
 def _contains_duplicate_with_buffer(text: str, buffer: int = 1) -> bool:
-    return any(
-        current == nxt for current, nxt in zip(text, text[buffer + 1 :], strict=False)
-    )
+    return any(current == nxt for current, nxt in zip(text, text[buffer + 1 :], strict=False))
 
 
 def _contains_non_overlapping_duplicate_sequence(text: str, length: int = 2) -> bool:
     for index in range(len(text)):
-        if (
-            text.count(text[index : length + 1]) > 1
-            and len(text[index : length + 1].strip()) > 1
-        ):
+        if text.count(text[index : length + 1]) > 1 and len(text[index : length + 1].strip()) > 1:
             print(f"{text[index : length + 1]}\t{text.count(text[index : length + 1])}")
             return True
     return False

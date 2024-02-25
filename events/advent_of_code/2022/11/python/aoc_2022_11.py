@@ -89,16 +89,10 @@ def process_round(
         for _ in range(len(monkey.items)):
             monkey.inspection_count += 1
             item = monkey.items.pop(0)
-            item = (
-                monkey.operation_function(item, monkey.operation_number or item)
-                % constant
-            )
+            item = monkey.operation_function(item, monkey.operation_number or item) % constant
             if calming:
                 item = floor(item / 3)
-            if item % monkey.test_divisor == 0:
-                new_monkey = monkey.true_monkey
-            else:
-                new_monkey = monkey.false_monkey
+            new_monkey = monkey.true_monkey if item % monkey.test_divisor == 0 else monkey.false_monkey
             assert monkeys[new_monkey].monkey_id == new_monkey
             monkeys[new_monkey].items.append(item)
     return monkeys

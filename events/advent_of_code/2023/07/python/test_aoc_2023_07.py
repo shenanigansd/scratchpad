@@ -126,9 +126,7 @@ def test_sorts_hands_correctly() -> None:
 
 
 def test_sorts_joker_hands_correctly() -> None:
-    hands = [
-        Hand.from_text(line, using_jokers=True) for line in HANDS.strip().split("\n")
-    ]
+    hands = [Hand.from_text(line, using_jokers=True) for line in HANDS.strip().split("\n")]
     assert sorted(hands) == [
         Hand(
             cards="32T3K",
@@ -169,7 +167,5 @@ def test_part1_matches_sample_answer() -> None:
 
 
 def test_part2_matches_sample_answer() -> None:
-    hands = [
-        Hand.from_text(line, using_jokers=True) for line in HANDS.strip().split("\n")
-    ]
+    hands = [Hand.from_text(line, using_jokers=True) for line in HANDS.strip().split("\n")]
     assert part2(hands) == 5905

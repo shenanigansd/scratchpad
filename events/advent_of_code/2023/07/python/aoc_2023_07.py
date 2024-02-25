@@ -106,8 +106,6 @@ def part2(hands: list[Hand]) -> int:
 if __name__ == "__main__":
     raw_text = Path("../input.txt").read_text()
     hands = [Hand.from_text(line) for line in raw_text.split("\n") if line]
-    hands_but_with_jokers = [
-        Hand.from_text(line, using_jokers=True) for line in raw_text.split("\n") if line
-    ]
+    hands_but_with_jokers = [Hand.from_text(line, using_jokers=True) for line in raw_text.split("\n") if line]
     print(part1(hands))
     print(part2(hands_but_with_jokers))

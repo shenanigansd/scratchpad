@@ -49,11 +49,7 @@ def run_rust(year: int, day: int) -> tuple[float, CompletedProcess]:
 
 def get_rust_projects() -> list[str]:
     data = toml.loads(Path("Cargo.toml").read_text())
-    return [
-        project
-        for project in data["workspace"]["members"]
-        if "advent_of_code" in project
-    ]
+    return [project for project in data["workspace"]["members"] if "advent_of_code" in project]
 
 
 def runner() -> None:

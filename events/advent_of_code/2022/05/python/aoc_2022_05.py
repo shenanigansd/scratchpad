@@ -38,9 +38,7 @@ class Ship:
 
     def move_bulk(self, movement: Movement) -> None:
         crates_to_move = self.stacks[movement.from_stack][-movement.quantity :]
-        self.stacks[movement.from_stack] = self.stacks[movement.from_stack][
-            : -movement.quantity
-        ]
+        self.stacks[movement.from_stack] = self.stacks[movement.from_stack][: -movement.quantity]
         self.stacks[movement.to_stack].extend(crates_to_move)
 
     def tops(self) -> str:

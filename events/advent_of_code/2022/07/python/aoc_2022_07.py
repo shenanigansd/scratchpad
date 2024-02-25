@@ -76,23 +76,15 @@ def build_file_system(text: str) -> FileSystem:
 
 def sum_folder_size(folder: Folder) -> int:
     total_size = 0
-    total_size += sum(
-        item.size for item in folder.contents.values() if isinstance(item, File)
-    )
-    nested_folders = [
-        item for item in folder.contents.values() if isinstance(item, Folder)
-    ]
+    total_size += sum(item.size for item in folder.contents.values() if isinstance(item, File))
+    nested_folders = [item for item in folder.contents.values() if isinstance(item, Folder)]
     for folder_ in nested_folders:
         total_size += sum_folder_size(folder_)
     return total_size
 
 
 def size_all_folders(file_system: FileSystem) -> list[int]:
-    folder_sizes = [
-        sum_folder_size(folder)
-        for folders, _files in file_system.walk()
-        for folder in folders
-    ]
+    folder_sizes = [sum_folder_size(folder) for folders, _files in file_system.walk() for folder in folders]
     return sorted(folder_sizes)
 
 

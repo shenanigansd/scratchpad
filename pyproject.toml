@@ -49,6 +49,7 @@ packages = []
 preview = true
 unsafe-fixes = true
 target-version = "py312"
+line-length = 120
 
 [tool.ruff.lint]
 select = ["ALL"]

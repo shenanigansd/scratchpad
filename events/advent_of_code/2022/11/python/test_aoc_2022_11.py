@@ -83,6 +83,4 @@ def test_without_worry() -> None:
             monkeys = process_round(monkeys, constant, calming=False)
         assert tuple(monkey.inspection_count for monkey in monkeys) == counts
 
-    assert (
-        prod(sorted(monkey.inspection_count for monkey in monkeys)[-2:]) == 2713310158
-    )
+    assert prod(sorted(monkey.inspection_count for monkey in monkeys)[-2:]) == 2713310158

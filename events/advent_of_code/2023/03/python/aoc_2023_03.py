@@ -56,13 +56,11 @@ def find_part_numbers_in_grid(
                             grid[row_index][number_started_on : number_ended_on + 1],
                         ),
                     )
-                    part_numbers[(number, row_index, number_started_on)] = (
-                        find_adjacent_symbol(
-                            grid,
-                            row_index,
-                            number_started_on,
-                            number_ended_on,
-                        )
+                    part_numbers[(number, row_index, number_started_on)] = find_adjacent_symbol(
+                        grid,
+                        row_index,
+                        number_started_on,
+                        number_ended_on,
                     )
                     number_started_on = None
                     number_ended_on = None
@@ -71,11 +69,7 @@ def find_part_numbers_in_grid(
 
 def sum_part_numbers_in_grid(grid: list[list[str]]) -> int:
     part_numbers = find_part_numbers_in_grid(grid)
-    return sum(
-        part_number[0]
-        for part_number in part_numbers
-        if part_numbers[part_number] is not None
-    )
+    return sum(part_number[0] for part_number in part_numbers if part_numbers[part_number] is not None)
 
 
 def sum_gears_in_grid(grid: list[list[str]]) -> int:
