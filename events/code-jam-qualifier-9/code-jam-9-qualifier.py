@@ -12,13 +12,13 @@ class Request:
 
 
 class Staff:
-    def __init__(self):
+    def __init__(self) -> None:
         self.staff = {}
 
-    def register_worker(self, request):
+    def register_worker(self, request) -> None:
         self.staff[request.scope["id"]] = Worker(request)
 
-    def deregister_worker(self, id_):
+    def deregister_worker(self, id_) -> None:
         self.staff.pop(id_)
 
     def export(self):
@@ -26,11 +26,11 @@ class Staff:
 
     def workers_by_speciality(self):
         dct = defaultdict(list)
-        for id_, worker in self.staff.items():
+        for worker in self.staff.values():
             dct[worker.speciality].append(worker.id_)
         return dct
 
-    async def process_request(self, request: Request):
+    async def process_request(self, request: Request) -> None:
         workers_by_speciality_ = self.workers_by_speciality()
         speciality = request.scope["speciality"]
         worker_id = workers_by_speciality_[speciality][0]
@@ -39,14 +39,14 @@ class Staff:
 
 
 class Worker:
-    def __init__(self, request: Request):
+    def __init__(self, request: Request) -> None:
         self.id_ = request.scope["id"]
         self.speciality = request.scope["speciality"]
         self.receive = request.receive
         self.send = request.send
         self.request = request
 
-    async def process_request(self, request: Request):
+    async def process_request(self, request: Request) -> None:
         full_order = await request.receive()
         await self.send(full_order)
 
@@ -55,7 +55,7 @@ class Worker:
 
 
 class RestaurantManager:
-    def __init__(self):
+    def __init__(self) -> None:
         """Instantiate the restaurant manager.
 
         This is called at the start of each day before any staff get on

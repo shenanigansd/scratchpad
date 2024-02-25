@@ -14,9 +14,7 @@ OPERATOR_FUNCTIONS: Final[dict[str, Callable]] = {
     "*": operator.mul,
 }
 
-MONKEY_TEMPLATE: Final[
-    str
-] = """\
+MONKEY_TEMPLATE: Final[str] = """\
 Monkey {monkey_id:d}:
   Starting items: {starting_items}
   Operation: new = old {operation_sign} {operation_number}
@@ -68,7 +66,11 @@ class Monkey:
 
 def parse_monkey(text: str) -> Monkey:
     monkey_kwargs = {}
-    for template_line, text_line in zip(MONKEY_TEMPLATE.split("\n"), text.split("\n")):
+    for template_line, text_line in zip(
+        MONKEY_TEMPLATE.split("\n"),
+        text.split("\n"),
+        strict=False,
+    ):
         result = parse(template_line, text_line)
         monkey_kwargs.update(result.named)
     return Monkey.build_from(**monkey_kwargs)
@@ -78,12 +80,19 @@ def parse_monkeys(text: str) -> list[Monkey]:
     return [parse_monkey(monkey_text) for monkey_text in text.split("\n\n")]
 
 
-def process_round(monkeys: list[Monkey], constant: int, calming: bool = True) -> list[Monkey]:
+def process_round(
+    monkeys: list[Monkey],
+    constant: int,
+    calming: bool = True,
+) -> list[Monkey]:
     for monkey in monkeys:
         for _ in range(len(monkey.items)):
             monkey.inspection_count += 1
             item = monkey.items.pop(0)
-            item = monkey.operation_function(item, monkey.operation_number or item) % constant
+            item = (
+                monkey.operation_function(item, monkey.operation_number or item)
+                % constant
+            )
             if calming:
                 item = floor(item / 3)
             if item % monkey.test_divisor == 0:
@@ -99,7 +108,7 @@ def process_rounds(monkeys: list[Monkey], rounds: int, calming: bool = True) -> 
     constant = prod(monkey.test_divisor for monkey in monkeys)
     for _ in range(rounds):
         monkeys = process_round(monkeys, constant, calming)
-    return prod(list(sorted(monkey.inspection_count for monkey in monkeys))[-2:])
+    return prod(sorted(monkey.inspection_count for monkey in monkeys)[-2:])
 
 
 def part_one(text: str) -> int:

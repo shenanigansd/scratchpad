@@ -21,7 +21,7 @@ def _overlaps(first: set, second: set) -> bool:
             first.issubset(second),
             second.issuperset(first),
             second.issubset(first),
-        ]
+        ],
     )
 
 

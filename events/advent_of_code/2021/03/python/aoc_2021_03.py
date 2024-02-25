@@ -33,7 +33,11 @@ def part_two(values: list[str]) -> int:
         ones = bits.count("1")
 
         new_results = []
-        [new_results.append(result) for result in results if result[length_index] == ("1" if ones >= zeros else "0")]
+        [
+            new_results.append(result)
+            for result in results
+            if result[length_index] == ("1" if ones >= zeros else "0")
+        ]
         results = new_results
 
         length_index += 1
@@ -47,7 +51,11 @@ def part_two(values: list[str]) -> int:
         ones = bits.count("1")
 
         new_results = []
-        [new_results.append(result) for result in results if result[length_index] == ("0" if zeros <= ones else "1")]
+        [
+            new_results.append(result)
+            for result in results
+            if result[length_index] == ("0" if zeros <= ones else "1")
+        ]
         results = new_results
 
         length_index += 1
@@ -57,6 +65,8 @@ def part_two(values: list[str]) -> int:
 
 
 if __name__ == "__main__":
-    values_: list[str] = [row.strip() for row in open("../input.txt").readlines()]
+    values_: list[str] = [
+        row.strip() for row in open("../input.txt", encoding="locale")
+    ]
     print(part_one(values=values_))
     print(part_two(values=values_))

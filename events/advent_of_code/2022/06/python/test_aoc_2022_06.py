@@ -3,7 +3,7 @@ from aoc_2022_06 import _find_unique_sequence
 
 
 @pytest.mark.parametrize(
-    "text,index",
+    ("text", "index"),
     [
         ("bvwbjplbgvbhsrlpgdmjqwftvncz", 5),
         ("nppdvjthqldpwncqszvftbrmjlhg", 6),
@@ -16,7 +16,7 @@ def test_find_four_unique(text: str, index: int) -> None:
 
 
 @pytest.mark.parametrize(
-    "text,index",
+    ("text", "index"),
     [
         ("mjqjpqmgbljsphdztnvjfqwrcgsmlb", 19),
         ("bvwbjplbgvbhsrlpgdmjqwftvncz", 23),

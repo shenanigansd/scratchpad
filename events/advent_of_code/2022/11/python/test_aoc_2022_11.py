@@ -57,7 +57,7 @@ def test_with_worry() -> None:
         assert tuple(monkey.items for monkey in monkeys) == items
 
     assert tuple(monkey.inspection_count for monkey in monkeys) == (101, 95, 7, 105)
-    assert prod(list(sorted(monkey.inspection_count for monkey in monkeys))[-2:]) == 10605
+    assert prod(sorted(monkey.inspection_count for monkey in monkeys)[-2:]) == 10605
 
 
 def test_without_worry() -> None:
@@ -83,4 +83,6 @@ def test_without_worry() -> None:
             monkeys = process_round(monkeys, constant, calming=False)
         assert tuple(monkey.inspection_count for monkey in monkeys) == counts
 
-    assert prod(list(sorted(monkey.inspection_count for monkey in monkeys))[-2:]) == 2713310158
+    assert (
+        prod(sorted(monkey.inspection_count for monkey in monkeys)[-2:]) == 2713310158
+    )

@@ -7,7 +7,7 @@ authors = [
 ]
 license = { text = "MIT" }
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 dependencies = [
     "pytz",
     "darbiadev-utilities",
@@ -24,6 +24,7 @@ repository = "https://github.com/shenanigansd/scratchpad"
 dev = [
     "pre-commit",
     "ruff",
+    "mypy",
 ]
 tests = [
     "pytest",
@@ -44,15 +45,12 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools]
 packages = []
 
-[tool.black]
-target-version = ["py311"]
-line-length = 120
-
 [tool.ruff]
 preview = true
 unsafe-fixes = true
-target-version = "py311"
-line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
 select = ["ALL"]
 exclude = ["events", "scratch/discarded"]
 ignore = [
@@ -67,8 +65,5 @@ ignore = [
   "S311", # (Standard pseudo-random generators are not suitable for security/cryptographic purposes) - Not doing crypto here
 ]
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "numpy"
-
-[tool.pytest.ini_options]
-addopts = "-r a -v"

@@ -3,7 +3,7 @@ from aoc_2016_01 import part_one, part_two
 
 
 @pytest.mark.parametrize(
-    "movements,distance",
+    ("movements", "distance"),
     [
         ([("R", 2), ("L", 3)], 5),
         ([("R", 2), ("R", 2), ("R", 2)], 2),
@@ -15,7 +15,7 @@ def test_part_one(movements: list[tuple[str, int]], distance: int) -> None:
 
 
 @pytest.mark.parametrize(
-    "movements,distance",
+    ("movements", "distance"),
     [
         ([("R", 8), ("R", 4), ("R", 4), ("R", 8)], 4),
     ],

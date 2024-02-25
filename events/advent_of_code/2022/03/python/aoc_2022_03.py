@@ -4,7 +4,9 @@ from string import ascii_lowercase, ascii_uppercase
 
 from darbia.utils.iterables import chunks, flatten
 
-priorities = dict(zip(ascii_lowercase + ascii_uppercase, range(1, 52 + 1)))
+priorities = dict(
+    zip(ascii_lowercase + ascii_uppercase, range(1, 52 + 1), strict=False),
+)
 
 
 def part_one(values: list[str]) -> int:

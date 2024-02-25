@@ -1,7 +1,7 @@
 from aoc_2022_05 import Movement, Ship
 
 
-def test_parse_ship():
+def test_parse_ship() -> None:
     text = """
     [D]
 [N] [C]
@@ -13,19 +13,19 @@ def test_parse_ship():
             1: ["Z", "N"],
             2: ["M", "C", "D"],
             3: ["P"],
-        }
+        },
     )
 
     assert Ship.build_from(text) == test_ship
 
 
-def test_ship_move_single():
+def test_ship_move_single() -> None:
     test_ship = Ship(
         stacks={
             1: ["Z", "N"],
             2: ["M", "C", "D"],
             3: ["P"],
-        }
+        },
     )
 
     movement1 = Movement(1, 2, 1)
@@ -34,7 +34,7 @@ def test_ship_move_single():
             1: ["Z", "N", "D"],
             2: ["M", "C"],
             3: ["P"],
-        }
+        },
     )
     test_ship.move_single(movement1)
     assert test_ship == ship_after_movement1
@@ -45,7 +45,7 @@ def test_ship_move_single():
             1: [],
             2: ["M", "C"],
             3: ["P", "D", "N", "Z"],
-        }
+        },
     )
     test_ship.move_single(movement2)
     assert test_ship == ship_after_movement2
@@ -56,7 +56,7 @@ def test_ship_move_single():
             1: ["C", "M"],
             2: [],
             3: ["P", "D", "N", "Z"],
-        }
+        },
     )
     test_ship.move_single(movement3)
     assert test_ship == ship_after_movement3
@@ -67,7 +67,7 @@ def test_ship_move_single():
             1: ["C"],
             2: ["M"],
             3: ["P", "D", "N", "Z"],
-        }
+        },
     )
     test_ship.move_single(movement4)
     assert test_ship == ship_after_movement4
@@ -75,13 +75,13 @@ def test_ship_move_single():
     assert test_ship.tops() == "CMZ"
 
 
-def test_ship_move_bulk():
+def test_ship_move_bulk() -> None:
     test_ship = Ship(
         stacks={
             1: ["Z", "N"],
             2: ["M", "C", "D"],
             3: ["P"],
-        }
+        },
     )
 
     movement1 = Movement(1, 2, 1)
@@ -90,7 +90,7 @@ def test_ship_move_bulk():
             1: ["Z", "N", "D"],
             2: ["M", "C"],
             3: ["P"],
-        }
+        },
     )
     test_ship.move_bulk(movement1)
     assert test_ship == ship_after_movement1
@@ -101,7 +101,7 @@ def test_ship_move_bulk():
             1: [],
             2: ["M", "C"],
             3: ["P", "Z", "N", "D"],
-        }
+        },
     )
     test_ship.move_bulk(movement2)
     assert test_ship == ship_after_movement2
@@ -112,7 +112,7 @@ def test_ship_move_bulk():
             1: ["M", "C"],
             2: [],
             3: ["P", "Z", "N", "D"],
-        }
+        },
     )
     test_ship.move_bulk(movement3)
     assert test_ship == ship_after_movement3
@@ -123,7 +123,7 @@ def test_ship_move_bulk():
             1: ["M"],
             2: ["C"],
             3: ["P", "Z", "N", "D"],
-        }
+        },
     )
     test_ship.move_bulk(movement4)
     assert test_ship == ship_after_movement4

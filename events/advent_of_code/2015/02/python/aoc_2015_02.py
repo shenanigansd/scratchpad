@@ -27,12 +27,14 @@ def part_one(boxes: list[Box]) -> int:
 def part_two(boxes: list[Box]) -> int:
     total = 0
     for box in boxes:
-        total += sum(box.sides_by_length()[0:2]) * 2 + box.length * box.width * box.height
+        total += (
+            sum(box.sides_by_length()[0:2]) * 2 + box.length * box.width * box.height
+        )
     return total
 
 
 if __name__ == "__main__":
-    lines: list[str] = open("../input.txt").readlines()
+    lines: list[str] = open("../input.txt", encoding="locale").readlines()
     boxes_: list[Box] = [Box(*map(int, line.split("x"))) for line in lines]
 
     print(part_one(boxes=boxes_))

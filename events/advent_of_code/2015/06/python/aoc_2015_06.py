@@ -32,8 +32,7 @@ def part_one(events: list[Event]) -> int:
                     case "on":
                         lit_lights.add((x, y))
                     case "off":
-                        if (x, y) in lit_lights:
-                            lit_lights.remove((x, y))
+                        lit_lights.discard((x, y))
                     case "toggle":
                         if (x, y) in lit_lights:
                             lit_lights.remove((x, y))

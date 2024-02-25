@@ -47,7 +47,7 @@ def part_two(movements: list[str]) -> int:
 
 
 if __name__ == "__main__":
-    lines: list[str] = open("../input.txt").readlines()
+    lines: list[str] = open("../input.txt", encoding="locale").readlines()
     data: list[str] = list(lines[0])
 
     print(part_one(movements=data))

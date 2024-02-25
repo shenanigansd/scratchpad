@@ -32,7 +32,7 @@ class Hand:
         counter = dict(Counter(cards))
         if using_jokers:
             j_s = counter.pop("J", 0)
-            if j_s == 5 :
+            if j_s == 5:
                 counter = {"J": 5}
             else:
                 most_populus_card = max(counter, key=counter.get)
@@ -66,9 +66,13 @@ class Hand:
         if self.type_ > other.type_:
             return False
         for self_card, other_card in zip(self.cards, other.cards, strict=True):
-            if self.strength_order.index(self_card) < self.strength_order.index(other_card):
+            if self.strength_order.index(self_card) < self.strength_order.index(
+                other_card,
+            ):
                 return True
-            if self.strength_order.index(self_card) > self.strength_order.index(other_card):
+            if self.strength_order.index(self_card) > self.strength_order.index(
+                other_card,
+            ):
                 return False
         msg = "Hands are equal"
         raise ValueError(msg)
@@ -79,9 +83,13 @@ class Hand:
         if self.type_ < other.type_:
             return True
         for self_card, other_card in zip(self.cards, other.cards, strict=True):
-            if self.strength_order.index(self_card) > self.strength_order.index(other_card):
+            if self.strength_order.index(self_card) > self.strength_order.index(
+                other_card,
+            ):
                 return True
-            if self.strength_order.index(self_card) < self.strength_order.index(other_card):
+            if self.strength_order.index(self_card) < self.strength_order.index(
+                other_card,
+            ):
                 return False
         msg = "Hands are equal"
         raise ValueError(msg)
@@ -98,6 +106,8 @@ def part2(hands: list[Hand]) -> int:
 if __name__ == "__main__":
     raw_text = Path("../input.txt").read_text()
     hands = [Hand.from_text(line) for line in raw_text.split("\n") if line]
-    hands_but_with_jokers = [Hand.from_text(line, using_jokers=True) for line in raw_text.split("\n") if line]
+    hands_but_with_jokers = [
+        Hand.from_text(line, using_jokers=True) for line in raw_text.split("\n") if line
+    ]
     print(part1(hands))
     print(part2(hands_but_with_jokers))

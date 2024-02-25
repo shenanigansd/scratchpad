@@ -11,7 +11,9 @@ def get_visible_trees(grid: list[list[int]]) -> int:
         for tree_index, tree in enumerate(row[1:-1]):
             visible_left = all(left_tree < tree for left_tree in row[: tree_index + 1])
 
-            visible_right = all(right_tree < tree for right_tree in row[tree_index + 2 :])
+            visible_right = all(
+                right_tree < tree for right_tree in row[tree_index + 2 :]
+            )
 
             trees_above = [row_[tree_index + 1] for row_ in grid[: row_index + 1]]
             visible_up = all(up_tree < tree for up_tree in trees_above)
@@ -25,7 +27,7 @@ def get_visible_trees(grid: list[list[int]]) -> int:
                     visible_right,
                     visible_up,
                     visible_down,
-                ]
+                ],
             ):
                 visible_trees += 1
 
@@ -36,8 +38,8 @@ def get_scenic_scores(grid: list[list[int]]) -> int:
     scenic_scores = []
     for row_index, row in enumerate(grid):
         for tree_index, tree in enumerate(row):
-            trees_left = list(left_tree for left_tree in row[:tree_index])
-            trees_right = list(right_tree for right_tree in row[tree_index + 1 :])
+            trees_left = list(row[:tree_index])
+            trees_right = list(row[tree_index + 1 :])
             trees_above = [row_[tree_index] for row_ in grid[:row_index]]
             trees_below = [row_[tree_index] for row_ in grid[row_index + 1 :]]
 

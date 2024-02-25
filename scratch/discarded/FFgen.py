@@ -11,22 +11,22 @@ apcsv = []
 test = []
 
 
-class importExcel(object):
-    def __init__(self):
-        teststr = "MontyPython"
+class importExcel:
+    def __init__(self) -> None:
+        pass
 
-    def import_ap_excel(self):
+    def import_ap_excel(self) -> None:
         for file in os.listdir(cwd + r"\input\ap"):
             if file.endswith(".csv"):
                 apcsv.append(file)
 
-    def import_excel_files(self):
+    def import_excel_files(self) -> None:
         self.import_ap_excel()
 
 
-class Generateff(object):
-    def __init__(self):
-        teststr = "MontyPython"
+class Generateff:
+    def __init__(self) -> None:
+        pass
 
     def order_block(
         self,
@@ -76,17 +76,16 @@ class Generateff(object):
         ob_notesShipping="",
         ob_notesAccounting="",
         ob_notesPurchasingSub="",
-    ):
-        """
+    ) -> None:
+        r"""
         if ob_orderType == "EMBROIDERY":
             ob_orderType = "26.1"
         elif ob_orderType == "SCREENPRINT":
             ob_orderType = "13"
         else:
             print
-            ob_orderType = raw_input("In file " + "\"" + filename + "\"" + "the order type is " + str(data[1,14]) + ". " + "Please enter a value for \"id_OrderType\"\n")
+            ob_orderType = raw_input("In file " + "\"" + filename + "\"" + "the order type is " + str(data[1,14]) + ". " + "Please enter a value for \"id_OrderType\"\n").
         """
-
         ondict = {"EMBROIDERY": "26.1", "SCREENPRINT": "13"}
         try:
             ob_orderType = ondict[ob_orderType]
@@ -100,7 +99,7 @@ class Generateff(object):
                 + "the order type is "
                 + str(data[1, 14])
                 + ". "
-                + 'Please enter a value for "id_OrderType"\n'
+                + 'Please enter a value for "id_OrderType"\n',
             )
             ondict.update({temp, ob_orderType})
 
@@ -198,7 +197,7 @@ class Generateff(object):
         cus_custom8="",
         cus_custom9="",
         cus_custom10="",
-    ):
+    ) -> None:
         if customer == "ap":
             cus_idCus = "3228"
             cus_company = "ap"
@@ -263,7 +262,7 @@ class Generateff(object):
         con_email="",
         con_stsContactAdd="",
         con_stsEnableBulkEmail="",
-    ):
+    ) -> None:
         if contact == "ap":
             pass
         if contact == "webstore":
@@ -283,10 +282,10 @@ class Generateff(object):
         file.write("sts_Enable_Bulk_Email: %s\n" % (con_stsEnableBulkEmail))
         file.write("---- End Contact ----\n")
 
-    def design_block(self):
+    def design_block(self) -> None:
         pass
 
-    def location_block(self):
+    def location_block(self) -> None:
         pass
 
     def product_block(
@@ -333,7 +332,7 @@ class Generateff(object):
         prob_stsStorageShip="",
         prob_stsStorageInventory="",
         prob_invoicingInvoice="",
-    ):
+    ) -> None:
         file.write("---- Start Product ----\n")
         file.write("PartNumber: %s\n" % (prod_partNumber))
         file.write("PartColorRange: %s\n" % (prob_partColorRange))
@@ -356,7 +355,10 @@ class Generateff(object):
         file.write("sts_EnableTax02: %s\n" % (prob_stsEnableTax2))
         file.write("sts_EnableTax03: %s\n" % (prob_stsEnableTax3))
         file.write("sts_EnableTax04:  %s\n" % (prob_stsEnableTax4))
-        file.write("sts_Prod_SecondaryUnits_Override: %s\n" % (prob_stsProdSecondaryUnitsOverride))
+        file.write(
+            "sts_Prod_SecondaryUnits_Override: %s\n"
+            % (prob_stsProdSecondaryUnitsOverride),
+        )
         file.write("sts_UseSecondaryUnits: %s\n" % (prob_stsUseSecondaryUnits))
         file.write("Units_Qty: %s\n" % (prob_unitsQty))
         file.write("Units_Type:  %s\n" % (prob_unitsType))
@@ -364,12 +366,19 @@ class Generateff(object):
         file.write("Units_Area2: %s\n" % (prob_UnitsArea2))
         file.write("sts_UnitsPricing: %s\n" % (prob_unitsPricing))
         file.write("sts_UnitsPurchasing: %s\n" % (prob_stsUnitsPurchasing))
-        file.write("sts_UnitsPurchasingExtraPercent: %s\n" % (prob_stsUnitsPurchasingExtraPercent))
-        file.write("sts_UnitsPurchasingExtraRound: %s\n" % (prob_stsUnitsPurchasingExtraRound))
+        file.write(
+            "sts_UnitsPurchasingExtraPercent: %s\n"
+            % (prob_stsUnitsPurchasingExtraPercent),
+        )
+        file.write(
+            "sts_UnitsPurchasingExtraRound: %s\n" % (prob_stsUnitsPurchasingExtraRound),
+        )
         file.write("sts_Prod_Behavior_Override: %s\n" % (prob_stsProdBehaviorOverride))
         file.write("sts_ProductSource_Supplied: %s\n" % (prob_stsProductSourceSupplied))
         file.write("sts_ProductSource_Purchase: %s\n" % (prob_stsProductSourcePurchase))
-        file.write("sts_ProductSource_Inventory: %s\n" % (prob_stsProductSourceInventory))
+        file.write(
+            "sts_ProductSource_Inventory: %s\n" % (prob_stsProductSourceInventory),
+        )
         file.write("sts_Production_Designs: %s\n" % (prob_stsProductionDesigns))
         file.write("sts_Production_Subcontract: %s\n" % (prob_stsProductionSubcontract))
         file.write("sts_Production_Components: %s\n" % (prob_stsProductionComponents))
@@ -389,7 +398,7 @@ class Generateff(object):
         payb_cardNameFirst="",
         payb_cardExpDate="",
         payb_notes="",
-    ):
+    ) -> None:
         file.write("---- Start Payment ----\n")
         file.write("date_Payment: %s\n" % (payb_datePayment))
         file.write("cur_Payment: %s\n" % (payb_curPayment))
@@ -404,14 +413,14 @@ class Generateff(object):
     def create_array(self, x):
         filename = apcsv[x]
         fnap = os.path.join(cwd + r"\\input\\ap\\", filename)
-        with open(fnap, "r") as file:
+        with open(fnap, encoding="locale") as file:
             data_iter = csv.reader(file, delimiter=",", quotechar='"')
-            data = [data for data in data_iter]
+            data = list(data_iter)
         data_array = np.asarray(data, dtype=None)
         test.append(data_array)
         return data_array, filename
 
-    def create_ap_order(self, file, data, filename):
+    def create_ap_order(self, file, data, filename) -> None:
         file.write('\n"\n')
         self.order_block(
             file,
@@ -426,8 +435,12 @@ class Generateff(object):
         self.product_block(file)
         file.write('\n"\n')
 
-    def createfile(self):
-        file = open(cwd + "\\output\\%s_%s_%s.txt" % (i.month, i.day, i.year), "w+")
+    def createfile(self) -> None:
+        file = open(
+            cwd + f"\\output\\{i.month}_{i.day}_{i.year}.txt",
+            "w+",
+            encoding="locale",
+        )
         for x in range(len(apcsv)):
             data, filename = self.create_array(x)
             ots = []

@@ -13,23 +13,22 @@ def _contains_at_least_x_of(text: str, occurrences: int, values: list[str]) -> b
 
 
 def _contains_sequential_duplicate(text: str) -> bool:
-    for current, nxt in zip(text, text[1:]):
-        if current == nxt:
-            return True
-    return False
+    return any(current == nxt for current, nxt in zip(text, text[1:], strict=False))
 
 
 def _contains_duplicate_with_buffer(text: str, buffer: int = 1) -> bool:
-    for current, nxt in zip(text, text[buffer + 1 :]):
-        if current == nxt:
-            return True
-    return False
+    return any(
+        current == nxt for current, nxt in zip(text, text[buffer + 1 :], strict=False)
+    )
 
 
 def _contains_non_overlapping_duplicate_sequence(text: str, length: int = 2) -> bool:
     for index in range(len(text)):
-        if text.count(text[index : length + 1]) > 1 and len(text[index : length + 1].strip()) > 1:
-            print(f"{text[index:length + 1]}\t{text.count(text[index:length + 1])}")
+        if (
+            text.count(text[index : length + 1]) > 1
+            and len(text[index : length + 1].strip()) > 1
+        ):
+            print(f"{text[index : length + 1]}\t{text.count(text[index : length + 1])}")
             return True
     return False
 
@@ -58,10 +57,7 @@ def part_two(values: list[str]) -> int:
         if all(conditions):
             nice_strings += 1
 
-        if all(conditions) != bool(re.match(pat, value)):
-            status = "GOOD"
-        else:
-            status = "\t\tBAD"
+        status = "GOOD" if all(conditions) != bool(re.match(pat, value)) else "\t\tBAD"
         print(f"{value=}\t{status}")
 
     return nice_strings

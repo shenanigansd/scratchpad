@@ -5,6 +5,7 @@ def _find_unique_sequence(text: str, length: int) -> int | None:
     for index in range(length - 1, len(text)):
         if len(set(text[index - length : index])) == length:
             return index
+    return None
 
 
 def part_one(text: str) -> int:

@@ -12,7 +12,10 @@ def parse_input(values: list[str]) -> list[tuple[tuple[int, int], tuple[int, int
     return output
 
 
-def solve(values: list[tuple[tuple[int, int], tuple[int, int]]], include_diagonals: bool) -> int:
+def solve(
+    values: list[tuple[tuple[int, int], tuple[int, int]]],
+    include_diagonals: bool,
+) -> int:
     lst = []
     for value in values:
         x1, y1 = value[0]
@@ -58,6 +61,8 @@ def part_two(values: list[tuple[tuple[int, int], tuple[int, int]]]) -> int:
 
 
 if __name__ == "__main__":
-    values_: list[tuple[tuple[int, int], tuple[int, int]]] = parse_input(open("../input.txt").readlines())
+    values_: list[tuple[tuple[int, int], tuple[int, int]]] = parse_input(
+        open("../input.txt", encoding="locale").readlines(),
+    )
     print(part_one(values=values_))
     print(part_two(values=values_))

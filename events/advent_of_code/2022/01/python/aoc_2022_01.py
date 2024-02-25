@@ -23,8 +23,10 @@ def part_two(values: list[int]) -> int:
 
 
 if __name__ == "__main__":
-    with open("../input.txt") as file:
+    with open("../input.txt", encoding="locale") as file:
         values_: list[str] = file.readlines()
-    values_: list[int | None] = [int(value) if value != "\n" else None for value in values_]
+    values_: list[int | None] = [
+        int(value) if value != "\n" else None for value in values_
+    ]
     print(part_one(values=values_))
     print(part_two(values=values_))

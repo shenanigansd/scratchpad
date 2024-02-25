@@ -35,6 +35,6 @@ def part_two(values: list[str]) -> int:
 
 
 if __name__ == "__main__":
-    values_: list[str] = [row for row in open("../input.txt").readlines()]
+    values_: list[str] = list(open("../input.txt", encoding="locale").readlines())
     print(part_one(values=values_))
     print(part_two(values=values_))

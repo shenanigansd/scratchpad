@@ -18,7 +18,7 @@ def find_hash_with_prefix(text: str, prefix: str) -> int:
     number = -1
     while True:
         number += 1
-        hash_ = hashlib.md5(f"{text}{number}".encode("utf-8")).hexdigest()
+        hash_ = hashlib.md5(f"{text}{number}".encode()).hexdigest()
         if hash_.startswith(prefix):
             break
     return number

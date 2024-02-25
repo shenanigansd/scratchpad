@@ -57,7 +57,7 @@ EXAMPLE_OUTPUT = FileSystem(
                 "k": File("k", 7_214_296),
             },
         ),
-    }
+    },
 )
 
 

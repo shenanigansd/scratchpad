@@ -47,8 +47,7 @@ def move_knot_straight(knot: Knot, direction: Direction) -> Knot:
             x_diff, y_diff = 1, 0
         case _:
             raise ValueError
-    knot = Knot(knot.x + x_diff, knot.y + y_diff)
-    return knot
+    return Knot(knot.x + x_diff, knot.y + y_diff)
 
 
 def knot_is_two_steps_away(previous: Knot, knot: Knot) -> Direction | None:
@@ -82,7 +81,7 @@ def move_knot(previous: Knot, knot: Knot) -> Knot:
         [
             previous.x != knot.x,
             previous.y != knot.y,
-        ]
+        ],
     ):
         return move_knot_diagonal(previous, knot)
 

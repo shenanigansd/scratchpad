@@ -1,4 +1,5 @@
 from enum import IntEnum
+from itertools import starmap
 
 
 class Action(IntEnum):
@@ -37,7 +38,7 @@ def _get_score(user_action: Action, computer_action: Action) -> int:
 
 
 def part_one(values: list[tuple[Action, Action]]) -> int:
-    return sum(_get_score(*actions) for actions in values)
+    return sum(starmap(_get_score, values))
 
 
 def part_two(values: list[tuple[Action, str]]) -> int:
@@ -50,16 +51,17 @@ def part_two(values: list[tuple[Action, str]]) -> int:
         elif needed_result == "Z":
             user_action = opponent_victories[opponent_action]
         else:
-            raise ValueError(f"{needed_result=}")
+            msg = f"{needed_result=}"
+            raise ValueError(msg)
         score += _get_score(user_action, opponent_action)
     return score
 
 
 if __name__ == "__main__":
-    with open("../input.txt") as file:
+    with open("../input.txt", encoding="locale") as file:
         part_one_values: list[tuple[Action, Action]] = []
         part_two_values: list[tuple[Action, str]] = []
-        for line in file.readlines():
+        for line in file:
             action_one, action_two = line.split()
             part_one_values.append((input_keys[action_two], input_keys[action_one]))
             part_two_values.append((input_keys[action_one], action_two))

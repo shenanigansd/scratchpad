@@ -13,7 +13,7 @@ class File:
 @dataclass
 class Folder:
     name: str
-    contents: dict[str, "Folder" | File]
+    contents: dict[str, Folder | File]
 
 
 @dataclass
@@ -59,15 +59,22 @@ def build_file_system(text: str) -> FileSystem:
             case ["dir", folder_name]:
                 file_system.create_item_at_path(current_folder, Folder(folder_name, {}))
             case [file_size, file_name]:
-                file_system.create_item_at_path(current_folder, File(file_name, int(file_size)))
+                file_system.create_item_at_path(
+                    current_folder,
+                    File(file_name, int(file_size)),
+                )
 
     return file_system
 
 
 def sum_folder_size(folder: Folder) -> int:
     total_size = 0
-    total_size += sum(item.size for item in folder.contents.values() if isinstance(item, File))
-    nested_folders = [item for item in folder.contents.values() if isinstance(item, Folder)]
+    total_size += sum(
+        item.size for item in folder.contents.values() if isinstance(item, File)
+    )
+    nested_folders = [
+        item for item in folder.contents.values() if isinstance(item, Folder)
+    ]
     for folder in nested_folders:
         total_size += sum_folder_size(folder)
     return total_size
@@ -75,7 +82,7 @@ def sum_folder_size(folder: Folder) -> int:
 
 def size_all_folders(file_system: FileSystem) -> list[int]:
     folder_sizes = []
-    for folders, files in file_system.walk():
+    for folders, _files in file_system.walk():
         for folder in folders:
             folder_sizes.append(sum_folder_size(folder))
     return sorted(folder_sizes)
@@ -103,6 +110,7 @@ def find_smallest_possible_folder_to_delete(file_system: FileSystem) -> int:
     for folder_size in folder_sizes:
         if (total_space - (used_space - folder_size)) >= required_space:
             return folder_size
+    return None
 
 
 def part_one(text: str) -> int:

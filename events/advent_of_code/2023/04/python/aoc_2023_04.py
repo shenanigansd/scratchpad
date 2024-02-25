@@ -13,7 +13,9 @@ class Card:
         header, body = text.split(":")
         id_number = int(header.split(" ")[-1])
         winning_numbers_text, numbers_text = body.split("|")
-        winning_numbers = [int(number) for number in winning_numbers_text.split(" ") if number]
+        winning_numbers = [
+            int(number) for number in winning_numbers_text.split(" ") if number
+        ]
         numbers = [int(number) for number in numbers_text.split(" ") if number]
         return cls(id_number, numbers, winning_numbers)
 
@@ -40,13 +42,20 @@ class Deck:
 
     def count_new_cards(self) -> int:
         cards_per_card = {
-            card.id_number: list(range(card.id_number + 1, card.id_number + card.winning_number_count() + 1))
+            card.id_number: list(
+                range(
+                    card.id_number + 1,
+                    card.id_number + card.winning_number_count() + 1,
+                ),
+            )
             for card in self.cards
         }
         for key, value in cards_per_card.items():
             new_cards = [value.copy()]
             while True:
-                new_cards.append([number for val in new_cards[-1] for number in cards_per_card[val]])
+                new_cards.append([
+                    number for val in new_cards[-1] for number in cards_per_card[val]
+                ])
                 if new_cards[-1] == []:
                     cards_per_card[key] = sum(1 for lst in new_cards for item in lst)
                     break

@@ -1,7 +1,7 @@
 from aoc_2022_02 import Action, _get_score
 
 
-def test_get_score():
+def test_get_score() -> None:
     assert _get_score(Action.Rock, Action.Rock) == 4
     assert _get_score(Action.Rock, Action.Paper) == 1
     assert _get_score(Action.Rock, Action.Scissors) == 7

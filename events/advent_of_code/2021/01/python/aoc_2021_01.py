@@ -1,15 +1,18 @@
 def part_one(values: list[int]) -> int:
-    count = sum(values[index] < values[index + 1] for index in range(len(values) - 1))
-    return count
+    return sum(values[index] < values[index + 1] for index in range(len(values) - 1))
 
 
 def part_two(values: list[int]) -> int:
-    summed_list = list(sum(three) for three in zip(values, values[1:], values[2:]))
-    count = sum(summed_list[index] < summed_list[index + 1] for index in range(len(summed_list) - 1))
-    return count
+    summed_list = [
+        sum(three) for three in zip(values, values[1:], values[2:], strict=False)
+    ]
+    return sum(
+        summed_list[index] < summed_list[index + 1]
+        for index in range(len(summed_list) - 1)
+    )
 
 
 if __name__ == "__main__":
-    values_: list[int] = [int(row) for row in open("../input.txt").readlines()]
+    values_: list[int] = [int(row) for row in open("../input.txt", encoding="locale")]
     print(part_one(values=values_))
     print(part_two(values=values_))

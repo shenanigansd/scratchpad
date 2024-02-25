@@ -20,5 +20,13 @@ from aoc_2023_01 import find_first_and_last_number_in_text
         ("7pqrstsixteen", 7, 6, True),
     ],
 )
-def test_find_numbers_in_text(text: str, first: int, last: int, text_contains_spelled_words: bool) -> None:
-    assert find_first_and_last_number_in_text(text, text_contains_spelled_words) == (first, last)
+def test_find_numbers_in_text(
+    text: str,
+    first: int,
+    last: int,
+    text_contains_spelled_words: bool,
+) -> None:
+    assert find_first_and_last_number_in_text(text, text_contains_spelled_words) == (
+        first,
+        last,
+    )

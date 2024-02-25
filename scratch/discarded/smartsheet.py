@@ -1,8 +1,8 @@
-import pandas
+import pandas as pd
 from smartsheet import smartsheet
 
 
-def get_sheet(token: str, sheet_id: int) -> pandas.DataFrame:
+def get_sheet(token: str, sheet_id: int) -> pd.DataFrame:
     """
     Download SmartSheet and create pandas.DataFrame.
 
@@ -22,9 +22,13 @@ def get_sheet(token: str, sheet_id: int) -> pandas.DataFrame:
         sheet_id=sheet_id,
         include=["discussions", "rowPermalink", "writerInfo"],
     )
-    return pandas.DataFrame(
-        data=[[sheet.id, row.id, row.permalink] + [cell.value for cell in row.cells] for row in sheet.rows],
-        columns=["sheet_id", "row_id", "permalink"] + [col.title for col in sheet.columns],
+    return pd.DataFrame(
+        data=[
+            [sheet.id, row.id, row.permalink] + [cell.value for cell in row.cells]
+            for row in sheet.rows
+        ],
+        columns=["sheet_id", "row_id", "permalink"]
+        + [col.title for col in sheet.columns],
     )
 
 
@@ -47,7 +51,9 @@ def create_comment(token: str, sheet_id: int, row_id: int, comment_text: str) ->
     smartsheet_client.Discussions.create_discussion_on_row(
         sheet_id,
         row_id,
-        smartsheet.models.Discussion({"comment": smartsheet.models.Comment({"text": comment_text})}),
+        smartsheet.models.Discussion({
+            "comment": smartsheet.models.Comment({"text": comment_text}),
+        }),
     )
 
 
