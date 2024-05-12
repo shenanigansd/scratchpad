@@ -13,7 +13,7 @@ fn find_final_floor(text: &str) -> i32 {
     floor
 }
 
-fn find_when_santa_enters_basement(text: &str) -> i32 {
+fn find_when_santa_enters_basement(text: &str) -> usize {
     let mut floor = 0;
     for (index, char) in text.chars().enumerate() {
         if char == '(' {
@@ -23,7 +23,7 @@ fn find_when_santa_enters_basement(text: &str) -> i32 {
             floor -= 1;
         }
         if floor == -1 {
-            return (index + 1) as i32;
+            return index + 1;
         }
     }
     panic!("Santa never enters the basement");
