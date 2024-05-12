@@ -62,7 +62,6 @@ mod tests {
         let result = find_final_floor(")())())");
         assert_eq!(result, -3);
 
-
         let result = find_when_santa_enters_basement(")");
         assert_eq!(result, 1);
         let result = find_when_santa_enters_basement("()())");
