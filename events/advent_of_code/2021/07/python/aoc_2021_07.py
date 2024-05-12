@@ -15,6 +15,6 @@ def part_two(values: list[int]) -> int:
 
 
 if __name__ == "__main__":
-    values_: list[int] = [int(value) for value in Path("../input.txt").read_text()[0].split(",")]
+    values_: list[int] = [int(value) for value in Path("../input.txt").read_text(encoding="locale")[0].split(",")]
     print(part_one(values=values_.copy()))
     print(part_two(values=values_.copy()))

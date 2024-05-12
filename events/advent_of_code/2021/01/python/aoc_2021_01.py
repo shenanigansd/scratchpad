@@ -11,6 +11,6 @@ def part_two(values: list[int]) -> int:
 
 
 if __name__ == "__main__":
-    values_: list[int] = [int(row) for row in Path("../input.txt").read_text().split("\n")]
+    values_: list[int] = [int(row) for row in Path("../input.txt").read_text(encoding="locale").split("\n")]
     print(part_one(values=values_))
     print(part_two(values=values_))

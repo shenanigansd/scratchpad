@@ -62,7 +62,7 @@ def part2(games: list[Game]) -> int:
 
 
 if __name__ == "__main__":
-    raw_rows = Path("../input.txt").read_text().split("\n")
+    raw_rows = Path("../input.txt").read_text(encoding="locale").split("\n")
     rows = [Game.from_row(row) for row in raw_rows]
     print(part1(rows))
     print(part2(rows))

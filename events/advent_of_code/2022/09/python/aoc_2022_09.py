@@ -115,7 +115,7 @@ def part_two(movements: list[Movement]) -> int:
 
 
 if __name__ == "__main__":
-    data = Path("../input.txt").read_text().strip()
+    data = Path("../input.txt").read_text(encoding="locale").strip()
     movements_ = [Movement.build_from(line) for line in data.splitlines()]
     print(part_one(movements_))
     print(part_two(movements_))

@@ -15,7 +15,7 @@ fn find_final_floor(text: &str) -> i32 {
 
 fn find_when_santa_enters_basement(text: &str) -> i32 {
     let mut floor = 0;
-    for (index, char) in text.chars().enumerate() {        
+    for (index, char) in text.chars().enumerate() {
         if char == '(' {
             floor += 1;
         }

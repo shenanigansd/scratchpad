@@ -58,7 +58,7 @@ def part_two(ship: Ship, movements: Iterable[Movement]) -> str:
 
 
 if __name__ == "__main__":
-    ship_text, instructions = Path("../input.txt").read_text().strip().split("\n\n")
+    ship_text, instructions = Path("../input.txt").read_text(encoding="locale").strip().split("\n\n")
     movements_ = [
         Movement(
             *map(

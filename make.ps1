@@ -39,7 +39,7 @@ function Invoke-Install-Dev
 function Invoke-Lint
 {
     pre-commit run --all-files
-    python -m ruff --fix .
+    python -m ruff check --fix .
     python -m ruff format .
 }
 

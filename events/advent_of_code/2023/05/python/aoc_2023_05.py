@@ -27,8 +27,7 @@ class Almanac:
             location = seed
             for map_ in self.maps:
                 location = find_map_position(location, map_)
-            if location < min_location:
-                min_location = location
+            min_location = min(location, min_location)
         return min_location
 
     def smallest_seed_range_location(self) -> int:
@@ -38,8 +37,7 @@ class Almanac:
                 location = seed
                 for map_ in self.maps:
                     location = find_map_position(location, map_)
-                if location < min_location:
-                    min_location = location
+                min_location = min(location, min_location)
         return min_location
 
 
@@ -59,7 +57,7 @@ def part2(almanac: Almanac) -> int:
 
 
 if __name__ == "__main__":
-    text = Path("../input.txt").read_text()
+    text = Path("../input.txt").read_text(encoding="locale")
     almanac = Almanac.from_text(text)
     print(part1(almanac))
     print(part2(almanac))

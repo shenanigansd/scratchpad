@@ -44,7 +44,7 @@ def part2(paper: Paper) -> int:
 
 
 if __name__ == "__main__":
-    raw_text = Path("../input.txt").read_text()
+    raw_text = Path("../input.txt").read_text(encoding="locale")
     paper_ = Paper.from_text(raw_text)
     print(part1(paper_))
     print(part2(paper_))

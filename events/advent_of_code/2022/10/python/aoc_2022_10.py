@@ -49,6 +49,6 @@ def part_two(text: str) -> str:
 
 
 if __name__ == "__main__":
-    data = Path("../input.txt").read_text().strip()
+    data = Path("../input.txt").read_text(encoding="locale").strip()
     print(part_one(data))
     print(part_two(data))

@@ -72,7 +72,7 @@ def part_two(grid: list[list[int]]) -> int:
 
 
 if __name__ == "__main__":
-    data = Path("../input.txt").read_text().strip()
+    data = Path("../input.txt").read_text(encoding="locale").strip()
     grid_ = [[int(char) for char in line] for line in data.splitlines()]
     print(part_one(grid_))
     print(part_two(grid_))

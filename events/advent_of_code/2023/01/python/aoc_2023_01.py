@@ -66,6 +66,6 @@ def part2(rows: list[str]) -> int:
 
 
 if __name__ == "__main__":
-    rows = Path("../input.txt").read_text().split("\n")
+    rows = Path("../input.txt").read_text(encoding="locale").split("\n")
     print(part1(rows))
     print(part2(rows))

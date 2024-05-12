@@ -31,6 +31,6 @@ def find_when_santa_enters_basement(text: str) -> int:
 
 
 if __name__ == "__main__":
-    data = Path("../input.txt").read_text()
+    data = Path("../input.txt").read_text(encoding="locale")
     print(find_final_floor(text=data))
     print(find_when_santa_enters_basement(text=data))

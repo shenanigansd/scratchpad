@@ -53,8 +53,7 @@ def part_two(events: list[Event]) -> int:
                         brightnesses[(x, y)] += 1
                     case "off":
                         brightnesses[(x, y)] -= 1
-                        if brightnesses[(x, y)] < 0:
-                            brightnesses[(x, y)] = 0
+                        brightnesses[(x, y)] = max(brightnesses[(x, y)], 0)
                     case "toggle":
                         brightnesses[(x, y)] += 2
 
@@ -62,7 +61,7 @@ def part_two(events: list[Event]) -> int:
 
 
 if __name__ == "__main__":
-    data: list[str] = Path("../input.txt").read_text().strip().split("\n")
+    data: list[str] = Path("../input.txt").read_text(encoding="locale").strip().split("\n")
     events_: list[Event] = [Event.from_str(item) for item in data]
     print(events_[0])
 

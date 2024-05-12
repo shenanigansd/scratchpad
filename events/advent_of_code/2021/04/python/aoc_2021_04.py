@@ -87,7 +87,7 @@ def part_two(called_numbers: list[int], boards: list[Board]) -> int:
 
 
 if __name__ == "__main__":
-    values_: list[str] = Path("../input.txt").read_text().split("\n")
+    values_: list[str] = Path("../input.txt").read_text(encoding="locale").split("\n")
     called_numbers_ = [int(val) for val in values_[0].split(",")]
 
     board_values = [rows[1:] for rows in batched(values_[1:], 6)]

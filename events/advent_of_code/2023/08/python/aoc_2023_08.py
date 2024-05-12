@@ -43,7 +43,7 @@ def part2(directions: str, map_: dict[str, tuple[str, str]]) -> int:
 
 
 if __name__ == "__main__":
-    raw_text = Path("../input.txt").read_text()
+    raw_text = Path("../input.txt").read_text(encoding="locale")
     directions, map_ = raw_text.split("\n\n")
     map_ = parse_map(map_)
     print(part1(directions, map_))

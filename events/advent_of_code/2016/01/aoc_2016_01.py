@@ -56,7 +56,7 @@ def part_two(movements: list[tuple[str, int]]) -> int | None:
 
 
 if __name__ == "__main__":
-    raw_text: str = Path("input.txt").read_text()
+    raw_text: str = Path("input.txt").read_text(encoding="locale")
     raw_items: list[str] = [item.strip() for item in raw_text.split(",")]
     items = [(item[0], int(item[1:])) for item in raw_items]
     print(len(items))

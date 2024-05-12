@@ -63,7 +63,7 @@ def part_two(values: list[tuple[tuple[int, int], tuple[int, int]]]) -> int:
 
 if __name__ == "__main__":
     values_: list[tuple[tuple[int, int], tuple[int, int]]] = parse_input(
-        Path("../input.txt").read_text(),
+        Path("../input.txt").read_text(encoding="locale"),
     )
     print(part_one(values=values_))
     print(part_two(values=values_))

@@ -48,7 +48,7 @@ def part_two(movements: list[str]) -> int:
 
 
 if __name__ == "__main__":
-    lines: list[str] = Path("../input.txt").read_text().strip().split("\n")
+    lines: list[str] = Path("../input.txt").read_text(encoding="locale").strip().split("\n")
     data: list[str] = list(lines[0])
 
     print(part_one(movements=data))

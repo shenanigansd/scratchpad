@@ -40,7 +40,7 @@ def sum_needed_ribbon(boxes: list[Box]) -> int:
 
 
 if __name__ == "__main__":
-    lines: list[str] = Path("../input.txt").read_text().split("\n")
+    lines: list[str] = Path("../input.txt").read_text(encoding="locale").split("\n")
     boxes_: list[Box] = [Box(*map(int, line.split("x"))) for line in lines]
 
     print(sum_needed_wrapping_paper(boxes=boxes_))

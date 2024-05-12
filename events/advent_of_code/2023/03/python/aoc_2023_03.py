@@ -95,7 +95,7 @@ def part2(grid: list[list[str]]) -> int:
 
 
 if __name__ == "__main__":
-    raw_rows = Path("../input.txt").read_text().split("\n")
+    raw_rows = Path("../input.txt").read_text(encoding="locale").split("\n")
     grid = [list(row) for row in raw_rows]
     print(part1(grid))
     print(part2(grid))
