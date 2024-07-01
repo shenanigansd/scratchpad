@@ -8,4 +8,4 @@ on:
 
 jobs:
   pre-commit:
-    uses: darbiadev/.github/.github/workflows/generic-precommit.yaml@29197a38ef3741064f47b623ede0c1ad22402c57 # v13.0.3
+    uses: darbiadev/.github/.github/workflows/generic-precommit.yaml@142663fca1c211af6a7dccf3a57cac48cfc3c017 # v13.0.5
