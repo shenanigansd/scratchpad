@@ -50,12 +50,12 @@ def part_two(events: list[Event]) -> int:
             for y in range(event.start_y, event.end_y + 1):
                 match event.action:
                     case "on":
-                        brightnesses[(x, y)] += 1
+                        brightnesses[x, y] += 1
                     case "off":
-                        brightnesses[(x, y)] -= 1
-                        brightnesses[(x, y)] = max(brightnesses[(x, y)], 0)
+                        brightnesses[x, y] -= 1
+                        brightnesses[x, y] = max(brightnesses[x, y], 0)
                     case "toggle":
-                        brightnesses[(x, y)] += 2
+                        brightnesses[x, y] += 2
 
     return sum(brightnesses.values())
 

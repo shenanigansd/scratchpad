@@ -56,7 +56,7 @@ def find_part_numbers_in_grid(
                             grid[row_index][number_started_on : number_ended_on + 1],
                         ),
                     )
-                    part_numbers[(number, row_index, number_started_on)] = find_adjacent_symbol(
+                    part_numbers[number, row_index, number_started_on] = find_adjacent_symbol(
                         grid,
                         row_index,
                         number_started_on,

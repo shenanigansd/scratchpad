@@ -1,4 +1,4 @@
-def move_to_pos(x, y):
+def move_to_pos(x, y) -> None:
     current_x = get_pos_x()
     current_y = get_pos_y()
 
@@ -26,62 +26,55 @@ def move_to_pos(x, y):
 move_to_pos(0, 0)
 
 
-def odd(a):
-    if a % 2 == 0:
-        return False
-    else:
-        return True
+def odd(a) -> bool:
+    return a % 2 != 0
 
 
-def even(a):
-    if a % 2 == 0:
-        return True
-    else:
-        return False
+def even(a) -> bool:
+    return a % 2 == 0
 
 
-def tplace():
-    if odd(get_pos_x()) == False and odd(get_pos_y()) == False:
+def tplace() -> bool | None:
+    if odd(get_pos_x()) is False and odd(get_pos_y()) is False:
         return True
-    elif odd(get_pos_x()) == True and odd(get_pos_y()) == True:
+    if odd(get_pos_x()) is True and odd(get_pos_y()) is True:
         return True
+    return None
 
 
 while True:
-    for i in range(get_world_size()):
+    for _i in range(get_world_size()):
         if get_pos_y() == 0:
             plant(Entities.grass)
             if can_harvest():
                 harvest()
 
-        else:
-            if tplace() == True:
-                if get_ground_type() == Grounds.Soil:
-                    pass
-                else:
-                    till()
-
-                plant(Entities.Tree)
-
-                if get_water() < 0.5:
-                    use_item(Items.Water_Tank)
-
+        elif tplace() is True:
+            if get_ground_type() == Grounds.Soil:
+                pass
             else:
-                if (
-                    get_ground_type() == Grounds.soil
-                    and get_entity_type() == Entities.Carrots
-                    and can_harvest() == True
-                ):
-                    harvest()
-                    trade(Items.Carrot_Seed)
-                    plant(Entities.Carrots)
-                elif get_ground_type() != Grounds.Soil:
-                    till()
-                    trade(Items.Carrot_Seed)
-                    plant(Entities.Carrots)
-                elif get_ground_type() == Grounds.Soil and get_entity_type() != Entities.Carrots:
-                    trade(Items.Carrot_Seed)
-                    plant(Entities.Carrots)
+                till()
+
+            plant(Entities.Tree)
+
+            if get_water() < 0.5:
+                use_item(Items.Water_Tank)
+
+        elif (
+            get_ground_type() == Grounds.soil
+            and get_entity_type() == Entities.Carrots
+            and can_harvest() is True
+        ):
+            harvest()
+            trade(Items.Carrot_Seed)
+            plant(Entities.Carrots)
+        elif get_ground_type() != Grounds.Soil:
+            till()
+            trade(Items.Carrot_Seed)
+            plant(Entities.Carrots)
+        elif get_ground_type() == Grounds.Soil and get_entity_type() != Entities.Carrots:
+            trade(Items.Carrot_Seed)
+            plant(Entities.Carrots)
         move(East)
         if can_harvest():
             harvest()

@@ -66,10 +66,17 @@ ignore = [
   "D103", # (Missing docstring in public function) - Not really doc-ing here
   "D104", # (Missing docstring in public package) - Not really doc-ing here
   "D105", # (Missing docstring in magic method) - Not really doc-ing here
+  "DOC", # (pydoclint) - Not really doc-ing here
   "S311", # (Standard pseudo-random generators are not suitable for security/cryptographic purposes) - Not doing crypto here
   "PLR2004", # (Magic value used in comparison) - Lots of single use numbers in AoC
   "PLC2701", # (Private name import `x` from external module `x`) - Testing internal methods in AoC
   "C901", # (Function is too complex) - I completely agree, but it's AoC
+]
+
+[tool.ruff.lint.extend-per-file-ignores]
+"scratch/games/the-farmer-was-replaced/code.py" = [
+    "F821", # (Undefined name `x`)
+    "ANN001", # (Missing type annotation for function argument `x`)
 ]
 
 [tool.ruff.lint.pydocstyle]

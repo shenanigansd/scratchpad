@@ -4,7 +4,7 @@ from pathlib import Path
 
 def parse_input(text: str) -> tuple[list[int], list[int]]:
     rows = text.strip().split("\n")
-    
+
     left = []
     right = []
     for row in rows:
