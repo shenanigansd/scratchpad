@@ -53,9 +53,15 @@ jobs:
           python -m pip install --editable scratch/projects/one_two_three
 
       - name: "Run tests"
-        run: python -m coverage run -m pytest
+        run: python -m coverage run -m pytest --junitxml=junit.xml -o junit_family=legacy
 
       - name: "Upload coverage reports to Codecov"
         uses: codecov/codecov-action@015f24e6818733317a2da2edd6290ab26238649a # v5.0.7
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@9739113ad922ea0a9abb4b2c0f8bf6a4aa8ef820 # v1.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
