@@ -60,11 +60,7 @@ while True:
             if get_water() < 0.5:
                 use_item(Items.Water_Tank)
 
-        elif (
-            get_ground_type() == Grounds.soil
-            and get_entity_type() == Entities.Carrots
-            and can_harvest() is True
-        ):
+        elif get_ground_type() == Grounds.soil and get_entity_type() == Entities.Carrots and can_harvest() is True:
             harvest()
             trade(Items.Carrot_Seed)
             plant(Entities.Carrots)

@@ -1,10 +1,12 @@
 import collections
+from collections.abc import Generator, Iterable
 from dataclasses import dataclass
 from itertools import islice
 from pathlib import Path
+from typing import Any
 
 
-def sliding_window(iterable, n):
+def sliding_window(iterable: Iterable, n: int) -> Generator[tuple[Any, ...]]:
     """Collect data into overlapping fixed-length chunks or blocks."""
     # sliding_window('ABCDEFG', 4) → ABCD BCDE CDEF DEFG
     iterator = iter(iterable)
@@ -18,34 +20,30 @@ def sliding_window(iterable, n):
 class Report:
     values: list[int]
 
-    def is_safe(self, dampener_enabled: bool = False) -> bool:
+    def is_safe(self, *, dampener_enabled: bool = False) -> bool:
         dampener_used = False
 
-        increasing_changes = sum(1 for left, right in zip(self.values, self.values[1:]) if left > right)
-        print(f"{increasing_changes=}") 
+        increasing_changes = sum(1 for left, right in zip(self.values, self.values[1:], strict=False) if left > right)
         if dampener_enabled and not dampener_used and increasing_changes == 1:
             dampener_used = True
             increasing_changes -= 1
         all_increasing = increasing_changes == 0
-        print(f"{all_increasing=}") 
 
-        decreasing_changes = sum(1 for left, right in zip(self.values, self.values[1:]) if left < right)
-        print(f"{decreasing_changes=}")
+        decreasing_changes = sum(1 for left, right in zip(self.values, self.values[1:], strict=False) if left < right)
         if dampener_enabled and not dampener_used and decreasing_changes == 1:
             dampener_used = True
             decreasing_changes -= 1
         all_decreasing = decreasing_changes == 0
-        print(f"{all_decreasing=}")
 
         unsafe_values = 0
         for left, right in sliding_window(self.values, 2):
             print(f"{left=}, {right=}, {abs(left - right)=}")
-            if not 1 <= abs(left - right) <= 3:                                               
+            if not 1 <= abs(left - right) <= 3:
                 unsafe_values += 1
         print(f"{unsafe_values=}")
         if dampener_enabled and not dampener_used and unsafe_values == 1:
             dampener_used = True
-            unsafe_values -= 1    
+            unsafe_values -= 1
         within_boundaries = unsafe_values == 0
         print(f"{within_boundaries=}")
 

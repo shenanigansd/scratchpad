@@ -1,7 +1,4 @@
-import re
-from math import prod
 from pathlib import Path
-
 
 LEFT_OFFSETS = [(0, -1), (0, -2), (0, -3), (0, -4)]
 RIGHT_OFFSETS = [(0, 1), (0, 2), (0, 3), (0, 4)]
@@ -25,28 +22,29 @@ OFFSETS = {
     "diagonal_right_down": DIAGONAL_RIGHT_DOWN_OFFSETS,
 }
 
+
 def part1(text: str) -> int:
     text = text.lstrip("\n").rstrip("\n")
     count = 0
     grid = [list(line) for line in text.split("\n")]
     height = len(grid)
     width = len(grid[0])
-    for y in range(height):
+    for y in range(height):  # noqa: PLR1702
         for x in range(width):
-            print(f"Checking {y}, {x}, {grid[y][x]}")            
+            print(f"Checking {y}, {x}, {grid[y][x]}")
             if grid[y][x] == "X":
-                for offset_name,offsets in OFFSETS.items():
+                for offset_name, offsets in OFFSETS.items():
                     try:
-                       if "".join([grid[y + offset[0]][x + offset[1]] for offset in offsets]) == "XMAS":
-                        count += 1
-                        print(f"Found XMAS at {y}, {x}, {offset_name}")
+                        if "".join([grid[y + offset[0]][x + offset[1]] for offset in offsets]) == "XMAS":
+                            count += 1
+                            print(f"Found XMAS at {y}, {x}, {offset_name}")
                     except IndexError:
                         continue
     return count
 
 
 def part2(text: str) -> int:
-    return 0
+    return len(text)
 
 
 if __name__ == "__main__":

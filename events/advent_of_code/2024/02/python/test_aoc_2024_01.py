@@ -13,8 +13,9 @@ from aoc_2024_01 import Report
         ([1, 3, 6, 7, 9], True),
     ],
 )
-def test_report_is_safe(values: list[int], is_safe: bool) -> None:
+def test_report_is_safe(values: list[int], is_safe: bool) -> None:  # noqa: FBT001
     assert Report(values).is_safe() == is_safe
+
 
 @pytest.mark.parametrize(
     ("values", "is_safe"),
@@ -27,5 +28,5 @@ def test_report_is_safe(values: list[int], is_safe: bool) -> None:
         ([1, 3, 6, 7, 9], True),
     ],
 )
-def test_report_is_safe_wth_dampener(values: list[int], is_safe: bool) -> None:
+def test_report_is_safe_wth_dampener(values: list[int], is_safe: bool) -> None:  # noqa: FBT001
     assert Report(values).is_safe(dampener_enabled=True) == is_safe
