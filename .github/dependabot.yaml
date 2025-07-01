@@ -1,33 +1,21 @@
 version: 2
+multi-ecosystem-groups:
+  all:
+    schedule:
+      interval: "monthly"
 updates:
   - package-ecosystem: "devcontainers"
     directory: "/"
-    schedule:
-      interval: "monthly"
+    multi-ecosystem-group: "all"
 
   - package-ecosystem: "github-actions"
     directory: "/"
-    schedule:
-      interval: "monthly"
-    groups:
-      ci-dependencies:
-        patterns:
-          - "*"
+    multi-ecosystem-group: "all"
 
   - package-ecosystem: "cargo"
     directory: "/"
-    schedule:
-      interval: "monthly"
-    groups:
-      rust-dependencies:
-        patterns:
-          - "*"
+    multi-ecosystem-group: "all"
 
   - package-ecosystem: "pip"
     directory: "/"
-    schedule:
-      interval: "monthly"
-    groups:
-      python-dependencies:
-        patterns:
-          - "*"
+    multi-ecosystem-group: "all"
