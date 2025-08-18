@@ -17,8 +17,6 @@ def part2(text: str) -> int:
             in_do = True
         elif counter in dont_indexes:
             in_do = False
-        else:
-            pass
         map_[counter] = in_do
 
     return sum(
