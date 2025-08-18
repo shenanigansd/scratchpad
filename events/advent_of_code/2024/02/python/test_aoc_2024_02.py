@@ -1,5 +1,5 @@
 import pytest
-from aoc_2024_01 import Report
+from aoc_2024_02 import Report
 
 
 @pytest.mark.parametrize(
