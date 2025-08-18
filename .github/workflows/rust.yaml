@@ -1,4 +1,4 @@
-name: "Rust CI"
+name: Rust CI
 
 on:
   push:
@@ -7,6 +7,9 @@ on:
       - '**.rs'
       - '**/Cargo.toml'
       - '**/Cargo.lock'
+
+permissions:
+  contents: read
 
 jobs:
   lint:
