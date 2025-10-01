@@ -13,11 +13,11 @@ permissions:
 
 jobs:
   lint:
-    uses: darbiadev/.github/.github/workflows/rust-lint.yaml@91dda16028f109ac78016dd740206fd109740068 # v15.0.0
+    uses: darbiadev/.github/.github/workflows/rust-lint.yaml@45471b560aceda922ebec22a20b72f0c29914cad # v15.1.0
 
   clippy:
     needs: lint
-    uses: darbiadev/.github/.github/workflows/rust-clippy.yaml@91dda16028f109ac78016dd740206fd109740068 # v15.0.0
+    uses: darbiadev/.github/.github/workflows/rust-clippy.yaml@45471b560aceda922ebec22a20b72f0c29914cad # v15.1.0
 
   test:
     needs: "clippy"
@@ -29,7 +29,7 @@ jobs:
             target: "x86_64-unknown-linux-gnu",
           }
 
-    uses: darbiadev/.github/.github/workflows/rust-test.yaml@91dda16028f109ac78016dd740206fd109740068 # v15.0.0
+    uses: darbiadev/.github/.github/workflows/rust-test.yaml@45471b560aceda922ebec22a20b72f0c29914cad # v15.1.0
     with:
       os: ${{ matrix.triple.os }}
       target: ${{ matrix.triple.target }}
