@@ -11,4 +11,4 @@ permissions:
 
 jobs:
   pre-commit:
-    uses: darbiadev/.github/.github/workflows/generic-precommit.yaml@91dda16028f109ac78016dd740206fd109740068 # v15.0.0
+    uses: darbiadev/.github/.github/workflows/generic-precommit.yaml@45471b560aceda922ebec22a20b72f0c29914cad # v15.1.0
