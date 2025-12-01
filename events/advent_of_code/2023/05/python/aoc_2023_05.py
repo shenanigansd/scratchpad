@@ -9,7 +9,7 @@ class Almanac:
     maps: list[list[tuple[int, int, int]]]
 
     @classmethod
-    def from_text(cls, text: str) -> "Almanac":
+    def from_text(cls, text: str) -> Almanac:
         lines = text.split("\n\n")
         seeds = [int(s) for s in lines[0].split(":")[1].split()]
 

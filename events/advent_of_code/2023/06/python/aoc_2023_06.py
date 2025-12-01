@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from itertools import starmap
 from math import prod
 from pathlib import Path
 
@@ -20,11 +19,11 @@ class Paper:
     races: list[Race]
 
     @classmethod
-    def from_text(cls, text: str) -> "Paper":
+    def from_text(cls, text: str) -> Paper:
         time_line, distance_line = text.strip().split("\n")
         times = [int(time) for time in time_line.split()[1:]]
         distances = [int(distance) for distance in distance_line.split()[1:]]
-        return cls(races=list(starmap(Race, zip(times, distances, strict=False))))
+        return cls(races=list(map(Race, times, distances, strict=False)))
 
     def count_possible_wins(self) -> int:
         return Race(

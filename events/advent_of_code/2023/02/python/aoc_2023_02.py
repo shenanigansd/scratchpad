@@ -16,7 +16,7 @@ class SetOfDice:
     dice: list[Dice]
 
     @classmethod
-    def from_str(cls, text: str) -> "SetOfDice":
+    def from_str(cls, text: str) -> SetOfDice:
         dice = []
         dice_chunks = text.split(",")
         for dice_chunk in dice_chunks:
@@ -31,7 +31,7 @@ class Game:
     sets: list[SetOfDice]
 
     @classmethod
-    def from_row(cls, row: str) -> "Game":
+    def from_row(cls, row: str) -> Game:
         game_id_text, dice_sets = row.split(":")
         game_id = int(game_id_text[5:])
         sets = [SetOfDice.from_str(dice_set) for dice_set in dice_sets.split(";")]

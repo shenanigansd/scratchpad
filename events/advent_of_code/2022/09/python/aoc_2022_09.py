@@ -24,7 +24,7 @@ class Movement:
     steps: int
 
     @classmethod
-    def build_from(cls, text: str) -> "Movement":
+    def build_from(cls, text: str) -> Movement:
         direction_, steps_ = text.split()
         return cls(DIRECTION_MAP[direction_], int(steps_))
 

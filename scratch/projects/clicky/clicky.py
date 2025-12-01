@@ -6,7 +6,7 @@ def main() -> None:
         while True:
             s = input(">> ")
             print(s)
-    except (EOFError, KeyboardInterrupt):
+    except EOFError, KeyboardInterrupt:
         print("\nShutting down...")
 
 

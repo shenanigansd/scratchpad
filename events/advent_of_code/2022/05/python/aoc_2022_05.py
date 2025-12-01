@@ -1,9 +1,12 @@
 import re
-from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from darbia.utils.iterables import chunks
+
+if TYPE_CHECKING:
+    from collections.abc import Iterable
 
 
 @dataclass(frozen=True)
@@ -18,7 +21,7 @@ class Ship:
     stacks: dict[int, list[str]]
 
     @classmethod
-    def build_from(cls, text: str) -> "Ship":
+    def build_from(cls, text: str) -> Ship:
         header, *lines = list(reversed(text.splitlines()))
         stack_count = len(header.split())
         ship = Ship({index: [] for index in range(1, stack_count + 1)})

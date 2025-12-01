@@ -39,7 +39,7 @@ class FileSystem:
     def walk(
         self,
         top: type[Self] | None = None,
-    ) -> Generator[tuple[list[Folder], list[File]], None, None]:
+    ) -> Generator[tuple[list[Folder], list[File]]]:
         if top is None:
             top = self
         folders = [item for item in top.contents.values() if isinstance(item, Folder)]

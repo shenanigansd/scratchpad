@@ -1,11 +1,13 @@
 import operator
-from collections.abc import Callable
 from dataclasses import dataclass, field
 from math import floor, prod
 from pathlib import Path
-from typing import Final, Self
+from typing import TYPE_CHECKING, Final, Self
 
 from parse import parse
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
 
 OPERATOR_FUNCTIONS: Final[dict[str, Callable]] = {
     "+": operator.add,

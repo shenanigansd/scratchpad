@@ -22,7 +22,7 @@ class Staff:
         """Instantiate the staff."""
         self.staff = {}
 
-    def register_worker(self, request: "Request") -> None:
+    def register_worker(self, request: Request) -> None:
         """Register a worker."""
         self.staff[request.scope["id"]] = Worker(request)
 

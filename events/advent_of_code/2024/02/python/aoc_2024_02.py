@@ -1,9 +1,11 @@
 import collections
-from collections.abc import Generator, Iterable
 from dataclasses import dataclass
 from itertools import islice
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from collections.abc import Generator, Iterable
 
 
 def sliding_window(iterable: Iterable, n: int) -> Generator[tuple[Any, ...]]:
