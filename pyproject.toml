@@ -7,7 +7,7 @@ authors = [
 ]
 license = { text = "MIT" }
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.14"
 dependencies = [
     "pytz",
     "darbiadev-utilities",
@@ -21,7 +21,7 @@ repository = "https://github.com/shenanigansd/scratchpad"
 
 [project.optional-dependencies]
 dev = [
-    "pre-commit",
+    "prek",
     "ruff",
     "mypy",
 ]
@@ -47,12 +47,12 @@ packages = []
 [tool.ruff]
 preview = true
 unsafe-fixes = true
-target-version = "py312"
+target-version = "py314"
 line-length = 120
 
 [tool.ruff.lint]
 select = ["ALL"]
-exclude = ["events", "scratch/discarded"]
+exclude = ["events"]
 ignore = [
   "CPY001", # (Missing copyright notice at top of file) - No license
   "ERA001", # (Found commented-out code) - This is a scratchpad, so...
