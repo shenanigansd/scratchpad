@@ -2,7 +2,7 @@ from pathlib import Path
 
 
 def parse_input(text: str) -> list[list[int]]:
-    return [list(map(int, line)) for line in text.split("\n")]
+    return [list(map(int, line)) for line in text.split("\n") if line]
 
 
 def part1(banks: list[list[int]]) -> int:
