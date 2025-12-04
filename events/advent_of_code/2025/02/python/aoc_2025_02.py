@@ -7,7 +7,7 @@ def is_periodic(text: str, length: int) -> bool:
         return False
 
     chunk = text[:length]
-    return all(text[i:i + length] == chunk for i in range(0, len(text), length))
+    return all(text[i : i + length] == chunk for i in range(0, len(text), length))
 
 
 def parse_input(text: str) -> list[tuple[int, int]]:

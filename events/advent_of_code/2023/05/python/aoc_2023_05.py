@@ -32,7 +32,7 @@ class Almanac:
 
     def smallest_seed_range_location(self) -> int:
         min_location = float("inf")
-        for start_seed, range_ in batched(self.seeds, 2):
+        for start_seed, range_ in batched(self.seeds, 2, strict=True):
             for seed in range(start_seed, start_seed + range_):
                 location = seed
                 for map_ in self.maps:

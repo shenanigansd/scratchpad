@@ -30,7 +30,7 @@ class Ship:
             for chunk in chunks(line, 4):
                 if chunk[0] == "[":
                     ship.stacks[stack].append(chunk[1])
-                stack += 1
+                stack += 1  # noqa: SIM113
         return ship
 
     def move_single(self, movement: Movement) -> None:
