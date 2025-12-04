@@ -1,8 +1,18 @@
 from collections import Counter
+from itertools import batched
 from pathlib import Path
 from string import ascii_lowercase, ascii_uppercase
+from typing import TYPE_CHECKING
 
-from darbia.utils.iterables import chunks, flatten
+if TYPE_CHECKING:
+    from collections.abc import Iterable
+
+
+def flatten[T](
+    iterable: Iterable[Iterable[T]],
+) -> Iterable[T]:
+    return [item for sub_iter in iterable for item in sub_iter]
+
 
 priorities = dict(
     zip(ascii_lowercase + ascii_uppercase, range(1, 52 + 1), strict=False),
@@ -22,7 +32,7 @@ def part_one(values: list[str]) -> int:
 
 def part_two(values: list[str]) -> int:
     total = 0
-    for group in chunks(values, 3):
+    for group in batched(values, 3, strict=True):
         counter = Counter(flatten([list(set(chunk)) for chunk in group]))
         for character, occurrences in counter.items():
             if occurrences == 3:

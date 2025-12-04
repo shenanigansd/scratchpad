@@ -21,6 +21,7 @@ repository = "https://github.com/shenanigansd/scratchpad"
 
 [project.optional-dependencies]
 dev = [
+    "nox",
     "prek",
     "ruff",
     "mypy",

@@ -1,9 +1,8 @@
 import re
 from dataclasses import dataclass
+from itertools import batched
 from pathlib import Path
 from typing import TYPE_CHECKING
-
-from darbia.utils.iterables import chunks
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
@@ -27,7 +26,7 @@ class Ship:
         ship = Ship({index: [] for index in range(1, stack_count + 1)})
         for line in lines:
             stack = 1
-            for chunk in chunks(line, 4):
+            for chunk in batched(line, 4, strict=False):
                 if chunk[0] == "[":
                     ship.stacks[stack].append(chunk[1])
                 stack += 1  # noqa: SIM113

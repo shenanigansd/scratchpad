@@ -1,6 +1,5 @@
+from itertools import batched
 from pathlib import Path
-
-from darbia.utils.iterables import chunks
 
 
 def run_cycles(text: str) -> dict[int, int]:
@@ -45,7 +44,7 @@ def part_two(text: str) -> str:
     cycles = run_cycles(text)
     for cycle, x in cycles.items():
         pixels.append("#" if x - 1 <= (cycle - 1) % 40 <= x + 1 else " ")
-    return "\n".join("".join(row) for row in chunks(pixels, 40))
+    return "\n".join("".join(row) for row in batched(pixels, 40, strict=True))
 
 
 if __name__ == "__main__":
