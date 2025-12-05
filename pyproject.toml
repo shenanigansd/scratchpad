@@ -31,12 +31,6 @@ tests = [
     "pytest-randomly",
     "hypothesis",
 ]
-docs = [
-    "sphinx",
-    "sphinxcontrib-autoprogram",
-    "sphinx-rtd-theme",
-    "toml",
-]
 
 [build-system]
 requires = ["setuptools", "wheel"]
