@@ -2,7 +2,7 @@
 name = "aoc-2015-01"
 description = "aoc-2015-01"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 authors = ["Bradley Reynolds <bradley.reynolds@tailstory.dev>"]
 license = "MIT"
 readme = "README.md"
