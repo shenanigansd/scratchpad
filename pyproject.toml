@@ -1,25 +1,10 @@
-[project]
-name = "scratchpad"
-version = "0.0.0" # explicity non-versioned
-description = "A scratchpad for keeping assorted notes and snippets"
-authors = [
-    { name = "Bradley Reynolds", email = "bradley.reynolds@tailstory.dev" },
-]
-license = { text = "MIT" }
-readme = "README.md"
-requires-python = ">=3.14"
-dependencies = [
-    "pytz",
-    "darbiadev-utilities",
-    "toml",
-    "pandas",
-    "parse",
+[tool.uv.workspace]
+members = [
+    "events/advent_of_code",
+    "scratch/projects/one_two_three",
 ]
 
-[project.urls]
-repository = "https://github.com/shenanigansd/scratchpad"
-
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
     "nox",
     "prek",
@@ -28,16 +13,10 @@ dev = [
 ]
 tests = [
     "pytest",
+    "coverage",
     "pytest-randomly",
     "hypothesis",
 ]
-
-[build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools]
-packages = []
 
 [tool.ruff]
 preview = true

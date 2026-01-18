@@ -1,0 +1,11 @@
+[project]
+name = "advent_of_code"
+version = "0.0.0" # explicity non-versioned
+requires-python = ">=3.14"
+dependencies = [
+    "pytz",
+    "darbiadev-utilities",
+    "toml",
+    "pandas",
+    "parse",
+]

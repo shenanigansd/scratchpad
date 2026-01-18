@@ -5,6 +5,7 @@ on:
     paths:
       - ".github/workflows/python.yaml"
       - "pyproject.toml"
+      - "**/pyproject.toml"
       - "**/*.py"
 
 permissions:
@@ -18,16 +19,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
 
-      - name: Setup Python
-        uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v6.1.0
+      - name: Install uv
+        uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867 # v7.1.6
         with:
-          python-version: 3.x
-          allow-prereleases: true
-          cache: pip
-          cache-dependency-path: pyproject.toml
+          enable-cache: true
 
-      - name: Install dependencies
-        run: python -m pip install .[dev,tests]
+      - name: Sync dependencies
+        run: uv sync --group dev
 
       - name: Check formatting
         run: python -m ruff format --check .
@@ -52,19 +50,11 @@ jobs:
         with:
           enable-cache: true
 
-      - name: Setup Python
-        uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v6.1.0
-        with:
-          python-version-file: "pyproject.toml"
-
-      - name: Install dependencies
-        run: |
-          python -m pip install coverage pytest
-          python -m pip install --editable .[dev,tests]
-          python -m pip install --editable scratch/projects/one_two_three
+      - name: Sync dependencies
+        run: uv sync --group tests
 
       - name: Run tests
-        run: python -m coverage run -m pytest --junitxml=junit.xml -o junit_family=legacy
+        run: uv run coverage run -m pytest --junitxml=junit.xml -o junit_family=legacy
 
       - name: Create coverage report
         if: ${{ !cancelled() }}
