@@ -10,6 +10,7 @@ dev = [
     "prek",
     "ruff",
     "mypy",
+    "ty",
 ]
 tests = [
     "pytest",
@@ -54,3 +55,7 @@ ignore = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
+
+[tool.mypy]
+strict = true
+pretty = true
