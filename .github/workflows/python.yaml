@@ -62,7 +62,7 @@ jobs:
         run: uv sync --group tests
 
       - name: Run tests
-        run: uv run coverage run -m pytest --junitxml=junit.xml -o junit_family=legacy
+        run: uv run coverage run -m pytest --tb=long --junitxml=junit.xml -o junit_family=legacy
 
       - name: Create coverage report
         if: ${{ !cancelled() }}
