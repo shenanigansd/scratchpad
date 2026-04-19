@@ -1,3 +1,11 @@
+[tool.uv]
+# Sync with Dependabot's uv version
+required-version = ">=0.10.9"
+exclude-newer = "P7D"
+environments = [
+    "sys_platform == 'linux' and platform_machine == 'x86_64'",
+]
+
 [tool.uv.workspace]
 members = [
     "events/advent_of_code",
@@ -20,8 +28,6 @@ tests = [
 ]
 
 [tool.ruff]
-preview = true
-unsafe-fixes = true
 target-version = "py314"
 line-length = 120
 
@@ -59,3 +65,7 @@ convention = "numpy"
 [tool.mypy]
 strict = true
 pretty = true
+
+[tool.pytest]
+strict = true
+junit_family = "xunit1"
